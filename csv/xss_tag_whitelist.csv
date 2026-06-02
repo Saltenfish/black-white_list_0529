@@ -1,0 +1,69 @@
+﻿HTML標籤,允許屬性,屬性數量
+a,"target, href, title",3
+abbr,title,1
+address,（無屬性）,0
+area,"shape, coords, href, alt",4
+article,（無屬性）,0
+aside,（無屬性）,0
+audio,"autoplay, controls, crossorigin, loop, muted, preload, src",7
+b,（無屬性）,0
+bdi,dir,1
+bdo,dir,1
+big,（無屬性）,0
+blockquote,cite,1
+br,（無屬性）,0
+caption,（無屬性）,0
+center,（無屬性）,0
+cite,（無屬性）,0
+code,（無屬性）,0
+col,"align, valign, span, width",4
+colgroup,"align, valign, span, width",4
+dd,（無屬性）,0
+del,datetime,1
+details,open,1
+div,（無屬性）,0
+dl,（無屬性）,0
+dt,（無屬性）,0
+em,（無屬性）,0
+figcaption,（無屬性）,0
+figure,（無屬性）,0
+font,"color, size, face",3
+footer,（無屬性）,0
+h1,（無屬性）,0
+h2,（無屬性）,0
+h3,（無屬性）,0
+h4,（無屬性）,0
+h5,（無屬性）,0
+h6,（無屬性）,0
+header,（無屬性）,0
+hr,（無屬性）,0
+i,（無屬性）,0
+img,"src, alt, title, width, height, loading",6
+ins,datetime,1
+kbd,（無屬性）,0
+li,（無屬性）,0
+mark,（無屬性）,0
+nav,（無屬性）,0
+ol,（無屬性）,0
+p,（無屬性）,0
+pre,（無屬性）,0
+s,（無屬性）,0
+section,（無屬性）,0
+small,（無屬性）,0
+span,（無屬性）,0
+strike,（無屬性）,0
+strong,（無屬性）,0
+sub,（無屬性）,0
+summary,（無屬性）,0
+sup,（無屬性）,0
+table,"width, border, align, valign",4
+tbody,"align, valign",2
+td,"width, rowspan, colspan, align, valign",5
+tfoot,"align, valign",2
+th,"width, rowspan, colspan, align, valign",5
+thead,"align, valign",2
+tr,"rowspan, align, valign",3
+tt,（無屬性）,0
+u,（無屬性）,0
+ul,（無屬性）,0
+video,"autoplay, controls, crossorigin, loop, muted, playsinline, poster, preload, src, height, width",11

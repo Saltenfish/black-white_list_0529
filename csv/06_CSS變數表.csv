@@ -1,0 +1,415 @@
+﻿函式庫,變數名稱,預設值
+Tailwind CSS, --tw-translate-x,0
+Tailwind CSS, --tw-translate-y,0
+Tailwind CSS, --tw-translate-z,0
+Tailwind CSS, --tw-scale-x,1
+Tailwind CSS, --tw-scale-y,1
+Tailwind CSS, --tw-scale-z,1
+Tailwind CSS, --tw-rotate-x,initial
+Tailwind CSS, --tw-rotate-y,initial
+Tailwind CSS, --tw-rotate-z,initial
+Tailwind CSS, --tw-skew-x,initial
+Tailwind CSS, --tw-skew-y,initial
+Tailwind CSS, --tw-pan-x,initial
+Tailwind CSS, --tw-pan-y,initial
+Tailwind CSS, --tw-pinch-zoom,initial
+Tailwind CSS, --tw-scroll-snap-strictness,proximity
+Tailwind CSS, --tw-space-y-reverse,0
+Tailwind CSS, --tw-space-x-reverse,0
+Tailwind CSS, --tw-divide-x-reverse,0
+Tailwind CSS, --tw-border-style,solid
+Tailwind CSS, --tw-divide-y-reverse,0
+Tailwind CSS, --tw-gradient-position,initial
+Tailwind CSS, --tw-gradient-from,#0000
+Tailwind CSS, --tw-gradient-via,#0000
+Tailwind CSS, --tw-gradient-to,#0000
+Tailwind CSS, --tw-gradient-stops,initial
+Tailwind CSS, --tw-gradient-via-stops,initial
+Tailwind CSS, --tw-gradient-from-position,0%
+Tailwind CSS, --tw-gradient-via-position,50%
+Tailwind CSS, --tw-gradient-to-position,100%
+Tailwind CSS, --tw-leading,initial
+Tailwind CSS, --tw-font-weight,initial
+Tailwind CSS, --tw-tracking,initial
+Tailwind CSS, --tw-ordinal,initial
+Tailwind CSS, --tw-slashed-zero,initial
+Tailwind CSS, --tw-numeric-figure,initial
+Tailwind CSS, --tw-numeric-spacing,initial
+Tailwind CSS, --tw-numeric-fraction,initial
+Tailwind CSS, --tw-shadow,0 0 #0000
+Tailwind CSS, --tw-shadow-color,initial
+Tailwind CSS, --tw-shadow-alpha,100%
+Tailwind CSS, --tw-inset-shadow,0 0 #0000
+Tailwind CSS, --tw-inset-shadow-color,initial
+Tailwind CSS, --tw-inset-shadow-alpha,100%
+Tailwind CSS, --tw-ring-color,initial
+Tailwind CSS, --tw-ring-shadow,0 0 #0000
+Tailwind CSS, --tw-inset-ring-color,initial
+Tailwind CSS, --tw-inset-ring-shadow,0 0 #0000
+Tailwind CSS, --tw-ring-inset,initial
+Tailwind CSS, --tw-ring-offset-width,0px
+Tailwind CSS, --tw-ring-offset-color,#fff
+Tailwind CSS, --tw-ring-offset-shadow,0 0 #0000
+Tailwind CSS, --tw-outline-style,solid
+Tailwind CSS, --tw-blur,initial
+Tailwind CSS, --tw-brightness,initial
+Tailwind CSS, --tw-contrast,initial
+Tailwind CSS, --tw-grayscale,initial
+Tailwind CSS, --tw-hue-rotate,initial
+Tailwind CSS, --tw-invert,initial
+Tailwind CSS, --tw-opacity,initial
+Tailwind CSS, --tw-saturate,initial
+Tailwind CSS, --tw-sepia,initial
+Tailwind CSS, --tw-drop-shadow,initial
+Tailwind CSS, --tw-drop-shadow-color,initial
+Tailwind CSS, --tw-drop-shadow-alpha,100%
+Tailwind CSS, --tw-drop-shadow-size,initial
+Tailwind CSS, --tw-backdrop-blur,initial
+Tailwind CSS, --tw-backdrop-brightness,initial
+Tailwind CSS, --tw-backdrop-contrast,initial
+Tailwind CSS, --tw-backdrop-grayscale,initial
+Tailwind CSS, --tw-backdrop-hue-rotate,initial
+Tailwind CSS, --tw-backdrop-invert,initial
+Tailwind CSS, --tw-backdrop-opacity,initial
+Tailwind CSS, --tw-backdrop-saturate,initial
+Tailwind CSS, --tw-backdrop-sepia,initial
+Tailwind CSS, --tw-duration,initial
+Tailwind CSS, --tw-ease,initial
+Tailwind CSS, --tw-content,""""""
+Tailwind CSS, --tw-animation-delay,0s
+Tailwind CSS, --tw-animation-direction,normal
+Tailwind CSS, --tw-animation-duration,initial
+Tailwind CSS, --tw-animation-fill-mode,none
+Tailwind CSS, --tw-animation-iteration-count,1
+Tailwind CSS, --tw-enter-blur,0
+Tailwind CSS, --tw-enter-opacity,1
+Tailwind CSS, --tw-enter-rotate,0
+Tailwind CSS, --tw-enter-scale,1
+Tailwind CSS, --tw-enter-translate-x,0
+Tailwind CSS, --tw-enter-translate-y,0
+Tailwind CSS, --tw-exit-blur,0
+Tailwind CSS, --tw-exit-opacity,1
+Tailwind CSS, --tw-exit-rotate,0
+Tailwind CSS, --tw-exit-scale,1
+Tailwind CSS, --tw-exit-translate-x,0
+Tailwind CSS, --tw-exit-translate-y,0
+Tailwind CSS, --font-sans,"ui-sans-serif,system-ui,sans-serif,""Apple Color Emoji"",""Segoe UI Emoji"",""Segoe UI Symbol"",""Noto Color Emoji"""
+Tailwind CSS, --font-serif,"ui-serif,Georgia,Cambria,""Times New Roman"",Times,serif"
+Tailwind CSS, --font-mono,"ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,""Liberation Mono"",""Courier New"",monospace"
+Tailwind CSS, --color-red-50,oklch(97.1% .013 17.38)
+Tailwind CSS, --color-red-100,oklch(93.6% .032 17.717)
+Tailwind CSS, --color-red-200,oklch(88.5% .062 18.334)
+Tailwind CSS, --color-red-300,oklch(80.8% .114 19.571)
+Tailwind CSS, --color-red-400,oklch(70.4% .191 22.216)
+Tailwind CSS, --color-red-500,oklch(63.7% .237 25.331)
+Tailwind CSS, --color-red-600,oklch(57.7% .245 27.325)
+Tailwind CSS, --color-red-700,oklch(50.5% .213 27.518)
+Tailwind CSS, --color-red-800,oklch(44.4% .177 26.899)
+Tailwind CSS, --color-red-900,oklch(39.6% .141 25.723)
+Tailwind CSS, --color-red-950,oklch(25.8% .092 26.042)
+Tailwind CSS, --color-orange-400,oklch(75% .183 55.934)
+Tailwind CSS, --color-orange-500,oklch(70.5% .213 47.604)
+Tailwind CSS, --color-orange-600,oklch(64.6% .222 41.116)
+Tailwind CSS, --color-amber-100,oklch(96.2% .059 95.617)
+Tailwind CSS, --color-amber-300,oklch(87.9% .169 91.605)
+Tailwind CSS, --color-amber-400,oklch(82.8% .189 84.429)
+Tailwind CSS, --color-amber-500,oklch(76.9% .188 70.08)
+Tailwind CSS, --color-amber-600,oklch(66.6% .179 58.318)
+Tailwind CSS, --color-amber-800,oklch(47.3% .137 46.201)
+Tailwind CSS, --color-amber-950,oklch(27.9% .077 45.635)
+Tailwind CSS, --color-yellow-100,oklch(97.3% .071 103.193)
+Tailwind CSS, --color-yellow-300,oklch(90.5% .182 98.111)
+Tailwind CSS, --color-yellow-400,oklch(85.2% .199 91.936)
+Tailwind CSS, --color-yellow-500,oklch(79.5% .184 86.047)
+Tailwind CSS, --color-yellow-600,oklch(68.1% .162 75.834)
+Tailwind CSS, --color-yellow-900,oklch(42.1% .095 57.708)
+Tailwind CSS, --color-yellow-950,oklch(28.6% .066 53.813)
+Tailwind CSS, --color-green-100,oklch(96.2% .044 156.743)
+Tailwind CSS, --color-green-300,oklch(87.1% .15 154.449)
+Tailwind CSS, --color-green-400,oklch(79.2% .209 151.711)
+Tailwind CSS, --color-green-500,oklch(72.3% .219 149.579)
+Tailwind CSS, --color-green-600,oklch(62.7% .194 149.214)
+Tailwind CSS, --color-green-700,oklch(52.7% .154 150.069)
+Tailwind CSS, --color-green-800,oklch(44.8% .119 151.328)
+Tailwind CSS, --color-green-900,oklch(39.3% .095 152.535)
+Tailwind CSS, --color-green-950,oklch(26.6% .065 152.934)
+Tailwind CSS, --color-emerald-300,oklch(84.5% .143 164.978)
+Tailwind CSS, --color-emerald-400,oklch(76.5% .177 163.223)
+Tailwind CSS, --color-emerald-500,oklch(69.6% .17 162.48)
+Tailwind CSS, --color-emerald-600,oklch(59.6% .145 163.225)
+Tailwind CSS, --color-teal-400,oklch(77.7% .152 181.912)
+Tailwind CSS, --color-teal-500,oklch(70.4% .14 182.503)
+Tailwind CSS, --color-cyan-400,oklch(78.9% .154 211.53)
+Tailwind CSS, --color-cyan-500,oklch(71.5% .143 215.221)
+Tailwind CSS, --color-blue-100,oklch(93.2% .032 255.585)
+Tailwind CSS, --color-blue-300,oklch(80.9% .105 251.813)
+Tailwind CSS, --color-blue-400,oklch(70.7% .165 254.624)
+Tailwind CSS, --color-blue-500,oklch(62.3% .214 259.815)
+Tailwind CSS, --color-blue-600,oklch(54.6% .245 262.881)
+Tailwind CSS, --color-blue-700,oklch(48.8% .243 264.376)
+Tailwind CSS, --color-blue-800,oklch(42.4% .199 265.638)
+Tailwind CSS, --color-blue-950,oklch(28.2% .091 267.935)
+Tailwind CSS, --color-indigo-400,oklch(67.3% .182 276.935)
+Tailwind CSS, --color-indigo-500,oklch(58.5% .233 277.117)
+Tailwind CSS, --color-purple-300,oklch(82.7% .119 306.383)
+Tailwind CSS, --color-purple-400,oklch(71.4% .203 305.504)
+Tailwind CSS, --color-purple-500,oklch(62.7% .265 303.9)
+Tailwind CSS, --color-purple-600,oklch(55.8% .288 302.321)
+Tailwind CSS, --color-pink-50,oklch(97.1% .014 343.198)
+Tailwind CSS, --color-pink-100,oklch(94.8% .028 342.258)
+Tailwind CSS, --color-pink-200,oklch(89.9% .061 343.231)
+Tailwind CSS, --color-pink-300,oklch(82.3% .12 346.018)
+Tailwind CSS, --color-pink-400,oklch(71.8% .202 349.761)
+Tailwind CSS, --color-pink-500,oklch(65.6% .241 354.308)
+Tailwind CSS, --color-pink-700,oklch(52.5% .223 3.958)
+Tailwind CSS, --color-rose-50,oklch(96.9% .015 12.422)
+Tailwind CSS, --color-rose-100,oklch(94.1% .03 12.58)
+Tailwind CSS, --color-rose-200,oklch(89.2% .058 10.001)
+Tailwind CSS, --color-rose-300,oklch(81% .117 11.638)
+Tailwind CSS, --color-rose-400,oklch(71.2% .194 13.428)
+Tailwind CSS, --color-rose-500,oklch(64.5% .246 16.439)
+Tailwind CSS, --color-rose-600,oklch(58.6% .253 17.585)
+Tailwind CSS, --color-gray-50,oklch(98.5% .002 247.839)
+Tailwind CSS, --color-gray-100,oklch(96.7% .003 264.542)
+Tailwind CSS, --color-gray-200,oklch(92.8% .006 264.531)
+Tailwind CSS, --color-gray-300,oklch(87.2% .01 258.338)
+Tailwind CSS, --color-gray-400,oklch(70.7% .022 261.325)
+Tailwind CSS, --color-gray-500,oklch(55.1% .027 264.364)
+Tailwind CSS, --color-gray-600,oklch(44.6% .03 256.802)
+Tailwind CSS, --color-gray-700,oklch(37.3% .034 259.733)
+Tailwind CSS, --color-gray-800,oklch(27.8% .033 256.848)
+Tailwind CSS, --color-gray-900,oklch(21% .034 264.665)
+Tailwind CSS, --color-gray-950,oklch(13% .028 261.692)
+Tailwind CSS, --color-zinc-100,oklch(96.7% .001 286.375)
+Tailwind CSS, --color-zinc-200,oklch(92% .004 286.32)
+Tailwind CSS, --color-zinc-300,oklch(87.1% .006 286.286)
+Tailwind CSS, --color-zinc-400,oklch(70.5% .015 286.067)
+Tailwind CSS, --color-zinc-500,oklch(55.2% .016 285.938)
+Tailwind CSS, --color-zinc-700,oklch(37% .013 285.805)
+Tailwind CSS, --color-zinc-800,oklch(27.4% .006 286.033)
+Tailwind CSS, --color-zinc-900,oklch(21% .006 285.885)
+Tailwind CSS, --color-zinc-950,oklch(14.1% .005 285.823)
+Tailwind CSS, --color-black,#000
+Tailwind CSS, --color-white,#fff
+Tailwind CSS, --spacing,.25rem
+Tailwind CSS, --container-xs,20rem
+Tailwind CSS, --container-sm,24rem
+Tailwind CSS, --container-md,28rem
+Tailwind CSS, --container-lg,32rem
+Tailwind CSS, --container-xl,36rem
+Tailwind CSS, --container-2xl,42rem
+Tailwind CSS, --container-3xl,48rem
+Tailwind CSS, --container-4xl,56rem
+Tailwind CSS, --container-7xl,80rem
+Tailwind CSS, --text-xs,.75rem
+Tailwind CSS, --text-xs--line-height,calc(1/.75)
+Tailwind CSS, --text-sm,.875rem
+Tailwind CSS, --text-sm--line-height,calc(1.25/.875)
+Tailwind CSS, --text-base,1rem
+Tailwind CSS, --text-base--line-height,calc(1.5/1)
+Tailwind CSS, --text-lg,1.125rem
+Tailwind CSS, --text-lg--line-height,calc(1.75/1.125)
+Tailwind CSS, --text-xl,1.25rem
+Tailwind CSS, --text-xl--line-height,calc(1.75/1.25)
+Tailwind CSS, --text-2xl,1.5rem
+Tailwind CSS, --text-2xl--line-height,calc(2/1.5)
+Tailwind CSS, --text-3xl,1.875rem
+Tailwind CSS, --text-3xl--line-height,calc(2.25/1.875)
+Tailwind CSS, --text-4xl,2.25rem
+Tailwind CSS, --text-4xl--line-height,calc(2.5/2.25)
+Tailwind CSS, --font-weight-light,300
+Tailwind CSS, --font-weight-normal,400
+Tailwind CSS, --font-weight-medium,500
+Tailwind CSS, --font-weight-semibold,600
+Tailwind CSS, --font-weight-bold,700
+Tailwind CSS, --font-weight-extrabold,800
+Tailwind CSS, --font-weight-black,900
+Tailwind CSS, --tracking-tighter,-.05em
+Tailwind CSS, --tracking-tight,-.025em
+Tailwind CSS, --tracking-normal,0em
+Tailwind CSS, --tracking-wide,.025em
+Tailwind CSS, --tracking-wider,.05em
+Tailwind CSS, --tracking-widest,.1em
+Tailwind CSS, --leading-tight,1.25
+Tailwind CSS, --leading-snug,1.375
+Tailwind CSS, --leading-normal,1.5
+Tailwind CSS, --leading-relaxed,1.625
+Tailwind CSS, --leading-loose,2
+Tailwind CSS, --radius-sm,.25rem
+Tailwind CSS, --radius-md,.375rem
+Tailwind CSS, --radius-lg,.5rem
+Tailwind CSS, --radius-xl,.75rem
+Tailwind CSS, --radius-2xl,1rem
+Tailwind CSS, --radius-3xl,1.5rem
+Tailwind CSS, --drop-shadow-lg,0 4px 4px #00000026
+Tailwind CSS, --drop-shadow-2xl,0 25px 25px #00000026
+Tailwind CSS, --ease-out,"cubic-bezier(0,0,.2,1)"
+Tailwind CSS, --ease-in-out,"cubic-bezier(.4,0,.2,1)"
+Tailwind CSS, --animate-spin,spin 1s linear infinite
+Tailwind CSS, --animate-pulse,"pulse 2s cubic-bezier(.4,0,.6,1)infinite"
+Tailwind CSS, --blur-sm,8px
+Tailwind CSS, --blur-md,12px
+Tailwind CSS, --blur-lg,16px
+Tailwind CSS, --blur-xl,24px
+Tailwind CSS, --aspect-video,16/9
+Tailwind CSS, --default-transition-duration,.15s
+Tailwind CSS, --default-transition-timing-function,"cubic-bezier(.4,0,.2,1)"
+Tailwind CSS, --default-font-family,var(--font-pretendard)
+Tailwind CSS, --default-mono-font-family,var(--font-mono)
+Tailwind CSS, --font-pretendard,"""Pretendard Variable"",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,""Roboto"",""Helvetica Neue"",""Segoe UI"",""Apple SD Gothic Neo"",""Noto Sans KR"",""Malgun Gothic"",""Apple Color Emoji"",""Segoe UI Emoj"
+Tailwind CSS, --font-notoKr,"""Noto Serif KR"""
+Tailwind CSS, --font-racing,"""Racing Sans One"",system-ui,sans-serif"
+Tailwind CSS, --font-playfair,"""Playfair Display"",""Noto Serif KR"",Georgia,serif"
+Tailwind CSS, --font-cormorant,"""Cormorant Garamond"",""Noto Serif KR"",Georgia,serif"
+Tailwind CSS, --text-heading-medium,24px
+Tailwind CSS, --aspect-poster,9/14
+Tailwind CSS, --max-width-content,1920px
+Tailwind CSS, --color-primary,var(--color-duck-pink2)
+Tailwind CSS, --color-secondary,var(--color-dgray-800)
+Tailwind CSS, --color-error,var(--color-red-500)
+Tailwind CSS, --color-foreground,#fff
+Tailwind CSS, --color-accent,var(--color-dgray-800)
+Tailwind CSS, --color-weak-accent,var(--color-dgray-900)
+Tailwind CSS, --color-background-400,#404040
+Tailwind CSS, --color-background-500,#333
+Tailwind CSS, --color-background-700,#262727
+Tailwind CSS, --color-background-900,#1a1b1b
+Tailwind CSS, --color-background,#1a1b1b
+Tailwind CSS, --color-textarea-outline,var(--color-dgray-700)
+Tailwind CSS, --color-textarea-outline-focus,var(--color-foreground)
+Tailwind CSS, --color-duck-pink1,#e72563
+Tailwind CSS, --color-duck-pink2,#bc1e51
+Tailwind CSS, --color-duck-pink5,#3c0a1a
+Tailwind CSS, --color-duck-yellow,#ffb400
+Tailwind CSS, --color-duck-orange,#ff9500
+Tailwind CSS, --color-duck-blue,#007aff
+Tailwind CSS, --color-dgray-white,#fff
+Tailwind CSS, --color-dgray-50,#f7f9fa
+Tailwind CSS, --color-dgray-100,#f1f4f6
+Tailwind CSS, --color-dgray-200,#e5e7eb
+Tailwind CSS, --color-dgray-300,#d1d5db
+Tailwind CSS, --color-dgray-400,#9ca3af
+Tailwind CSS, --color-dgray-500,#858d9b
+Tailwind CSS, --color-dgray-600,#737883
+Tailwind CSS, --color-dgray-700,#595b63
+Tailwind CSS, --color-dgray-800,#3e3e41
+Tailwind CSS, --color-dgray-900,#2d2d2d
+Tailwind CSS, --color-dgray-black,#000
+Tailwind CSS, --color-creator,#2992c2
+Tailwind CSS, --color-official-creator,#b88e9e
+Tailwind CSS, --color-asker-name,#b4d273
+Tailwind CSS, --color-char-name,#e5b567
+Tailwind CSS, --color-char-message,var(--color-yellow-400)
+Tailwind CSS, --color-user-message,var(--color-blue-300)
+Tailwind CSS, --color-desc-message,var(--color-dgray-300)
+Tailwind CSS, --color-memory-bracket,#fd899d
+Tailwind CSS, --color-background-markdown,#373737
+Tailwind CSS, --focus-outlineColor,#1f6feb
+Tailwind CSS, --fgColor-default,#f0f6fc
+Tailwind CSS, --fgColor-muted,#9198a1
+Tailwind CSS, --fgColor-accent,#4493f8
+Tailwind CSS, --fgColor-success,#3fb950
+Tailwind CSS, --fgColor-attention,#d29922
+Tailwind CSS, --fgColor-danger,#f85149
+Tailwind CSS, --fgColor-done,#ab7df8
+Tailwind CSS, --bgColor-default,#0d1117
+Tailwind CSS, --bgColor-muted,#151b23
+Tailwind CSS, --bgColor-neutral-muted,#7d7d7d33
+Tailwind CSS, --bgColor-attention-muted,#bb800926
+Tailwind CSS, --borderColor-default,#3d444d
+Tailwind CSS, --borderColor-muted,#3d444db3
+Tailwind CSS, --borderColor-neutral-muted,#3d444db3
+Tailwind CSS, --borderColor-accent-emphasis,#1f6feb
+Tailwind CSS, --borderColor-success-emphasis,#238636
+Tailwind CSS, --borderColor-attention-emphasis,#9e6a03
+Tailwind CSS, --borderColor-danger-emphasis,#da3633
+Tailwind CSS, --borderColor-done-emphasis,#8957e5
+Tailwind CSS, --color-prettylights-syntax-comment,#9198a1
+Tailwind CSS, --color-prettylights-syntax-constant,#79c0ff
+Tailwind CSS, --color-prettylights-syntax-constant-other-reference-link,#a5d6ff
+Tailwind CSS, --color-prettylights-syntax-entity,#d2a8ff
+Tailwind CSS, --color-prettylights-syntax-storage-modifier-import,#f0f6fc
+Tailwind CSS, --color-prettylights-syntax-entity-tag,#7ee787
+Tailwind CSS, --color-prettylights-syntax-keyword,#ff7b72
+Tailwind CSS, --color-prettylights-syntax-string,#a5d6ff
+Tailwind CSS, --color-prettylights-syntax-variable,#ffa657
+Tailwind CSS, --color-prettylights-syntax-brackethighlighter-unmatched,#f85149
+Tailwind CSS, --color-prettylights-syntax-brackethighlighter-angle,#9198a1
+Tailwind CSS, --color-prettylights-syntax-invalid-illegal-text,#f0f6fc
+Tailwind CSS, --color-prettylights-syntax-invalid-illegal-bg,#8e1519
+Tailwind CSS, --color-prettylights-syntax-carriage-return-text,#f0f6fc
+Tailwind CSS, --color-prettylights-syntax-carriage-return-bg,#b62324
+Tailwind CSS, --color-prettylights-syntax-string-regexp,#7ee787
+Tailwind CSS, --color-prettylights-syntax-markup-list,#f2cc60
+Tailwind CSS, --color-prettylights-syntax-markup-heading,#1f6feb
+Tailwind CSS, --color-prettylights-syntax-markup-italic,#f0f6fc
+Tailwind CSS, --color-prettylights-syntax-markup-bold,#f0f6fc
+Tailwind CSS, --color-prettylights-syntax-markup-deleted-text,#ffdcd7
+Tailwind CSS, --color-prettylights-syntax-markup-deleted-bg,#67060c
+Tailwind CSS, --color-prettylights-syntax-markup-inserted-text,#aff5b4
+Tailwind CSS, --color-prettylights-syntax-markup-inserted-bg,#033a16
+Tailwind CSS, --color-prettylights-syntax-markup-changed-text,#ffdfb6
+Tailwind CSS, --color-prettylights-syntax-markup-changed-bg,#5a1e02
+Tailwind CSS, --color-prettylights-syntax-markup-ignored-text,#f0f6fc
+Tailwind CSS, --color-prettylights-syntax-markup-ignored-bg,#1158c7
+Tailwind CSS, --color-prettylights-syntax-meta-diff-range,#d2a8ff
+Tailwind CSS, --color-prettylights-syntax-sublimelinter-gutter-mark,#3d444d
+Tailwind CSS, --color-memory-quote,#8b5e00
+Tailwind CSS, --tw-prose-body,oklch(37.3% .034 259.733)
+Tailwind CSS, --tw-prose-headings,oklch(21% .034 264.665)
+Tailwind CSS, --tw-prose-lead,oklch(44.6% .03 256.802)
+Tailwind CSS, --tw-prose-links,oklch(21% .034 264.665)
+Tailwind CSS, --tw-prose-bold,oklch(21% .034 264.665)
+Tailwind CSS, --tw-prose-counters,oklch(55.1% .027 264.364)
+Tailwind CSS, --tw-prose-bullets,oklch(87.2% .01 258.338)
+Tailwind CSS, --tw-prose-hr,oklch(92.8% .006 264.531)
+Tailwind CSS, --tw-prose-quotes,oklch(21% .034 264.665)
+Tailwind CSS, --tw-prose-quote-borders,oklch(92.8% .006 264.531)
+Tailwind CSS, --tw-prose-captions,oklch(55.1% .027 264.364)
+Tailwind CSS, --tw-prose-kbd,oklch(21% .034 264.665)
+Tailwind CSS, --tw-prose-kbd-shadows,oklab(21% -.00316127 -.0338527/.1)
+Tailwind CSS, --tw-prose-code,oklch(21% .034 264.665)
+Tailwind CSS, --tw-prose-pre-code,oklch(92.8% .006 264.531)
+Tailwind CSS, --tw-prose-pre-bg,oklch(27.8% .033 256.848)
+Tailwind CSS, --tw-prose-th-borders,oklch(87.2% .01 258.338)
+Tailwind CSS, --tw-prose-td-borders,oklch(92.8% .006 264.531)
+Tailwind CSS, --tw-prose-invert-body,oklch(87.2% .01 258.338)
+Tailwind CSS, --tw-prose-invert-headings,#fff
+Tailwind CSS, --tw-prose-invert-lead,oklch(70.7% .022 261.325)
+Tailwind CSS, --tw-prose-invert-links,#fff
+Tailwind CSS, --tw-prose-invert-bold,#fff
+Tailwind CSS, --tw-prose-invert-counters,oklch(70.7% .022 261.325)
+Tailwind CSS, --tw-prose-invert-bullets,oklch(44.6% .03 256.802)
+Tailwind CSS, --tw-prose-invert-hr,oklch(37.3% .034 259.733)
+Tailwind CSS, --tw-prose-invert-quotes,oklch(96.7% .003 264.542)
+Tailwind CSS, --tw-prose-invert-quote-borders,oklch(37.3% .034 259.733)
+Tailwind CSS, --tw-prose-invert-captions,oklch(70.7% .022 261.325)
+Tailwind CSS, --tw-prose-invert-kbd,#fff
+Tailwind CSS, --tw-prose-invert-kbd-shadows,#ffffff1a
+Tailwind CSS, --tw-prose-invert-code,#fff
+Tailwind CSS, --tw-prose-invert-pre-code,oklch(87.2% .01 258.338)
+Tailwind CSS, --tw-prose-invert-pre-bg,#00000080
+Tailwind CSS, --tw-prose-invert-th-borders,oklch(44.6% .03 256.802)
+Tailwind CSS, --tw-prose-invert-td-borders,oklch(37.3% .034 259.733)
+Tailwind CSS, --scrollbar-thumb,#3e3e41
+Tailwind CSS, --wedding-burgundy,#5c1930
+Tailwind CSS, --wedding-rose,#b76e79
+Tailwind CSS, --wedding-gold,#c9a962
+Tailwind CSS, --wedding-cream,#faf7f2
+Tailwind CSS, --wedding-blush,#f5e6e8
+Tailwind CSS, --wedding-deep,#2d0f1a
+animate.css, --animate-duration,1s
+animate.css, --animate-delay,1s
+animate.css, --animate-repeat,1
+markdown-body, --base-size-4,0.25rem
+markdown-body, --base-size-8,0.5rem
+markdown-body, --base-size-16,1rem
+markdown-body, --base-size-24,1.5rem
+markdown-body, --base-size-40,2.5rem
+markdown-body, --base-text-weight-normal,400
+markdown-body, --base-text-weight-medium,500
+markdown-body, --base-text-weight-semibold,600
+markdown-body, --fontStack-monospace,"ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace"
+Swiper, --swiper-theme-color,#007aff
+Swiper, --swiper-preloader-color,#fff
+Swiper, --swiper-navigation-size,44px

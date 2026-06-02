@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CaveDuck 前端白名單查詢</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── Dark theme (default) ── */
+:root{
+  --bg:#0c0c0c;--bg2:#111;--bg3:#171717;--bg4:#1d1d1d;--border:#222;--border2:#1a1a1a;
+  --text:#ddd;--muted:#fdfdf0;--dim:#2a2a2a;--card-bg:#0e0e0e;--card-hover-border:#2d2d2d;
+  --dim-card:#0a0a0a;--dim-card-border:#181818;--dim-title:#555;--dim-desc:#2e2e2e;--dim-top:#1e1e1e;
+  --divider:#252525;--hero-from:#0f1210;--hero-to:#0a0a0a;
+  --green:#3ec97a;--green-bg:#061410;--green-bd:#0d2818;
+  --red:#e86050;--red-bg:#140806;--red-bd:#280f08;
+  --blue:#4da8f0;--blue-bg:#060c18;--blue-bd:#0c1e38;
+  --yellow:#f0c14d;--yellow-bg:#141008;--yellow-bd:#2a2008;
+  --purple:#b48ef0;--purple-bg:#0e0818;--purple-bd:#231040;
+  --teal:#4ecdc4;--teal-bg:#061414;--teal-bd:#0d2828;
+  --orange:#e17055;--orange-bg:#180d08;--orange-bd:#3a1a10;
+  --toggle-bg:#1a1a1a;--toggle-border:#777;--toggle-icon:"☀️";
+}
+
+/* ── Light theme ── */
+[data-theme="light"]{
+  --bg:#f5f5f0;--bg2:#eeede8;--bg3:#e6e5e0;--bg4:#dddcd8;--border:#d0cfca;--border2:#dddcd8;
+  --text:#1a1a1a;--muted:#888;--dim:#ccc;--card-bg:#ffffff;--card-hover-border:#aaa;
+  --dim-card:#f0efeb;--dim-card-border:#ddd;--dim-title:#aaa;--dim-desc:#bbb;--dim-top:#ccc;
+  --divider:#ccc;--hero-from:#eaf2ec;--hero-to:#f2f1ec;
+  --green:#1e7a47;--green-bg:#e6f5ec;--green-bd:#b8dec7;
+  --red:#c0392b;--red-bg:#fdecea;--red-bd:#f5b8b3;
+  --blue:#1a6db5;--blue-bg:#e8f1fb;--blue-bd:#b3cef0;
+  --yellow:#b07d00;--yellow-bg:#fdf8e6;--yellow-bd:#e8d68a;
+  --purple:#6b3fa0;--purple-bg:#f2eafa;--purple-bd:#cdb0e8;
+  --teal:#1a8a84;--teal-bg:#e6f5f4;--teal-bd:#9dd6d3;
+  --orange:#c0541a;--orange-bg:#fdf0ea;--orange-bd:#f0bfa0;
+  --toggle-bg:#e0dfd9;--toggle-border:#bbb;--toggle-icon:"🌙";
+}
+
+html,body{height:100%;background:var(--bg);color:var(--text);
+  font-family:'SF Mono','Fira Code','Cascadia Code',ui-monospace,monospace;font-size:13px;line-height:1.6;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+/* header */
+.hd{padding:.8rem 1.4rem;border-bottom:2px solid var(--border);background:linear-gradient(180deg,var(--bg2),var(--bg));display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.hd-title{font-size:16px;font-weight:700;letter-spacing:.04em;display:flex;align-items:center;gap:.5rem}
+.hd-sub{font-size:10px;color:var(--muted);letter-spacing:.06em;flex:1}
+
+/* theme toggle */
+.theme-btn{margin-left:auto;background:var(--toggle-bg);border:1px solid var(--toggle-border);
+  border-radius:6px;padding:4px 10px;font-size:11px;color:var(--muted);cursor:pointer;
+  font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.theme-btn:hover{color:var(--text);border-color:var(--muted)}
+.theme-btn::before{content:var(--toggle-icon)}
+
+/* hero */
+body{display:flex;flex-direction:column;min-height:100vh}
+.hero{padding:2.2rem 1.5rem 1.4rem;border-bottom:1px solid var(--border2);background:linear-gradient(180deg,var(--hero-from),var(--hero-to))}
+.hero-title{font-size:22px;font-weight:700;letter-spacing:.05em;display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem}
+.hero-accent{color:var(--green)}
+.hero-sub{font-size:11px;color:var(--muted);line-height:1.8;max-width:540px}
+
+/* section */
+.sec-label{padding:.9rem 1.4rem .2rem;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border2)}
+.sec-divider{padding:.4rem 1.4rem 0;font-size:10px;color:var(--divider);letter-spacing:.1em;text-transform:uppercase}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.9rem;padding:.6rem 1.4rem 1.2rem}
+
+/* cards */
+.pill{font-size:9px;padding:1px 6px;border-radius:3px;letter-spacing:.04em;font-weight:600}
+.pill.g{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.pill.r{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.pill.b{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
+.pill.tl{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-bd)}
+.pill.y{background:var(--yellow-bg);color:var(--yellow);border:1px solid var(--yellow-bd)}
+.pill.p{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-bd)}
+.pill.m{background:var(--bg3);color:var(--muted);border:1px solid var(--border)}
+.sec-card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;
+  cursor:pointer;transition:all .2s;display:flex;flex-direction:column;gap:.5rem;text-decoration:none}
+.sec-card:hover{border-color:var(--card-hover-border);transform:translateY(-2px)}
+.sec-card.dim{background:var(--dim-card);border-color:var(--dim-card-border);opacity:.45}
+.sec-card.dim:hover{opacity:.65;transform:none}
+.sec-icon{font-size:20px;line-height:1}
+.sec-title{font-size:13px;font-weight:700;letter-spacing:.03em}
+.sec-card.dim .sec-title{color:var(--dim-title)}
+.sec-desc{font-size:10px;color:var(--muted);line-height:1.75}
+.sec-card.dim .sec-desc{color:var(--dim-desc)}
+.sec-meta{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.2rem}
+.sec-card.dim{border-top-color:var(--dim-top)}
+
+/* row sub-label */
+.sec-row-label{padding:.1rem 1.4rem .2rem;font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.grid-single{grid-template-columns:minmax(260px,360px)}
+
+/* card accent tops */
+.c-html{border-top:3px solid var(--green)}
+.c-css{border-top:3px solid var(--blue)}
+.c-animate{border-top:3px solid var(--yellow)}
+.c-tailwind{border-top:3px solid var(--purple)}
+.c-svg{border-top:3px solid var(--teal)}
+.c-math{border-top:3px solid var(--orange)}
+.c-ref{border-top:3px solid var(--teal)}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="hd-title"><span style="color:var(--green);font-size:12px">&lt;/&gt;</span> CaveDuck 前端白名單查詢</div>
+  <div class="hd-sub">HTML · CSS · SVG · MathML · Animate · Tailwind</div>
+  <button class="theme-btn" id="themeToggle"> 切換背景 Change background</button>
+</div>
+
+<div class="hero">
+  <div class="hero-title"><span class="hero-accent">◈</span> 選擇查詢分類 Choose to check label</div>
+  <div class="hero-sub">整合聊天室與角色介面實測資料 · 搜尋 · 預覽 · 一鍵複製</div>
+</div>
+
+<!-- ── 區塊一：前端參考工具 ── -->
+<div class="sec-label">前端參考工具 Front-end reference tools</div>
+
+<!-- Row 1：我的工具 -->
+<div class="grid">
+  <a href="animate.html" class="sec-card c-animate">
+    <div class="sec-icon">✨</div>
+    <div class="sec-title">Animate.css 類別</div>
+    <div class="sec-desc">動畫效果持續預覽，含分類、說明與完整程式碼複製。</div>
+    <div class="sec-meta"><span class="pill y">97 個動畫</span><span class="pill m">14 工具類別</span><span class="pill g">即時預覽</span></div>
+  </a>
+  <a href="html-tags.html" class="sec-card c-html">
+    <div class="sec-icon">🏷️</div>
+    <div class="sec-title">HTML 標籤</div>
+    <div class="sec-desc">實測 137 個標籤在聊天室與角色介面的支援情況，含允許屬性查詢。</div>
+    <div class="sec-meta"><span class="pill g">70 聊天室</span><span class="pill b">5 角色介面</span><span class="pill m">10 兩者皆可</span></div>
+  </a>
+  <a href="tailwind.html" class="sec-card c-tailwind">
+    <div class="sec-icon">💠</div>
+    <div class="sec-title">Tailwind 類別</div>
+    <div class="sec-desc">920 個 class 的白話說明與支援狀態，分頁顯示。</div>
+    <div class="sec-meta"><span class="pill p">920 個類別</span></div>
+  </a>
+  <a href="css-props.html" class="sec-card c-css">
+    <div class="sec-icon">🎨</div>
+    <div class="sec-title">CSS 屬性</div>
+    <div class="sec-desc">FilterCSS 白名單與實測結果，按分類查看允許與禁止的屬性。</div>
+  </a>
+</div>
+
+<!-- Row 2：Prysline 工具 -->
+<div class="sec-row-label">Prysline 布啾</div>
+<div class="grid grid-single">
+  <a href="https://prysline.github.io/caveduck-class-reference/" class="sec-card c-ref" target="_blank">
+    <div class="sec-icon">🔍</div>
+    <div class="sec-title" style="color:var(--teal)">Caveduck Class Reference</div>
+    <div class="sec-desc">可替代 inline style 的既有 class 查詢，含即時預覽與 Compare 模式。</div>
+    <div class="sec-meta"><span class="pill tl">外部工具</span><span class="pill g">即時預覽</span></div>
+  </a>
+</div>
+
+<!-- ── 區塊二：聊天室專用 ── -->
+<div class="sec-label">聊天室專用 Only for chat room</div>
+<div class="grid">
+  <a href="svg.html" class="sec-card c-svg">
+    <div class="sec-icon">🔷</div>
+    <div class="sec-title">SVG 標籤 &amp; 屬性</div>
+    <div class="sec-desc">SVG core 標籤、filter 元素、所有允許屬性。僅聊天室（DOMPurify）支援。</div>
+    <div class="sec-meta"><span class="pill g">聊天室限定</span><span class="pill tl">SVG + Filter</span></div>
+  </a>
+  <a href="mathml.html" class="sec-card c-math">
+    <div class="sec-icon">∑</div>
+    <div class="sec-title">MathML</div>
+    <div class="sec-desc">數學標記語言標籤與屬性。僅聊天室（DOMPurify mathMl 模式）支援。</div>
+    <div class="sec-meta"><span class="pill g">聊天室限定</span></div>
+  </a>
+</div>
+
+<!-- ── 區塊三：其他資料 ── -->
+<div class="sec-label" style="color:var(--dim)">其他資料 Other reference (unneeded)</div>
+<div class="grid">
+  <a href="swiper.html" class="sec-card dim"><div class="sec-icon">🎠</div><div class="sec-title">Swiper.js</div><div class="sec-desc">輪播元件 class 對照與完整樣式。</div></a>
+  <a href="css-vars.html" class="sec-card dim"><div class="sec-icon">📐</div><div class="sec-title">CSS 自訂變數</div><div class="sec-desc">平台內建 CSS 變數及預設值。</div></a>
+</div>
+
+<script>
+(function(){
+  var btn = document.getElementById('themeToggle');
+  var html = document.documentElement;
+  var saved = localStorage.getItem('cd-theme');
+  if(saved) html.setAttribute('data-theme', saved);
+  btn.addEventListener('click', function(){
+    var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('cd-theme', next);
+  });
+})();
+</script>
+</body>
+</html>

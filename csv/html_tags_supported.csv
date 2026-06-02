@@ -1,0 +1,153 @@
+﻿標籤,屬性選擇器,選擇器原文,狀態,主要樣式
+（全域）,,.markdown-body,全域,--base-size-4:0.25rem; --base-size-8:0.5rem; --base-size-16:1rem; --base-size-24:1.5rem; --base-size-40:2.5rem; --base-text-weight-normal:400; --base-text-weight-medium:500; --base-text-weight-semibold:600
+"h1, h2, h3, h4, h5, h6, link",,".markdown-body h1:hover .anchor .octicon-link:before,.markdown-body h2:hover .anchor .octicon-link:before,.markdown-body",✓ 支援,"width:16px; height:16px; content:"" ""; display:inline-block; background-color:currentColor; -webkit-mask-image:url(""data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a"
+"details, figcaption, figure",,".markdown-body details,.markdown-body figcaption,.markdown-body figure",✓ 支援,display:block
+summary,,.markdown-body summary,✓ 支援,display:list-item
+（屬性選擇器）,hidden,.markdown-body [hidden],✓ 支援,display:none!important
+a,,.markdown-body a,✓ 支援,background-color:transparent; color:var(--fgColor-accent); text-decoration:none
+"abbr, title",title,.markdown-body abbr[title],✓ 支援,border-bottom:none; -webkit-text-decoration:underline dotted; text-decoration:underline dotted
+"b, strong",,".markdown-body b,.markdown-body strong",✓ 支援,"font-weight:var(--base-text-weight-semibold,600)"
+dfn,,.markdown-body dfn,✓ 支援,font-style:italic
+h1,,.markdown-body h1,✓ 支援,"margin:.67em 0; font-weight:var(--base-text-weight-semibold,600); padding-bottom:.3em; font-size:2em; border-bottom:1px solid var(--borderColor-muted)"
+mark,,.markdown-body mark,✓ 支援,background-color:var(--bgColor-attention-muted); color:var(--fgColor-default)
+small,,.markdown-body small,✓ 支援,font-size:90%
+"sub, sup",,".markdown-body sub,.markdown-body sup",✓ 支援,font-size:75%; line-height:0; position:relative; vertical-align:baseline
+sub,,.markdown-body sub,✓ 支援,bottom:-.25em
+sup,,.markdown-body sup,✓ 支援,top:-.5em
+img,,.markdown-body img,✓ 支援,border-style:none; max-width:100%; box-sizing:content-box
+"code, kbd, pre, samp",,".markdown-body code,.markdown-body kbd,.markdown-body pre,.markdown-body samp",✓ 支援,font-family:monospace; font-size:1em
+figure,,.markdown-body figure,✓ 支援,margin:1em var(--base-size-40)
+hr,,.markdown-body hr,✓ 支援,box-sizing:content-box; overflow:hidden; background:transparent; height:.25em; padding:0; margin:var(--base-size-24) 0; background-color:var(--borderColor-default); border:0
+input,,.markdown-body input,✓ 支援,font:inherit; margin:0; overflow:visible; font-family:inherit; font-size:inherit; line-height:inherit
+button,"type=button, type=reset, type=submit",".markdown-body [type=button],.markdown-body [type=reset],.markdown-body [type=submit]",✓ 支援,-webkit-appearance:button; appearance:button
+（屬性選擇器）,"type=checkbox, type=radio",".markdown-body [type=checkbox],.markdown-body [type=radio]",✓ 支援,box-sizing:border-box; padding:0
+button,"type=number, type=number",".markdown-body [type=number]::-webkit-inner-spin-button,.markdown-body [type=number]::-webkit-outer-spin-button",✓ 支援,height:auto
+"button, search","type=search, type=search",".markdown-body [type=search]::-webkit-search-cancel-button,.markdown-body [type=search]::-webkit-search-decoration",✓ 支援,-webkit-appearance:none; appearance:none
+input,,.markdown-body ::-webkit-input-placeholder,✓ 支援,color:inherit; opacity:.54
+button,,.markdown-body ::-webkit-file-upload-button,✓ 支援,-webkit-appearance:button; appearance:button; font:inherit
+a,,.markdown-body a:hover,✓ 支援,text-decoration:underline
+hr,,".markdown-body hr:after,.markdown-body hr:before",✓ 支援,"display:table; content:"""""
+hr,,.markdown-body hr:after,✓ 支援,clear:both
+table,,.markdown-body table,✓ 支援,border-spacing:0; border-collapse:collapse; display:block; width:max-content; max-width:100%; overflow:auto; font-variant:tabular-nums
+"td, th",,".markdown-body td,.markdown-body th",✓ 支援,padding:0
+"details, summary",,.markdown-body details summary,✓ 支援,cursor:pointer
+"a, button, input","role=button, type=checkbox, type=radio",".markdown-body [role=button]:focus,.markdown-body a:focus,.markdown-body input[type=checkbox]:focus,.markdown-body input",✓ 支援,outline:2px solid var(--focus-outlineColor); outline-offset:-2px; box-shadow:none
+"a, button, input","role=button, type=checkbox, type=radio",".markdown-body [role=button]:focus:not(:focus-visible),.markdown-body a:focus:not(:focus-visible),.markdown-body input[t",✓ 支援,outline:1px solid transparent
+"a, button, input","role=button, type=checkbox, type=radio",".markdown-body [role=button]:focus-visible,.markdown-body a:focus-visible,.markdown-body input[type=checkbox]:focus-visi",✓ 支援,outline:2px solid var(--focus-outlineColor); outline-offset:-2px; box-shadow:none
+"a, input","class, class, type=checkbox, type=checkbox, type=radio, type=radio",".markdown-body a:not([class]):focus,.markdown-body a:not([class]):focus-visible,.markdown-body input[type=checkbox]:focu",✓ 支援,outline-offset:0
+kbd,,.markdown-body kbd,✓ 支援,"display:inline-block; padding:var(--base-size-4); font:11px var(
+      --fontStack-monospace,ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace
+    ); line-height:10px; color:var(--fgColor-default); vertical-align:middle; background-color:var(--bgColor-muted); border-bottom"
+"h1, h2, h3, h4, h5, h6",,".markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6",✓ 支援,"margin-top:var(--base-size-24); margin-bottom:var(--base-size-16); font-weight:var(--base-text-weight-semibold,600); line-height:1.25"
+h2,,.markdown-body h2,✓ 支援,padding-bottom:.3em; font-size:1.5em; border-bottom:1px solid var(--borderColor-muted)
+"h2, h3",,".markdown-body h2,.markdown-body h3",✓ 支援,"font-weight:var(--base-text-weight-semibold,600)"
+h3,,.markdown-body h3,✓ 支援,font-size:1.25em
+h4,,.markdown-body h4,✓ 支援,font-size:1em
+"h4, h5",,".markdown-body h4,.markdown-body h5",✓ 支援,"font-weight:var(--base-text-weight-semibold,600)"
+h5,,.markdown-body h5,✓ 支援,font-size:.875em
+h6,,.markdown-body h6,✓ 支援,"font-weight:var(--base-text-weight-semibold,600); font-size:.85em; color:var(--fgColor-muted)"
+p,,.markdown-body p,✓ 支援,margin-top:0; margin-bottom:10px
+blockquote,,.markdown-body blockquote,✓ 支援,margin:0; padding:0 1em; color:var(--fgColor-muted); border-left:.25em solid var(--borderColor-default)
+"ol, ul",,".markdown-body ol,.markdown-body ul",✓ 支援,margin-top:0; margin-bottom:0; padding-left:2em
+"ol, ul",,".markdown-body ol ol,.markdown-body ul ol",✓ 支援,list-style-type:lower-roman
+"ol, ul",,".markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol",✓ 支援,list-style-type:lower-alpha
+dd,,.markdown-body dd,✓ 支援,margin-left:0
+"code, pre, samp",,".markdown-body code,.markdown-body pre,.markdown-body samp,.markdown-body tt",✓ 支援,"font-family:var(
+    --fontStack-monospace,ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace
+  ); font-size:12px"
+pre,,.markdown-body pre,✓ 支援,margin-top:0; margin-bottom:0; word-wrap:normal
+"button, input",,".markdown-body input::-webkit-inner-spin-button,.markdown-body input::-webkit-outer-spin-button",✓ 支援,margin:0; appearance:none
+a,href,.markdown-body a:not([href]),✓ 支援,color:inherit; text-decoration:none
+"blockquote, details, dl, ol, p, pre, table, ul",,".markdown-body blockquote,.markdown-body details,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre",✓ 支援,margin-top:0; margin-bottom:var(--base-size-16)
+blockquote,,.markdown-body blockquote>:first-child,✓ 支援,margin-top:0
+blockquote,,.markdown-body blockquote>:last-child,✓ 支援,margin-bottom:0
+"h1, h2, h3, h4, h5, h6, link",,".markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octic",⚠ 隱藏/禁用,color:var(--fgColor-default); vertical-align:middle; visibility:hidden
+"h1, h2, h3, h4, h5, h6",,".markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover ",✓ 支援,text-decoration:none
+"h1, h2, h3, h4, h5, h6, link",,".markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anc",✓ 支援,visibility:visible
+"code, h1, h2, h3, h4, h5, h6",,".markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown",✓ 支援,padding:0 .2em; font-size:inherit
+"h1, h2, h3, h4, h5, h6, summary",,".markdown-body summary h1,.markdown-body summary h2,.markdown-body summary h3,.markdown-body summary h4,.markdown-body s",✓ 支援,display:inline-block
+"h1, h2, h3, h4, h5, h6, summary",,".markdown-body summary h1 .anchor,.markdown-body summary h2 .anchor,.markdown-body summary h3 .anchor,.markdown-body sum",✓ 支援,margin-left:-40px
+"h1, h2, summary",,".markdown-body summary h1,.markdown-body summary h2",✓ 支援,padding-bottom:0; border-bottom:0
+"ol, ul",,".markdown-body ol.no-list,.markdown-body ul.no-list",✓ 支援,padding:0; list-style-type:none
+"a, ol, s","type=""a s""",".markdown-body ol[type=""a s""]",✓ 支援,list-style-type:lower-alpha
+"ol, s","type=""A s""",".markdown-body ol[type=""A s""]",✓ 支援,list-style-type:upper-alpha
+"i, ol, s","type=""i s""",".markdown-body ol[type=""i s""]",✓ 支援,list-style-type:lower-roman
+"ol, s","type=""I s""",".markdown-body ol[type=""I s""]",✓ 支援,list-style-type:upper-roman
+"div, ol","type, type=""1""",".markdown-body div>ol:not([type]),.markdown-body ol[type=""1""]",✓ 支援,list-style-type:decimal
+"ol, ul",,".markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul",✓ 支援,margin-top:0; margin-bottom:0
+"li, p",,.markdown-body li>p,✓ 支援,margin-top:var(--base-size-16)
+li,,.markdown-body li+li,✓ 支援,margin-top:.25em
+dl,,.markdown-body dl,✓ 支援,padding:0
+"dl, dt",,.markdown-body dl dt,✓ 支援,"padding:0; margin-top:var(--base-size-16); font-size:1em; font-style:italic; font-weight:var(--base-text-weight-semibold,600)"
+"dd, dl",,.markdown-body dl dd,✓ 支援,padding:0 var(--base-size-16); margin-bottom:var(--base-size-16)
+"table, th",,.markdown-body table th,✓ 支援,"font-weight:var(--base-text-weight-semibold,600); background-color:var(--bgColor-neutural-muted)"
+"table, td, th",,".markdown-body table td,.markdown-body table th",✓ 支援,padding:6px 13px; border:1px solid var(--borderColor-default)
+"table, td",,.markdown-body table td>:last-child,✓ 支援,margin-bottom:0
+"table, tr",,.markdown-body table tr,✓ 支援,background-color:var(--bgColor-default); border-top:1px solid var(--borderColor-muted)
+"img, table",,.markdown-body table img,✓ 支援,background-color:transparent
+img,align=right,.markdown-body img[align=right],✓ 支援,padding-left:20px
+img,align=left,.markdown-body img[align=left],✓ 支援,padding-right:20px
+span,,.markdown-body span.frame,✓ 支援,display:block; overflow:hidden
+span,,.markdown-body span.frame>span,✓ 支援,display:block; float:left; width:auto; padding:7px; margin:13px 0 0; overflow:hidden; border:1px solid var(--borderColor-default)
+"img, span",,.markdown-body span.frame span img,✓ 支援,display:block; float:left
+span,,.markdown-body span.frame span span,✓ 支援,display:block; padding:5px 0 0; clear:both; color:var(--fgColor-default)
+span,,.markdown-body span.align-center,✓ 支援,display:block; overflow:hidden; clear:both
+span,,.markdown-body span.align-center>span,✓ 支援,display:block; margin:13px auto 0; overflow:hidden; text-align:center
+"img, span",,.markdown-body span.align-center span img,✓ 支援,margin:0 auto; text-align:center
+span,,.markdown-body span.align-right,✓ 支援,display:block; overflow:hidden; clear:both
+span,,.markdown-body span.align-right>span,✓ 支援,display:block; margin:13px 0 0; overflow:hidden; text-align:right
+"img, span",,.markdown-body span.align-right span img,✓ 支援,margin:0; text-align:right
+span,,.markdown-body span.float-left,✓ 支援,display:block; float:left; margin-right:13px; overflow:hidden
+span,,.markdown-body span.float-left span,✓ 支援,margin:13px 0 0
+span,,.markdown-body span.float-right,✓ 支援,display:block; float:right; margin-left:13px; overflow:hidden
+span,,.markdown-body span.float-right>span,✓ 支援,display:block; margin:13px auto 0; overflow:hidden; text-align:right
+code,,".markdown-body code,.markdown-body tt",✓ 支援,padding:.2em .4em; margin:0; font-size:85%; white-space:break-spaces; background-color:var(--bgColor-neutral-muted); border-radius:6px
+"br, code",,".markdown-body code br,.markdown-body tt br",⚠ 隱藏/禁用,display:none
+"code, del",,.markdown-body del code,✓ 支援,text-decoration:inherit
+samp,,.markdown-body samp,✓ 支援,font-size:85%
+"code, pre",,.markdown-body pre code,✓ 支援,font-size:100%
+"code, pre",,.markdown-body pre>code,✓ 支援,padding:0; margin:0; word-break:normal; white-space:pre; background:transparent; border:0
+pre,,.markdown-body .highlight pre,✓ 支援,margin-bottom:0; word-break:normal
+pre,,".markdown-body .highlight pre,.markdown-body pre",✓ 支援,padding:var(--base-size-16); overflow:auto; font-size:85%; line-height:1.45; color:var(--fgColor-default); background-color:var(--bgColor-muted); border-radius:6px
+"code, pre",,".markdown-body pre code,.markdown-body pre tt",✓ 支援,display:inline; max-width:auto; padding:0; margin:0; overflow:visible; line-height:inherit; word-wrap:normal; background-color:transparent
+"data, td, th",,".markdown-body .csv-data td,.markdown-body .csv-data th",✓ 支援,padding:5px; overflow:hidden; font-size:12px; line-height:1; text-align:left; white-space:nowrap
+data,,.markdown-body .csv-data .blob-num,✓ 支援,padding:10px var(--base-size-8) 9px; text-align:right; background:var(--bgColor-default); border:0
+"data, tr",,.markdown-body .csv-data tr,✓ 支援,border-top:0
+"data, th",,.markdown-body .csv-data th,✓ 支援,"font-weight:var(--base-text-weight-semibold,600); background:var(--bgColor-muted); border-top:0"
+data,data-footnote-ref,.markdown-body [data-footnote-ref]:before,✓ 支援,"content:""["""
+data,data-footnote-ref,.markdown-body [data-footnote-ref]:after,✓ 支援,"content:""]"""
+"ol, ul",,".markdown-body .footnotes ol,.markdown-body .footnotes ol ul",✓ 支援,padding-left:var(--base-size-16)
+"ol, ul",,.markdown-body .footnotes ol ul,✓ 支援,display:inline-block; margin-top:var(--base-size-16)
+li,,.markdown-body .footnotes li,✓ 支援,position:relative
+li,,.markdown-body .footnotes li:target:before,⚠ 隱藏/禁用,"position:absolute; top:calc(var(--base-size-8) * -1); right:calc(var(--base-size-8) * -1); bottom:calc(var(--base-size-8) * -1); left:calc(var(--base-size-24) * -1); pointer-events:none; content:""""; border:2px solid var(--borderColor-accent-emphasis)"
+li,,.markdown-body .footnotes li:target,✓ 支援,color:var(--fgColor-default)
+data,,.markdown-body .footnotes .data-footnote-backref g-emoji,✓ 支援,font-family:monospace
+body,,.markdown-body body:has(:modal),✓ 支援,padding-right:var(--dialog-scrollgutter)!important
+s,,".markdown-body .pl-c1,.markdown-body .pl-s .pl-v",✓ 支援,color:var(--color-prettylights-syntax-constant)
+s,,".markdown-body .pl-s .pl-s1,.markdown-body .pl-smi",✓ 支援,color:var(--color-prettylights-syntax-storage-modifier-import)
+s,,".markdown-body .pl-pds,.markdown-body .pl-s,.markdown-body .pl-s .pl-pse .pl-s1,.markdown-body .pl-sr,.markdown-body .pl",✓ 支援,color:var(--color-prettylights-syntax-string)
+"a, button, summary","role=button, role=tabpanel, tabindex=""0""",".markdown-body [role=button]:focus:not(:focus-visible),.markdown-body [role=tabpanel][tabindex=""0""]:focus:not(:focus-vis",✓ 支援,outline:none; box-shadow:none
+"details, dialog","tabindex=""0""",".markdown-body [tabindex=""0""]:focus:not(:focus-visible),.markdown-body details-dialog:focus:not(:focus-visible)",✓ 支援,outline:none
+img,,.markdown-body g-emoji img,✓ 支援,width:1em; height:1em
+label,,.markdown-body .task-list-item label,✓ 支援,"font-weight:var(--base-text-weight-normal,400)"
+label,,.markdown-body .task-list-item.enabled label,✓ 支援,cursor:pointer
+ul,,.markdown-body ul:dir(rtl) .task-list-item-checkbox,✓ 支援,margin:0 -1.6em .25em .2em
+ol,,.markdown-body ol:dir(rtl) .task-list-item-checkbox,✓ 支援,margin:0 -1.6em .25em .2em
+title,,.markdown-body .markdown-alert .markdown-alert-title,✓ 支援,"display:flex; font-weight:var(--base-text-weight-medium,500); align-items:center; line-height:1"
+title,,.markdown-body .markdown-alert.markdown-alert-note .markdown-alert-title,✓ 支援,color:var(--fgColor-accent)
+title,,.markdown-body .markdown-alert.markdown-alert-important .markdown-alert-title,✓ 支援,color:var(--fgColor-done)
+title,,.markdown-body .markdown-alert.markdown-alert-warning .markdown-alert-title,✓ 支援,color:var(--fgColor-attention)
+title,,.markdown-body .markdown-alert.markdown-alert-tip .markdown-alert-title,✓ 支援,color:var(--fgColor-success)
+title,,.markdown-body .markdown-alert.markdown-alert-caution .markdown-alert-title,✓ 支援,color:var(--fgColor-danger)
+pre,,.markdown-body .highlight pre:has(+.zeroclipboard-container),✓ 支援,min-height:52px
+h1,,.markdown-notice h1,✓ 支援,font-size:36px; font-weight:700; line-height:1.2
+h2,,.markdown-notice h2,✓ 支援,font-size:28px; font-weight:700; line-height:1.3
+h3,,.markdown-notice h3,✓ 支援,font-size:22px; font-weight:700; line-height:1.4
+h4,,.markdown-notice h4,✓ 支援,font-size:18px; font-weight:600; line-height:1.4
+h5,,.markdown-notice h5,✓ 支援,font-size:16px; font-weight:600; line-height:1.5
+h6,,.markdown-notice h6,✓ 支援,font-size:14px; font-weight:600; line-height:1.5
+p,,.markdown-notice p,✓ 支援,font-size:14px; font-weight:400; line-height:1.6
+"ol, ul",,".markdown-notice ol,.markdown-notice ul",✓ 支援,font-size:14px; line-height:1.6; padding-left:2em
+a,,.markdown-notice a,✓ 支援,color:#3170f9; text-decoration:none
+"code, pre",,".markdown-notice code,.markdown-notice pre",✓ 支援,"font-size:13px; background-color:rgba(0,0,0,.05)"
+blockquote,,.markdown-notice blockquote,✓ 支援,font-size:14px; font-style:italic; padding-left:1em; border-left:4px solid #3170f9; color:#666

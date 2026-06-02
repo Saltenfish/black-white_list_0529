@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tailwind — CaveDuck</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0c0c;--bg2:#111;--bg3:#171717;--bg4:#1d1d1d;
+  --border:#222;--border2:#1a1a1a;
+  --text:#ddd;--muted:#aaa;--dim:#2a2a2a;
+  --green:#3ec97a;--green-bg:#061410;--green-bd:#0d2818;
+  --red:#e86050;--red-bg:#140806;--red-bd:#280f08;
+  --blue:#4da8f0;--blue-bg:#060c18;--blue-bd:#0c1e38;
+  --yellow:#f0c14d;--yellow-bg:#141008;--yellow-bd:#2a2008;
+  --purple:#b48ef0;--purple-bg:#0e0818;--purple-bd:#231040;
+  --card-bg:#0e0e0e;--code-bg:#080808;--deny-bg:#0c0808;}
+/* ── Light theme ── */
+[data-theme="light"]{
+  --bg:#f5f5f0;--bg2:#eeede8;--bg3:#e6e5e0;--bg4:#dddcd8;
+  --border:#d0cfca;--border2:#dddcd8;
+  --text:#1a1a1a;--muted:#aaa;--dim:#ccc;
+  --card-bg:#ffffff;--code-bg:#f4f3ef;--deny-bg:#fdf2f2;
+  --green:#1e7a47;--green-bg:#e6f5ec;--green-bd:#b8dec7;
+  --red:#c0392b;--red-bg:#fdecea;--red-bd:#f5b8b3;
+  --blue:#1a6db5;--blue-bg:#e8f1fb;--blue-bd:#b3cef0;
+  --yellow:#b07d00;--yellow-bg:#fdf8e6;--yellow-bd:#e8d68a;
+  --purple:#6b3fa0;--purple-bg:#f2eafa;--purple-bd:#cdb0e8;
+  --teal:#1a8a84;--teal-bg:#e6f5f4;--teal-bd:#9dd6d3;
+  --orange:#c0541a;--orange-bg:#fdf0ea;--orange-bd:#f0bfa0;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);
+  font-family:'SF Mono','Fira Code','Cascadia Code',ui-monospace,monospace;font-size:13px;line-height:1.6;display:flex;flex-direction:column}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#444;border-radius:2px}
+a{color:inherit;text-decoration:none}
+.hd{padding:.8rem 1.4rem;border-bottom:2px solid var(--border);background:linear-gradient(180deg,#101010,#0a0a0a);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.hd-back{font-size:10px;color:var(--muted);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:3px 10px;letter-spacing:.04em;transition:color .15s}
+.hd-back:hover{color:var(--text)}
+.hd-title{font-size:16px;font-weight:700;letter-spacing:.04em;display:flex;align-items:center;gap:.5rem}
+.hd-accent{color:var(--purple);font-size:12px}
+.hd-sub{font-size:10px;color:var(--muted);letter-spacing:.06em}
+.ctrl{padding:.6rem 1.2rem;border-bottom:1px solid var(--border2);display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--bg2)}
+input[type=search]{background:#0a0a0a;border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:inherit;font-size:12px;padding:4px 10px;outline:none;min-width:180px}
+input[type=search]:focus{border-color:#333}
+input[type=search]::placeholder{color:var(--dim)}
+select{background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:inherit;font-size:11px;padding:3px 8px;border-radius:4px;outline:none}
+.ft-bar{display:flex;gap:2px;background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:2px}
+.ft{padding:2px 10px;border-radius:3px;border:none;background:transparent;color:var(--muted);font-family:inherit;font-size:10px;cursor:pointer;transition:all .15s}
+.ft:hover{color:var(--text)}.ft.on{background:var(--bg4);color:var(--text)}
+.stats{display:flex;gap:.5rem;padding:.5rem 1.2rem;border-bottom:1px solid var(--border2);flex-wrap:wrap}
+.stat{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:.2rem .65rem;display:flex;align-items:center;gap:.4rem}
+.sn{font-size:13px;font-weight:600}.sl{font-size:10px;color:var(--muted)}
+.sn.t{color:var(--text)}.sn.g{color:var(--green)}.sn.r{color:var(--red)}
+.main{flex:1;min-height:0;overflow-y:auto;padding:1rem 1.2rem 1rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.65rem}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:.8rem;display:flex;flex-direction:column;gap:.45rem}
+.card.both{border-left:3px solid var(--green)}
+.card.chat-only{border-left:3px solid var(--yellow)}
+.card.creator-only{border-left:3px solid var(--blue)}
+.card.deny{border-left:3px solid var(--red);background:var(--deny-bg)}
+.c-head{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.c-name{font-size:12px;font-weight:700}.c-name.g{color:var(--green)}.c-name.r{color:var(--red)}.c-name.b{color:var(--blue)}.c-name.y{color:var(--yellow)}.c-name.p{color:var(--purple)}
+.pill{font-size:9px;padding:1px 5px;border-radius:3px;letter-spacing:.03em;font-weight:600}
+.pill.g{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.pill.r{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.pill.b{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
+.pill.m{background:var(--bg3);color:var(--muted);border:1px solid var(--border)}
+.c-desc{font-size:11px;color:#aaa;line-height:1.65}
+.c-style{font-size:9px;color:var(--dim);margin-top:1px;word-break:break-all;line-height:1.4}
+.c-code{background:var(--code-bg);border:1px solid var(--border2);border-radius:4px;padding:4px 7px;font-size:10px;color:#b8ccb8;position:relative}
+.copy-btn{position:absolute;top:3px;right:4px;font-size:8px;color:var(--muted);background:var(--bg3);border:1px solid var(--border);border-radius:2px;padding:1px 5px;cursor:pointer;font-family:inherit;transition:color .15s}
+.copy-btn:hover{color:var(--text)}.copy-btn.ok{color:var(--green);border-color:var(--green-bd)}
+.pager{display:flex;gap:4px;align-items:center;padding:.7rem 1.2rem 2rem;justify-content:center;flex-wrap:wrap}
+.pg-btn{background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--muted);font-family:inherit;font-size:10px;padding:3px 10px;cursor:pointer;transition:all .15s}
+.pg-btn:hover{color:var(--text)}.pg-btn.on{background:#131f17;color:var(--green);border-color:var(--green-bd)}
+.pg-info{font-size:10px;color:var(--muted)}
+.empty{color:var(--dim);font-size:12px;padding:2rem;text-align:center}
+.loading{color:var(--muted);font-size:11px;padding:2rem;text-align:center;letter-spacing:.06em}
+
+.theme-btn{margin-left:auto;background:var(--bg3);border:1px solid var(--border);
+  border-radius:6px;padding:4px 10px;font-size:11px;color:var(--muted);cursor:pointer;
+  font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.theme-btn:hover{color:var(--text);border-color:var(--muted)}
+[data-theme="dark"] .theme-btn::before{content:"☀️"}
+[data-theme="light"] .theme-btn::before{content:"🌙"}
+</style>
+</head>
+<body>
+<div class="hd">
+  <a href="index.html" class="hd-back">← 返回</a>
+  <div class="hd-title"><span class="hd-accent">💠</span> Tailwind 類別
+</div>
+  <div class="hd-sub">920 個類別 · 白話說明 · 支援狀態 · 一鍵複製</div>
+  <button class="theme-btn" id="themeToggle"> 切換背景</button>
+</div>
+<div style="padding:.45rem 1.4rem;background:var(--bg2);border-bottom:1px solid var(--border2);font-size:10px;color:var(--muted);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+  <span>💡</span>
+  <span><strong style="color:var(--text)">hover: variant</strong> 兩邊皆可用，共 64 個已定義 class（如 <code style="background:var(--bg3);padding:1px 5px;border-radius:3px;font-size:9px">hover:opacity-80</code>、<code style="background:var(--bg3);padding:1px 5px;border-radius:3px;font-size:9px">hover:bg-accent</code>）·
+  完整預覽請用 <a href="../caveduck-class-reference/index.html" target="_blank" style="color:var(--teal,#4ecdc4);text-decoration:underline">Prysline Class Reference</a></span>
+</div>
+<div class="ctrl">
+  <input type="search" id="q" placeholder="搜尋 class 名稱或說明…">
+  <select id="cat-sel"><option value="">全部分類</option></select>
+  <div class="ft-bar">
+    <button class="ft on" data-s="all">全部</button>
+    <button class="ft" data-s="both">兩者皆可</button>
+    <button class="ft" data-s="chat">含聊天室</button>
+    <button class="ft" data-s="deny">不支援</button>
+  </div>
+</div>
+<div class="stats">
+  <div class="stat"><span class="sn t" id="s-total">—</span><span class="sl">總計</span></div>
+  <div class="stat"><span class="sn t" id="s-filtered">—</span><span class="sl">篩選結果</span></div>
+  <div class="stat"><span class="sn g" id="s-both">—</span><span class="sl">兩者皆可</span></div>
+  <div class="stat"><span class="sn r" id="s-deny">—</span><span class="sl">不支援</span></div>
+</div>
+<div class="main" id="main-scroll">
+  <div id="cards" class="card-grid"></div>
+  <div id="empty" class="empty" style="display:none">沒有符合的項目</div>
+  <div id="pager" class="pager"></div>
+</div>
+<script>
+
+function styleToDesc(style, cls) {
+  if(!style) return '';
+  // Common patterns → plain language
+  const rules = [
+    [/display\s*:\s*flex\b/, '讓子元素可以橫排或直排排列（flex 排版）'],
+    [/display\s*:\s*inline-flex\b/, '行內 flex 容器，和周圍文字在同一行排列'],
+    [/display\s*:\s*grid\b/, '讓子元素以格狀排列（grid 排版）'],
+    [/display\s*:\s*inline-block\b/, '行內區塊，可設寬高但不換行'],
+    [/display\s*:\s*block\b/, '佔整行的區塊元素'],
+    [/display\s*:\s*inline\b/, '行內元素，像文字一樣流動'],
+    [/display\s*:\s*none\b/, '完全隱藏元素，不佔任何空間'],
+    [/display\s*:\s*table\b/, '模擬表格排版行為'],
+    [/visibility\s*:\s*hidden\b/, '隱藏元素但保留佔位空間'],
+    [/visibility\s*:\s*visible\b/, '顯示元素（預設行為）'],
+    [/visibility\s*:\s*collapse\b/, '隱藏表格行或列並回收空間'],
+    [/position\s*:\s*relative\b/, '相對定位，可用 top/left 微調位置'],
+    [/position\s*:\s*absolute\b/, '絕對定位，相對最近有定位的父元素'],
+    [/position\s*:\s*fixed\b/, '固定在螢幕上，不隨捲動移動'],
+    [/position\s*:\s*sticky\b/, '捲動到邊界時固定住'],
+    [/position\s*:\s*static\b/, '正常文件流定位（預設）'],
+    [/overflow\s*:\s*hidden\b/, '超出範圍的內容全部裁掉不顯示'],
+    [/overflow\s*:\s*auto\b/, '超出範圍時才顯示捲軸'],
+    [/overflow\s*:\s*scroll\b/, '一直顯示捲軸'],
+    [/overflow\s*:\s*visible\b/, '允許內容溢出顯示'],
+    [/overflow-wrap\s*:\s*break-word\b/, '長單字自動在邊界換行'],
+    [/white-space\s*:\s*nowrap\b/, '強制文字不換行'],
+    [/white-space\s*:\s*pre\b/, '保留空格與換行（像程式碼一樣）'],
+    [/text-align\s*:\s*center\b/, '文字置中對齊'],
+    [/text-align\s*:\s*left\b/, '文字靠左對齊'],
+    [/text-align\s*:\s*right\b/, '文字靠右對齊'],
+    [/text-align\s*:\s*justify\b/, '文字兩端對齊'],
+    [/font-weight\s*:\s*(\d+|bold|bolder)/, m => `字體加粗（${m[1]}）`],
+    [/font-weight\s*:\s*normal\b/, '字體正常粗細'],
+    [/font-style\s*:\s*italic\b/, '字體變斜體'],
+    [/text-decoration\s*:\s*none\b/, '移除底線或刪除線'],
+    [/text-decoration\s*:\s*underline\b/, '加上底線'],
+    [/text-transform\s*:\s*uppercase\b/, '文字全部轉大寫'],
+    [/text-transform\s*:\s*lowercase\b/, '文字全部轉小寫'],
+    [/text-transform\s*:\s*capitalize\b/, '每個單字首字母大寫'],
+    [/cursor\s*:\s*pointer\b/, '滑鼠移上去顯示手指游標'],
+    [/cursor\s*:\s*default\b/, '使用預設游標'],
+    [/cursor\s*:\s*not-allowed\b/, '滑鼠顯示禁止符號'],
+    [/cursor\s*:\s*grab\b/, '滑鼠顯示抓取手勢'],
+    [/pointer-events\s*:\s*none\b/, '讓元素完全無法被滑鼠點擊或互動'],
+    [/pointer-events\s*:\s*auto\b/, '恢復正常的滑鼠互動'],
+    [/user-select\s*:\s*none\b/, '禁止用戶選取文字'],
+    [/opacity\s*:\s*0\b/, '完全透明（不可見但佔空間）'],
+    [/opacity\s*:\s*1\b/, '完全不透明'],
+    [/border-radius\s*:\s*9999px\b/, '圓形或膠囊形邊角'],
+    [/border-radius\s*:\s*50%\b/, '將元素變成正圓形'],
+    [/border-style\s*:\s*dashed\b/, '虛線邊框'],
+    [/border-style\s*:\s*dotted\b/, '點線邊框'],
+    [/border-style\s*:\s*solid\b/, '實線邊框'],
+    [/border-width\s*:\s*0\b/, '移除邊框'],
+    [/outline\s*:\s*none\b/, '移除 focus 時的外框線'],
+    [/box-shadow\s*:/, '加上陰影效果'],
+    [/text-shadow\s*:/, '文字加上陰影'],
+    [/transition-property\s*:/, '設定哪些屬性有過渡動畫'],
+    [/animation\s*:/, '套用動畫效果'],
+    [/transform\s*:/, '進行旋轉、縮放或位移變形'],
+    [/width\s*:\s*100%\b/, '寬度撐滿整個父容器'],
+    [/width\s*:\s*1px\b/, '寬度縮到 1px（視覺上隱藏）'],
+    [/height\s*:\s*100%\b/, '高度撐滿整個父容器'],
+    [/min-width\s*:\s*100%\b/, '最小寬度為父容器寬度'],
+    [/max-width\s*:\s*100%\b/, '最大寬度不超過父容器'],
+    [/aspect-ratio\s*:\s*1\b/, '寬高比鎖定為正方形'],
+    [/margin\s*:\s*auto\b/, '自動外邊距，常用來置中'],
+    [/padding\s*:\s*0\b/, '移除所有內邊距'],
+    [/flex\s*:\s*1\b/, '自動填滿剩餘空間（flex 排版中）'],
+    [/flex\s*:\s*none\b/, '不伸縮，維持原始大小'],
+    [/flex-direction\s*:\s*column\b/, '子元素改為直向排列'],
+    [/flex-direction\s*:\s*row\b/, '子元素橫向排列（預設）'],
+    [/flex-wrap\s*:\s*wrap\b/, '子元素可以換行'],
+    [/flex-wrap\s*:\s*nowrap\b/, '子元素強制不換行'],
+    [/justify-content\s*:\s*center\b/, '水平置中（flex/grid）'],
+    [/justify-content\s*:\s*space-between\b/, '子元素平均分散，頭尾貼邊'],
+    [/justify-content\s*:\s*flex-end\b/, '子元素靠右（或底部）對齊'],
+    [/align-items\s*:\s*center\b/, '垂直置中對齊'],
+    [/align-items\s*:\s*flex-end\b/, '子元素靠底部對齊'],
+    [/align-items\s*:\s*stretch\b/, '子元素拉伸填滿容器高度'],
+    [/gap\s*:/, '設定子元素之間的間距'],
+    [/grid-template-columns\s*:/, '設定格狀排版的欄數與寬度'],
+    [/grid-template-rows\s*:/, '設定格狀排版的列高'],
+    [/z-index\s*:\s*(\d+)/, m => `疊加順序設為 ${m[1]}（數字越大越在前面）`],
+    [/z-index\s*:\s*auto\b/, '疊加順序由父元素決定'],
+    [/appearance\s*:\s*none\b/, '移除瀏覽器預設的表單樣式'],
+    [/resize\s*:\s*none\b/, '禁止拖拉調整大小'],
+    [/object-fit\s*:\s*cover\b/, '圖片填滿容器，多餘部分裁掉'],
+    [/object-fit\s*:\s*contain\b/, '圖片完整顯示在容器內'],
+    [/list-style\s*:\s*none\b/, '移除清單前的項目符號'],
+    [/table-layout\s*:\s*fixed\b/, '表格欄寬固定不隨內容變化'],
+    [/vertical-align\s*:\s*middle\b/, '垂直置中對齊（行內元素）'],
+    [/vertical-align\s*:\s*top\b/, '垂直靠頂對齊'],
+    [/vertical-align\s*:\s*bottom\b/, '垂直靠底對齊'],
+    [/clip-path\s*:/, '裁切元素為特定形狀'],
+    [/background-color\s*:/, '設定背景顏色'],
+    [/background-image\s*:\s*linear-gradient/, '設定漸層背景'],
+    [/color\s*:/, '設定文字顏色'],
+    [/font-size\s*:/, '設定文字大小'],
+    [/line-height\s*:/, '設定行高（行距）'],
+    [/letter-spacing\s*:/, '設定字元間距'],
+    [/word-break\s*:/, '設定長文字的換行規則'],
+    [/writing-mode\s*:\s*vertical/, '文字改為直書（由上到下）'],
+    [/--tw-prose/, '設定文章排版的色彩與樣式'],
+    [/--tw-gradient/, '設定漸層起止顏色'],
+    [/--tw-shadow/, '設定陰影效果參數'],
+    [/--tw-ring/, '設定 focus 外框環效果'],
+    [/--tw-blur/, '設定模糊濾鏡程度'],
+    [/border-collapse\s*:\s*collapse\b/, '表格相鄰邊框合併為一條'],
+    [/scroll-behavior\s*:\s*smooth\b/, '滾動時有平滑動畫效果'],
+    [/break-inside\s*:\s*avoid\b/, '分頁或分欄時避免在此元素內斷開'],
+    [/isolation\s*:\s*isolate\b/, '建立新的疊加上下文，避免 z-index 衝突'],
+    [/mix-blend-mode\s*:/, '設定元素與背景的混色模式'],
+    [/filter\s*:/, '套用視覺濾鏡（模糊、灰階、亮度等）'],
+    [/backdrop-filter\s*:/, '對元素背後的畫面套用濾鏡'],
+    [/contain\s*:/, '限制元素的渲染範圍以提升效能'],
+    [/will-change\s*:/, '預告瀏覽器這個屬性即將改變，提前優化'],
+    [/touch-action\s*:/, '設定觸控手勢行為'],
+    [/scroll-snap/, '捲動時自動對齊到特定位置'],
+    [/overscroll-behavior/, '設定到達捲動邊界時的行為'],
+    [/columns\s*:/, '設定多欄排版的欄數'],
+    [/float\s*:/, '讓元素浮動到左側或右側'],
+    [/clear\s*:/, '清除浮動元素的影響'],
+  ];
+
+  const s = style.split('|')[0]; // use first value only
+  for(const [pat, desc] of rules){
+    const m = s.match(pat);
+    if(m){
+      return typeof desc === 'function' ? desc(m) : desc;
+    }
+  }
+  // Fallback: show first property name
+  const firstProp = s.split(':')[0].replace(/--tw-\w+/,'自訂變數').trim();
+  return '設定 ' + firstProp;
+}
+
+const PER_PAGE=48;
+let allClasses=[], curStatus='all', curCat='', curQ='', curPage=1, filtered=[];
+
+function parseCSV(text){
+  if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
+  const lines=text.split(/\r?\n/);
+  const headers=parseLine(lines[0]);
+  const rows=[];
+  for(let i=1;i<lines.length;i++){
+    const l=lines[i].trim();if(!l)continue;
+    const vals=parseLine(l);const obj={};
+    headers.forEach((h,j)=>obj[h.trim()]=(vals[j]||'').trim());
+    rows.push(obj);
+  }
+  return rows;
+}
+function parseLine(line){
+  const cells=[];let cell='',q=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i];
+    if(c==='"'){if(q&&line[i+1]==='"'){cell+='"';i++;}else q=!q;}
+    else if(c===','&&!q){cells.push(cell);cell='';}
+    else cell+=c;
+  }
+  cells.push(cell);return cells;
+}
+async function fetchCSV(path){const r=await fetch(path);if(!r.ok)throw new Error(path);return parseCSV(await r.text());}
+function copyText(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='✓ 複製了';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='複製';btn.classList.remove('ok');},1500);
+  });
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+async function init(){
+  document.getElementById('cards').innerHTML='<div class="loading">載入中（920 筆資料）…</div>';
+  const [rows04,rowsOG]=await Promise.all([fetchCSV('csv/04_tailwind_classes.csv'),fetchCSV('csv/tailwind_classes.csv')]);
+  const mapOG={};
+  rowsOG.forEach(r=>mapOG[r['class 名稱']]=r);
+  allClasses=rows04.map(r=>{
+    const cls=r['class名稱'];
+    const og=mapOG[cls]||{};
+    const style=og['樣式（全部值）']||r['樣式']||'';
+    return{cls,cat:r['分類']||'',chat:r['聊天室']||'?',creator:r['角色介面']||'?',style,desc:styleToDesc(style,cls)};
+  });
+  const cats=[...new Set(allClasses.map(c=>c.cat).filter(Boolean))].sort();
+  const sel=document.getElementById('cat-sel');
+  cats.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;sel.appendChild(o);});
+  doFilter();renderPage();
+}
+
+function getStatus(c){
+  const ch=c.chat.includes('✓'),cr=c.creator.includes('✓');
+  if(ch&&cr)return 'both';if(ch)return 'chat';if(cr)return 'creator';return 'deny';
+}
+function doFilter(){
+  const q=curQ.toLowerCase();
+  filtered=allClasses.filter(c=>{
+    if(q&&!c.cls.toLowerCase().includes(q)&&!c.desc.toLowerCase().includes(q)&&!c.cat.toLowerCase().includes(q))return false;
+    if(curCat&&c.cat!==curCat)return false;
+    const s=getStatus(c);
+    if(curStatus==='both')return s==='both';
+    if(curStatus==='chat')return s==='both'||s==='chat';
+    if(curStatus==='deny')return s==='deny';
+    return true;
+  });
+  curPage=1;
+  const both=allClasses.filter(c=>getStatus(c)==='both').length;
+  const deny=allClasses.filter(c=>getStatus(c)==='deny').length;
+  document.getElementById('s-total').textContent=allClasses.length;
+  document.getElementById('s-filtered').textContent=filtered.length;
+  document.getElementById('s-both').textContent=both;
+  document.getElementById('s-deny').textContent=deny;
+}
+function renderPage(){
+  document.getElementById('main-scroll').scrollTop=0;
+  document.getElementById('empty').style.display=filtered.length?'none':'block';
+  const el=document.getElementById('cards');
+  if(!filtered.length){el.innerHTML='';document.getElementById('pager').innerHTML='';return;}
+  const start=(curPage-1)*PER_PAGE,end=Math.min(start+PER_PAGE,filtered.length);
+  const slice=filtered.slice(start,end);
+
+  el.innerHTML=slice.map(c=>{
+    const s=getStatus(c);
+    const cardCls=s==='both'?'both':s==='chat'?'chat-only':s==='creator'?'creator-only':'deny';
+    const nc=s==='both'?'g':s==='deny'?'r':s==='chat'?'y':'b';
+    const chatPill=c.chat.includes('✓')?'<span class="pill g">聊天室 ✓</span>':
+                   c.chat.includes('✗')?'<span class="pill r">聊天室 ✗</span>':'<span class="pill m">?</span>';
+    const crPill=c.creator.includes('✓')?'<span class="pill b">角色介面 ✓</span>':
+                 c.creator.includes('✗')?'<span class="pill r">角色介面 ✗</span>':'<span class="pill m">?</span>';
+    const catPill=c.cat?`<span class="pill m">${esc(c.cat)}</span>`:'';
+    const styleFirst=c.style.split('|')[0];
+    const snippet=`class="${esc(c.cls)}"`;
+    const rawSnippet=`class="${c.cls}"`;
+    return `<div class="card ${cardCls}">
+      <div class="c-head"><span class="c-name ${nc}">${esc(c.cls)}</span>${catPill}</div>
+      <div class="c-head">${chatPill}${crPill}</div>
+      ${c.desc?`<div class="c-desc">${esc(c.desc)}</div>`:''}
+      ${styleFirst?`<div class="c-style">${esc(styleFirst.substring(0,80))}</div>`:''}
+      <div class="c-code">${esc(snippet)}<button class="copy-btn" onclick="copyText(${JSON.stringify(rawSnippet)},this)">複製</button></div>
+    </div>`;
+  }).join('');
+
+  const totalPages=Math.ceil(filtered.length/PER_PAGE);
+  let ph=`<span class="pg-info">${start+1}–${end} / ${filtered.length}</span>`;
+  if(totalPages>1){
+    if(curPage>1)ph+=`<button class="pg-btn" onclick="goPage(${curPage-1})">‹ 上一頁</button>`;
+    const win=5,half=Math.floor(win/2);
+    let lo=Math.max(1,curPage-half),hi=Math.min(totalPages,lo+win-1);
+    if(hi-lo<win-1)lo=Math.max(1,hi-win+1);
+    if(lo>1)ph+=`<button class="pg-btn" onclick="goPage(1)">1</button><span class="pg-info">…</span>`;
+    for(let p=lo;p<=hi;p++)ph+=`<button class="pg-btn${p===curPage?' on':''}" onclick="goPage(${p})">${p}</button>`;
+    if(hi<totalPages)ph+=`<span class="pg-info">…</span><button class="pg-btn" onclick="goPage(${totalPages})">${totalPages}</button>`;
+    if(curPage<totalPages)ph+=`<button class="pg-btn" onclick="goPage(${curPage+1})">下一頁 ›</button>`;
+  }
+  document.getElementById('pager').innerHTML=ph;
+}
+function goPage(p){curPage=p;renderPage();}
+document.getElementById('q').addEventListener('input',e=>{curQ=e.target.value;doFilter();renderPage();});
+document.getElementById('cat-sel').addEventListener('change',e=>{curCat=e.target.value;doFilter();renderPage();});
+document.querySelectorAll('[data-s]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-s]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');curStatus=b.dataset.s;doFilter();renderPage();
+}));
+init();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('themeToggle');
+  var html=document.documentElement;
+  var saved=localStorage.getItem('cd-theme');
+  if(saved)html.setAttribute('data-theme',saved);
+  else html.setAttribute('data-theme','dark');
+  btn.addEventListener('click',function(){
+    var next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+    html.setAttribute('data-theme',next);
+    localStorage.setItem('cd-theme',next);
+  });
+})();
+</script>
+</body>
+</html>

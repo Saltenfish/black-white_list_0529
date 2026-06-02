@@ -1,0 +1,91 @@
+﻿CSS屬性,兩處實測,FilterCSS白名單,說明
+align-content,✗ 無效,✗ 禁止,一致
+align-items,✗ 無效,✗ 禁止,一致
+animation,✗ 無效,未列入,白名單未列，實測無效
+animation-delay,✗ 無效,✗ 禁止,一致
+animation-duration,✗ 無效,✗ 禁止,一致
+animation-iteration-count,✗ 無效,✗ 禁止,一致
+animation-name,✗ 無效,✗ 禁止,一致
+animation-timing-function,✗ 無效,✗ 禁止,一致
+background,✓ 有效,未列入,白名單未列，實測有效
+background-color,✓ 有效,✓ 允許,一致
+background-image,✓ 有效,✓ 允許,一致
+background-position,✓ 有效,✓ 允許,一致
+background-repeat,✓ 有效,✓ 允許,一致
+background-size,✓ 有效,✓ 允許,一致
+border,✓ 有效,未列入,白名單未列，實測有效
+border-bottom,✓ 有效,✓ 允許,一致
+border-color,✓ 有效,✓ 允許,一致
+border-left,✓ 有效,✓ 允許,一致
+border-radius,✓ 有效,✓ 允許,一致
+border-right,✓ 有效,✓ 允許,一致
+border-style,✓ 有效,✓ 允許,一致
+border-top,✓ 有效,✓ 允許,一致
+border-width,✓ 有效,✓ 允許,一致
+bottom,✓ 有效,未列入,白名單未列，實測有效
+box-shadow,✓ 有效,✓ 允許,一致
+box-sizing,✓ 有效,✓ 允許,一致
+color,✓ 有效,未列入,白名單未列，實測有效
+column-gap,✗ 無效,✗ 禁止,一致
+cursor,✓ 有效,未列入,白名單未列，實測有效
+display,✓ 有效,未列入,白名單未列，實測有效
+filter,✓ 有效,未列入,白名單未列，實測有效
+flex-basis,✗ 無效,✗ 禁止,一致
+flex-direction,✗ 無效,✗ 禁止,一致
+flex-grow,✗ 無效,✗ 禁止,一致
+flex-shrink,✗ 無效,✗ 禁止,一致
+flex-wrap,✗ 無效,✗ 禁止,一致
+font-family,✓ 有效,✓ 允許,一致
+font-size,✓ 有效,✓ 允許,一致
+font-style,✓ 有效,✓ 允許,一致
+font-variant,✓ 有效,✓ 允許,一致
+font-weight,✓ 有效,✓ 允許,一致
+gap,✗ 無效,未列入,白名單未列，實測無效
+grid-column,✗ 無效,✗ 禁止,一致
+grid-row,✗ 無效,✗ 禁止,一致
+grid-template,✗ 無效,✗ 禁止,一致
+grid-template-columns,✗ 無效,✗ 禁止,一致
+grid-template-rows,✗ 無效,✗ 禁止,一致
+height,✓ 有效,未列入,白名單未列，實測有效
+justify-content,✗ 無效,✗ 禁止,一致
+left,✓ 有效,未列入,白名單未列，實測有效
+letter-spacing,✓ 有效,✓ 允許,一致
+line-height,✗ 無效,✗ 禁止,一致
+list-style,✓ 有效,✓ 允許,一致
+margin,✓ 有效,未列入,白名單未列，實測有效
+margin-bottom,✓ 有效,✓ 允許,一致
+margin-left,✓ 有效,✓ 允許,一致
+margin-right,✓ 有效,✓ 允許,一致
+margin-top,✓ 有效,✓ 允許,一致
+max-height,✓ 有效,✓ 允許,一致
+max-width,✓ 有效,✓ 允許,一致
+min-height,✓ 有效,✓ 允許,一致
+min-width,✓ 有效,✓ 允許,一致
+opacity,✓ 有效,未列入,白名單未列，實測有效
+overflow,✓ 有效,未列入,白名單未列，實測有效
+overflow-hidden,✓ 有效,未列入,白名單未列，實測有效
+padding,✓ 有效,未列入,白名單未列，實測有效
+padding-bottom,✓ 有效,✓ 允許,一致
+padding-left,✓ 有效,✓ 允許,一致
+padding-right,✓ 有效,✓ 允許,一致
+padding-top,✓ 有效,✓ 允許,一致
+position,✓ 有效,未列入,白名單未列，實測有效
+right,✓ 有效,未列入,白名單未列，實測有效
+row-gap,✗ 無效,未列入,白名單未列，實測無效
+text-align,✓ 有效,✓ 允許,一致
+text-decoration,✓ 有效,✓ 允許,一致
+text-overflow,✓ 有效,✓ 允許,一致
+text-shadow,✓ 有效,✓ 允許,一致
+text-transform,✓ 有效,✓ 允許,一致
+top,✓ 有效,未列入,白名單未列，實測有效
+transform,✓ 有效,未列入,白名單未列，實測有效
+transition,✗ 無效,未列入,白名單未列，實測無效
+transition-delay,✗ 無效,✗ 禁止,一致
+transition-duration,✗ 無效,✗ 禁止,一致
+transition-property,✗ 無效,✗ 禁止,一致
+vertical-align,✗ 無效,✗ 禁止,一致
+white-space,✓ 有效,✗ 禁止,⚠ 白名單禁但實測有效
+width,✓ 有效,未列入,白名單未列，實測有效
+word-break,✓ 有效,✓ 允許,一致
+word-wrap,✓ 有效,✓ 允許,一致
+z-index,✓ 有效,✗ 禁止,⚠ 白名單禁但實測有效

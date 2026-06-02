@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SVG — CaveDuck</title>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0c0c0c;--bg2:#111;--bg3:#171717;--bg4:#1d1d1d;--border:#222;--border2:#1a1a1a;
+  --text:#ddd;--muted:#aaa;--dim:#2a2a2a;
+  --green:#3ec97a;--green-bg:#061410;--green-bd:#0d2818;
+  --red:#e86050;--red-bg:#140806;--red-bd:#280f08;
+  --blue:#4da8f0;--blue-bg:#060c18;--blue-bd:#0c1e38;
+  --yellow:#f0c14d;--yellow-bg:#141008;--yellow-bd:#2a2008;
+  --purple:#b48ef0;--purple-bg:#0e0818;--purple-bd:#231040;
+  --teal:#4ecdc4;--teal-bg:#061414;--teal-bd:#0d2828;
+  --orange:#f5ca98;--orange-bg:#180d08;--orange-bd:#3a1a10;
+  --card-bg:#0e0e0e;--code-bg:#080808;--deny-bg:#0c0808;}
+/* ── Light theme ── */
+[data-theme="light"]{
+  --bg:#f5f5f0;--bg2:#eeede8;--bg3:#e6e5e0;--bg4:#dddcd8;
+  --border:#d0cfca;--border2:#dddcd8;
+  --text:#1a1a1a;--muted:#aaa;--dim:#ccc;
+  --card-bg:#ffffff;--code-bg:#f4f3ef;--deny-bg:#fdf2f2;
+  --green:#1e7a47;--green-bg:#e6f5ec;--green-bd:#b8dec7;
+  --red:#c0392b;--red-bg:#fdecea;--red-bd:#f5b8b3;
+  --blue:#1a6db5;--blue-bg:#e8f1fb;--blue-bd:#b3cef0;
+  --yellow:#b07d00;--yellow-bg:#fdf8e6;--yellow-bd:#e8d68a;
+  --purple:#6b3fa0;--purple-bg:#f2eafa;--purple-bd:#cdb0e8;
+  --teal:#1a8a84;--teal-bg:#e6f5f4;--teal-bd:#9dd6d3;
+  --orange:#f5ca98;--orange-bg:#fdf0ea;--orange-bd:#f0bfa0;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);
+  font-family:'SF Mono','Fira Code','Cascadia Code',ui-monospace,monospace;font-size:13px;line-height:1.6;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px}
+.hd{padding:.8rem 1.4rem;border-bottom:2px solid var(--border);background:linear-gradient(180deg,var(--bg2),var(--bg));display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.hd-back{font-size:10px;color:var(--muted);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:3px 10px;letter-spacing:.04em;transition:color .15s}
+.hd-back:hover{color:var(--text)}
+.hd-title{font-size:16px;font-weight:700;letter-spacing:.04em;display:flex;align-items:center;gap:.5rem}
+.hd-sub{font-size:10px;color:var(--muted);letter-spacing:.06em}
+.ctrl{padding:.6rem 1.2rem;border-bottom:1px solid var(--border2);display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--bg2)}
+input[type=search]{background:var(--code-bg);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:inherit;font-size:12px;padding:4px 10px;outline:none;min-width:180px}
+input[type=search]:focus{border-color:var(--border)}
+input[type=search]::placeholder{color:var(--dim)}
+select{background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:inherit;font-size:11px;padding:3px 8px;border-radius:4px;outline:none}
+.ft-bar{display:flex;gap:2px;background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:2px;flex-wrap:wrap}
+.ft{padding:2px 10px;border-radius:3px;border:none;background:transparent;color:var(--muted);font-family:inherit;font-size:10px;cursor:pointer;transition:all .15s}
+.ft:hover{color:var(--text)}.ft.on{background:var(--bg4);color:var(--text)}
+.ct-label{font-size:10px;color:var(--muted)}
+.stats{display:flex;gap:.5rem;padding:.5rem 1.2rem;border-bottom:1px solid var(--border2);flex-wrap:wrap}
+.stat{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:.2rem .65rem;display:flex;align-items:center;gap:.4rem}
+.sn{font-size:13px;font-weight:600}.sl{font-size:10px;color:var(--muted)}
+.sn.t{color:var(--text)}.sn.g{color:var(--green)}.sn.r{color:var(--red)}.sn.b{color:var(--blue)}.sn.tl{color:var(--teal)}.sn.o{color:var(--orange)}
+.main{flex:1;overflow-y:auto;padding:1rem 1.2rem 3rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.7rem}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:.85rem;display:flex;flex-direction:column;gap:.5rem}
+.card:hover{border-color:var(--dim)}
+.card.allow{border-left:3px solid var(--orange)}
+.card.deny{border-left:3px solid var(--red);background:var(--deny-bg)}
+.card.blue-card{border-left:3px solid var(--blue)}
+.c-head{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.c-name{font-size:13px;font-weight:700}
+.c-name.g{color:var(--green)}.c-name.r{color:var(--red)}.c-name.b{color:var(--blue)}.c-name.tl{color:var(--teal)}.c-name.w{color:var(--text)}.c-name.o{color:var(--orange)}
+.pill{font-size:9px;padding:1px 6px;border-radius:3px;letter-spacing:.04em;font-weight:600}
+.pill.g{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.pill.r{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.pill.b{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
+.pill.tl{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-bd)}
+.pill.y{background:var(--yellow-bg);color:var(--yellow);border:1px solid var(--yellow-bd)}
+.pill.m{background:var(--bg3);color:var(--muted);border:1px solid var(--border)}
+.c-desc{font-size:11px;color:var(--muted);line-height:1.65}
+.c-style{font-size:9px;color:var(--dim);word-break:break-all;line-height:1.4}
+.code-wrapper {
+  position: relative;
+  width: 100%;
+}
+.c-code {
+  background: var(--code-bg);
+  border: 1px solid var(--border2);
+  border-radius: 5px;
+  padding: .4rem .6rem;
+  padding-right: 3.5rem; /* 👈 新增這句：留空間給右邊的按鈕，字才不會塞到按鈕下方 */
+  font-size: 10px;
+  color: var(--text);
+  overflow-x: auto;
+  white-space: pre;
+}
+.copy-btn {
+  position: absolute;
+  top: 6px;              /* 👈 稍微調一下位置，讓它置中好看 */
+  right: 6px;             /* 👈 牢牢釘在右側 */
+  font-size: 8px;
+  color: var(--muted);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 6px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color .15s;
+  z-index: 10;           /* 👈 新增這句：確保按鈕浮在最上層不被擋住 */
+}
+.copy-btn:hover{color:var(--text)}.copy-btn.ok{color:var(--green);border-color:var(--green-bd)}
+.prev-wrap{border:1px solid var(--border);border-radius:5px;overflow:hidden}
+.prev-lbl{font-size:9px;color:var(--muted);padding:3px 8px;background:var(--code-bg);border-bottom:1px solid var(--border);letter-spacing:.06em}
+.prev-body{background:var(--code-bg);padding:8px 12px;font-family:sans-serif;font-size:13px;color:var(--text);min-height:40px;display:flex;align-items:center;justify-content:center}
+.sec-hd{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.6rem 0 .4rem;border-bottom:1px solid var(--border2);margin-bottom:.6rem}
+.note-box{background:var(--green-bg);border:1px solid var(--green-bd);border-radius:6px;padding:.6rem .8rem;font-size:10px;color:var(--muted);line-height:1.8;margin-bottom:.7rem}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:4px}
+.tag-chip{font-size:10px;padding:2px 7px;border-radius:4px;font-family:inherit;cursor:pointer;transition:filter .1s}
+.tag-chip:hover{filter:brightness(1.4)}
+.tag-chip.g{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.tag-chip.r{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd);cursor:default}
+.tag-chip.r:hover{filter:none}
+.tag-chip.b{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
+.tag-chip.m{background:var(--bg3);color:var(--muted);border:1px solid var(--border)}
+.pager{display:flex;gap:4px;align-items:center;padding:.7rem 1.2rem 2rem;justify-content:center;flex-wrap:wrap}
+.pg-btn{background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--muted);font-family:inherit;font-size:10px;padding:3px 10px;cursor:pointer;transition:all .15s}
+.pg-btn:hover{color:var(--text)}.pg-btn.on{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
+.pg-info{font-size:10px;color:var(--muted)}
+.empty{color:var(--dim);font-size:12px;padding:2rem;text-align:center}
+.loading{color:var(--muted);font-size:11px;padding:2rem;text-align:center;letter-spacing:.06em}
+.err{color:var(--red);font-size:11px;padding:2rem;text-align:center}
+.theme-btn{margin-left:auto;background:var(--bg3);border:1px solid var(--border);
+  border-radius:6px;padding:4px 10px;font-size:11px;color:var(--muted);cursor:pointer;
+  font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.theme-btn:hover{color:var(--text);border-color:var(--muted)}
+[data-theme="dark"] .theme-btn::before{content:"☀️"}
+[data-theme="light"] .theme-btn::before{content:"🌙"}</style>
+</head>
+<body>
+<div class="hd">
+  <a href="index.html" class="hd-back">← 返回</a>
+  <div class="hd-title"><span style="color:var(--orange);font-size:15px">◈</span> SVG 標籤</div>
+  <div class="hd-sub">聊天室可用 · 向量圖形標記語言</div>
+  <button class="theme-btn" id="themeToggle"> 切換背景</button>
+</div>
+<div class="ctrl">
+  <input type="search" id="q" placeholder="搜尋標籤名稱…">
+  <span class="ct-label">分類：</span>
+  <div class="ft-bar">
+    <button class="ft on" data-f="all">全部</button>
+    <button class="ft" data-f="allow">允許</button>
+    <button class="ft" data-f="filter">Filter 元素</button>
+    <button class="ft" data-f="deny">禁止</button>
+  </div>
+</div>
+<div class="stats">
+  <div class="stat"><span class="sn o" id="s-allow">—</span><span class="sl">Core 允許</span></div>
+  <div class="stat"><span class="sn b" id="s-filter">—</span><span class="sl">Filter 元素</span></div>
+  <div class="stat"><span class="sn r" id="s-deny">—</span><span class="sl">禁止</span></div>
+</div>
+<div class="main">
+  <div id="cards" class="card-grid"></div>
+  <div id="empty" class="empty" style="display:none">沒有符合的項目</div>
+</div>
+<script>
+function copyText(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    if(btn){btn.textContent='✓ 複製了';btn.classList.add('ok');setTimeout(()=>{btn.textContent='複製';btn.classList.remove('ok');},1500);}
+  });
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+const SVG_PREV = {"svg": ["SVG 容器", "<svg viewBox=\"0 0 90 50\" width=\"90\" height=\"50\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"90\" height=\"50\" fill=\"#b07800\" rx=\"4\"/><text x=\"45\" y=\"31\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-family=\"monospace\">SVG</text></svg>"], "circle": ["圓形", "<svg viewBox=\"0 0 50 50\" width=\"50\" height=\"50\"><circle cx=\"25\" cy=\"25\" r=\"22\" fill=\"#e8a040\"/></svg>"], "rect": ["矩形", "<svg viewBox=\"0 0 90 45\" width=\"90\" height=\"45\"><rect x=\"5\" y=\"5\" width=\"80\" height=\"35\" fill=\"#e8a040\" rx=\"6\"/></svg>"], "ellipse": ["橢圓", "<svg viewBox=\"0 0 90 50\" width=\"90\" height=\"50\"><ellipse cx=\"45\" cy=\"25\" rx=\"40\" ry=\"20\" fill=\"#e8a040\"/></svg>"], "line": ["直線", "<svg viewBox=\"0 0 80 40\" width=\"80\" height=\"40\"><line x1=\"5\" y1=\"35\" x2=\"75\" y2=\"5\" stroke=\"#e8a040\" stroke-width=\"3\" stroke-linecap=\"round\"/></svg>"], "polyline": ["折線（不封閉）", "<svg viewBox=\"0 0 80 40\" width=\"80\" height=\"40\"><polyline points=\"5,35 22,10 40,28 58,8 75,22\" fill=\"none\" stroke=\"#e8a040\" stroke-width=\"2.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>"], "polygon": ["多邊形（封閉）", "<svg viewBox=\"0 0 60 55\" width=\"60\" height=\"55\"><polygon points=\"30,3 57,50 3,50\" fill=\"#e8a040\"/></svg>"], "path": ["路徑（貝茲曲線）", "<svg viewBox=\"0 0 80 50\" width=\"80\" height=\"50\"><path d=\"M5,45 C20,5 60,5 75,45\" stroke=\"#e8a040\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\"/></svg>"], "text": ["SVG 文字", "<svg viewBox=\"0 0 110 35\" width=\"110\" height=\"35\"><text x=\"5\" y=\"25\" fill=\"#e8a040\" font-size=\"18\" font-family=\"monospace\">SVG 文字</text></svg>"], "tspan": ["文字片段（可單獨設定樣式）", "<svg viewBox=\"0 0 140 30\" width=\"140\" height=\"30\"><text x=\"5\" y=\"22\" font-size=\"14\"><tspan fill=\"#e8a040\">orange</tspan><tspan fill=\"#f0c14d\" dx=\"4\"> yellow</tspan></text></svg>"], "g": ["群組（統一套用變換）", "<svg viewBox=\"0 0 60 60\" width=\"60\" height=\"60\"><g transform=\"rotate(30 30 30)\" opacity=\".85\"><rect x=\"10\" y=\"10\" width=\"40\" height=\"40\" fill=\"none\" stroke=\"#e8a040\" stroke-width=\"2\"/><rect x=\"18\" y=\"18\" width=\"24\" height=\"24\" fill=\"#e8a040\" opacity=\".5\"/></g></svg>"], "lineargradient": ["線性漸層", "<svg viewBox=\"0 0 90 45\" width=\"90\" height=\"45\"><defs><linearGradient id=\"lg1\"><stop offset=\"0%\" stop-color=\"#e8a040\"/><stop offset=\"100%\" stop-color=\"#b48ef0\"/></linearGradient></defs><rect width=\"90\" height=\"45\" fill=\"url(#lg1)\" rx=\"6\"/></svg>"], "radialgradient": ["放射漸層（從中心向外）", "<svg viewBox=\"0 0 60 60\" width=\"60\" height=\"60\"><defs><radialGradient id=\"rg1\"><stop offset=\"0%\" stop-color=\"white\" stop-opacity=\".9\"/><stop offset=\"100%\" stop-color=\"#e8a040\"/></radialGradient></defs><circle cx=\"30\" cy=\"30\" r=\"28\" fill=\"url(#rg1)\"/></svg>"], "stop": ["漸層色標", "<svg viewBox=\"0 0 90 30\" width=\"90\" height=\"30\"><defs><linearGradient id=\"lg2\"><stop offset=\"0%\" stop-color=\"#e8a040\"/><stop offset=\"50%\" stop-color=\"#f0c14d\"/><stop offset=\"100%\" stop-color=\"#e86050\"/></linearGradient></defs><rect width=\"90\" height=\"30\" fill=\"url(#lg2)\" rx=\"4\"/></svg>"], "clippath": ["裁切路徑", "<svg viewBox=\"0 0 60 60\" width=\"60\" height=\"60\"><defs><clipPath id=\"cp1\"><circle cx=\"30\" cy=\"30\" r=\"25\"/></clipPath></defs><rect width=\"60\" height=\"60\" fill=\"#e8a040\" clip-path=\"url(#cp1)\"/><line x1=\"0\" y1=\"30\" x2=\"60\" y2=\"30\" stroke=\"white\" stroke-width=\"20\" clip-path=\"url(#cp1)\" opacity=\".3\"/></svg>"], "mask": ["遮罩（白=顯示、黑=隱藏）", "<svg viewBox=\"0 0 60 60\" width=\"60\" height=\"60\"><defs><mask id=\"m1\"><rect width=\"60\" height=\"60\" fill=\"white\"/><circle cx=\"30\" cy=\"30\" r=\"16\" fill=\"black\"/></mask></defs><rect width=\"60\" height=\"60\" fill=\"#e8a040\" mask=\"url(#m1)\"/></svg>"], "marker": ["標記（箭頭）", "<svg viewBox=\"0 0 90 40\" width=\"90\" height=\"40\"><defs><marker id=\"ar1\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"#e8a040\"/></marker></defs><line x1=\"5\" y1=\"20\" x2=\"75\" y2=\"20\" stroke=\"#e8a040\" stroke-width=\"2.5\" marker-end=\"url(#ar1)\"/></svg>"], "pattern": ["重複圖案填充", "<svg viewBox=\"0 0 60 60\" width=\"60\" height=\"60\"><defs><pattern id=\"pt1\" x=\"0\" y=\"0\" width=\"15\" height=\"15\" patternUnits=\"userSpaceOnUse\"><circle cx=\"7.5\" cy=\"7.5\" r=\"5\" fill=\"#e8a040\" opacity=\".6\"/></pattern></defs><rect width=\"60\" height=\"60\" fill=\"url(#pt1)\" rx=\"4\"/></svg>"], "symbol": ["可重用符號", "<svg viewBox=\"0 0 90 40\" width=\"90\" height=\"40\"><defs><symbol id=\"star1\" viewBox=\"0 0 20 20\"><polygon points=\"10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7\" fill=\"#f0c14d\"/></symbol></defs><use href=\"#star1\" x=\"5\" y=\"10\" width=\"20\" height=\"20\"/><use href=\"#star1\" x=\"35\" y=\"10\" width=\"20\" height=\"20\"/><use href=\"#star1\" x=\"65\" y=\"10\" width=\"20\" height=\"20\"/></svg>"], "textpath": ["文字沿路徑排列", "<svg viewBox=\"0 0 130 60\" width=\"130\" height=\"60\"><defs><path id=\"tp1\" d=\"M10,50 Q65,5 120,50\"/></defs><text fill=\"#e8a040\" font-size=\"11\" font-family=\"sans-serif\"><textPath href=\"#tp1\">沿路徑排列的文字</textPath></text></svg>"], "filter": ["濾鏡容器（含 fe 子元素）", "<svg viewBox=\"0 0 110 45\" width=\"110\" height=\"45\"><defs><filter id=\"f1\"><feGaussianBlur stdDeviation=\"2.5\"/></filter></defs><rect x=\"5\" y=\"7\" width=\"40\" height=\"30\" fill=\"#e8a040\" rx=\"4\"/><rect x=\"60\" y=\"7\" width=\"40\" height=\"30\" fill=\"#e8a040\" rx=\"4\" filter=\"url(#f1)\"/></svg>"], "a": ["連結", "<svg viewBox=\"0 0 120 30\" width=\"120\" height=\"30\"><text x=\"5\" y=\"22\" fill=\"#e8a040\" font-size=\"13\" font-family=\"monospace\" text-decoration=\"underline\">連結文字 link</text></svg>"], "defs": ["定義區（不直接渲染）", "<svg viewBox=\"0 0 150 35\" width=\"150\" height=\"35\"><text x=\"5\" y=\"22\" fill=\"#e8a040\" font-size=\"11\" font-family=\"monospace\">&lt;defs&gt;...&lt;/defs&gt;</text></svg>"], "desc": ["描述（無障礙用途）", "<svg viewBox=\"0 0 150 35\" width=\"150\" height=\"35\"><text x=\"5\" y=\"22\" fill=\"#888\" font-size=\"11\" font-family=\"monospace\" font-style=\"italic\">invisible description</text></svg>"], "title": ["標題提示（hover 顯示）", "<svg viewBox=\"0 0 130 40\" width=\"130\" height=\"40\"><rect x=\"5\" y=\"5\" width=\"120\" height=\"30\" fill=\"#e8a040\" rx=\"4\" opacity=\".3\"/><text x=\"65\" y=\"25\" text-anchor=\"middle\" fill=\"#e8a040\" font-size=\"11\" font-family=\"monospace\">hover tooltip</text></svg>"], "metadata": ["元資料（不顯示）", "<svg viewBox=\"0 0 130 35\" width=\"130\" height=\"35\"><text x=\"5\" y=\"22\" fill=\"#888\" font-size=\"11\" font-family=\"monospace\" font-style=\"italic\">metadata (hidden)</text></svg>"], "image": ["嵌入點陣圖", "<svg viewBox=\"0 0 80 60\" width=\"80\" height=\"60\"><rect x=\"5\" y=\"5\" width=\"70\" height=\"50\" fill=\"none\" stroke=\"#e8a040\" stroke-width=\"2\" stroke-dasharray=\"4 2\" rx=\"4\"/><text x=\"40\" y=\"35\" text-anchor=\"middle\" fill=\"#e8a040\" font-size=\"10\" font-family=\"monospace\">IMG</text></svg>"], "altglyph": ["替代字形（SVG1）", "<svg viewBox=\"0 0 100 30\" width=\"100\" height=\"30\"><text x=\"5\" y=\"22\" fill=\"#e8a040\" font-size=\"14\" font-family=\"serif\">A<tspan font-style=\"italic\">lt</tspan></text></svg>"], "altglyphdef": ["替代字形定義（SVG1）", "<svg viewBox=\"0 0 120 30\" width=\"120\" height=\"30\"><text x=\"5\" y=\"22\" fill=\"#888\" font-size=\"11\" font-family=\"monospace\">altGlyphDef{}</text></svg>"], "altglyphitem": ["替代字形項（SVG1）", "<svg viewBox=\"0 0 120 30\" width=\"120\" height=\"30\"><text x=\"5\" y=\"22\" fill=\"#888\" font-size=\"11\" font-family=\"monospace\">altGlyphItem</text></svg>"], "animatecolor": ["色彩動畫（已棄用）", "<svg viewBox=\"0 0 50 50\" width=\"50\" height=\"50\"><circle cx=\"25\" cy=\"25\" r=\"20\" fill=\"#e8a040\"><animate attributeName=\"opacity\" values=\"1;.3;1\" dur=\"2s\" repeatCount=\"indefinite\"/></circle></svg>"], "animatemotion": ["路徑運動動畫", "<svg viewBox=\"0 0 120 40\" width=\"120\" height=\"40\"><path d=\"M10,20 Q60,0 110,20\" fill=\"none\" stroke=\"#e8a040\" stroke-width=\"1\" stroke-dasharray=\"3 2\" opacity=\".5\"/><circle r=\"5\" fill=\"#e8a040\"><animateMotion dur=\"2s\" repeatCount=\"indefinite\" path=\"M10,20 Q60,0 110,20\"/></circle></svg>"], "animatetransform": ["變換動畫", "<svg viewBox=\"0 0 50 50\" width=\"50\" height=\"50\"><rect x=\"15\" y=\"15\" width=\"20\" height=\"20\" fill=\"#e8a040\" rx=\"3\"><animateTransform attributeName=\"transform\" type=\"rotate\" from=\"0 25 25\" to=\"360 25 25\" dur=\"3s\" repeatCount=\"indefinite\"/></rect></svg>"], "font": ["SVG 字型定義（SVG1）", "<svg viewBox=\"0 0 120 30\" width=\"120\" height=\"30\"><text x=\"5\" y=\"22\" fill=\"#888\" font-size=\"11\" font-family=\"monospace\">font definition</text></svg>"], "glyph": ["字形定義（SVG1）", "<svg viewBox=\"0 0 100 30\" width=\"100\" height=\"30\"><text x=\"5\" y=\"22\" fill=\"#888\" font-size=\"11\" font-family=\"monospace\">glyph def</text></svg>"], "glyphref": ["字形參照（SVG1）", "<svg viewBox=\"0 0 100 30\" width=\"100\" height=\"30\"><text x=\"5\" y=\"22\" fill=\"#888\" font-size=\"11\" font-family=\"monospace\">glyph ref</text></svg>"], "hkern": ["水平字距（SVG1）", "<svg viewBox=\"0 0 100 30\" width=\"100\" height=\"30\"><text x=\"5\" y=\"22\" font-size=\"14\" font-family=\"monospace\"><tspan fill=\"#e8a040\">A</tspan><tspan fill=\"#888\" dx=\"-2\">V</tspan></text></svg>"], "mpath": ["運動路徑參照", "<svg viewBox=\"0 0 120 40\" width=\"120\" height=\"40\"><path d=\"M10,30 C40,5 80,5 110,30\" fill=\"none\" stroke=\"#e8a040\" stroke-width=\"1.5\" stroke-dasharray=\"3 2\"/><circle r=\"4\" fill=\"#e8a040\" opacity=\".7\"><animateMotion dur=\"2s\" repeatCount=\"indefinite\"><mpath href=\"\"/></animateMotion></circle></svg>"], "style": ["內嵌樣式表", "<svg viewBox=\"0 0 130 35\" width=\"130\" height=\"35\"><text x=\"5\" y=\"22\" fill=\"#e8a040\" font-size=\"11\" font-family=\"monospace\">&lt;style&gt;.cls{}&lt;/style&gt;</text></svg>"], "switch": ["條件式渲染", "<svg viewBox=\"0 0 100 40\" width=\"100\" height=\"40\"><text x=\"5\" y=\"18\" fill=\"#e8a040\" font-size=\"10\" font-family=\"monospace\">if lang=zh →</text><text x=\"5\" y=\"33\" fill=\"#888\" font-size=\"10\" font-family=\"monospace\">else fallback</text></svg>"], "tref": ["文字參照（SVG1）", "<svg viewBox=\"0 0 100 30\" width=\"100\" height=\"30\"><text x=\"5\" y=\"22\" fill=\"#888\" font-size=\"11\" font-family=\"monospace\">text ref→</text></svg>"], "view": ["預定義視圖", "<svg viewBox=\"0 0 100 40\" width=\"100\" height=\"40\"><rect x=\"5\" y=\"5\" width=\"90\" height=\"30\" fill=\"none\" stroke=\"#e8a040\" stroke-width=\"1.5\" rx=\"3\"/><rect x=\"20\" y=\"10\" width=\"40\" height=\"20\" fill=\"#e8a040\" opacity=\".3\" rx=\"2\"/></svg>"], "vkern": ["垂直字距（SVG1）", "<svg viewBox=\"0 0 40 50\" width=\"40\" height=\"50\"><text x=\"15\" y=\"20\" fill=\"#e8a040\" font-size=\"14\" font-family=\"monospace\">A</text><text x=\"15\" y=\"40\" fill=\"#888\" font-size=\"14\" font-family=\"monospace\">V</text></svg>"]};
+const SVG_EN = {"svg":"SVG container","circle":"circle","rect":"rectangle","ellipse":"ellipse","line":"line","polyline":"polyline (open)","polygon":"polygon (closed)","path":"path (Bézier curves)","text":"SVG text","tspan":"text span (individual styling)","g":"group (apply transforms)","lineargradient":"linear gradient","radialgradient":"radial gradient","stop":"gradient color stop","clippath":"clip path (show inside only)","mask":"mask (white=show, black=hide)","marker":"marker (e.g. arrowhead)","pattern":"repeating pattern fill","symbol":"reusable symbol (define once, use many)","textpath":"text along a path","filter":"filter container (fe children)","a":"clickable link","defs":"definitions (gradients, filters — not rendered)","desc":"description (invisible, accessibility)","title":"title tooltip (on hover)","metadata":"metadata (not displayed)","image":"embed raster image (external URL)","altglyph":"alternate glyph","altglyphdef":"alternate glyph definition","altglyphitem":"alternate glyph item","animatecolor":"animate color","animatemotion":"animate motion","animatetransform":"animate transform","font":"SVG font","glyph":"glyph definition","glyphref":"glyph reference","hkern":"horizontal kerning","mpath":"motion path","style":"inline stylesheet","switch":"conditional rendering","tref":"text reference","view":"predefined view","vkern":"vertical kerning","feblend":"blend two layers","fecolormatrix":"color matrix transform","fecomponenttransfer":"per-channel transfer","fecomposite":"composite two images","feconvolvematrix":"convolution matrix","fediffuselighting":"diffuse lighting","fedisplacementmap":"displacement map","fedistantlight":"distant light source","fedropshadow":"drop shadow","feflood":"flood fill color","fefunca":"transfer function (alpha)","fefuncb":"transfer function (blue)","fefuncg":"transfer function (green)","fefuncr":"transfer function (red)","fegaussianblur":"Gaussian blur","feimage":"external image input","femerge":"merge layers","femergenode":"merge node","femorphology":"erode / dilate","feoffset":"offset position","fepointlight":"point light source","fespecularlighting":"specular lighting","fespotlight":"spotlight source","fetile":"tile pattern","feturbulence":"Perlin noise / turbulence","animate":"animate (blocked)","color-profile":"color profile (blocked)","cursor":"cursor (blocked)","discard":"discard (blocked)","font-face":"font face (blocked)","font-face-format":"font face format (blocked)","font-face-name":"font face name (blocked)","font-face-src":"font face source (blocked)","font-face-uri":"font face URI (blocked)","foreignobject":"foreign object (blocked)","hatch":"hatch pattern (blocked)","hatchpath":"hatch path (blocked)","mesh":"mesh (blocked)","meshgradient":"mesh gradient (blocked)","meshpatch":"mesh patch (blocked)","meshrow":"mesh row (blocked)","missing-glyph":"missing glyph (blocked)","script":"script (blocked)","set":"set (blocked)","solidcolor":"solid color (blocked)","unknown":"unknown (blocked)","use":"use / reference (blocked)"};
+const CORE_ALLOW = ["svg", "a", "altglyph", "altglyphdef", "altglyphitem", "animatecolor", "animatemotion", "animatetransform", "circle", "clippath", "defs", "desc", "ellipse", "filter", "font", "g", "glyph", "glyphref", "hkern", "image", "line", "lineargradient", "marker", "mask", "metadata", "mpath", "path", "pattern", "polygon", "polyline", "radialgradient", "rect", "stop", "style", "switch", "symbol", "text", "textpath", "title", "tref", "tspan", "view", "vkern"];
+const CORE_DENY = ["animate", "color-profile", "cursor", "discard", "font-face", "font-face-format", "font-face-name", "font-face-src", "font-face-uri", "foreignobject", "hatch", "hatchpath", "mesh", "meshgradient", "meshpatch", "meshrow", "missing-glyph", "script", "set", "solidcolor", "unknown", "use"];
+const FILTER_TAGS = ["feblend", "fecolormatrix", "fecomponenttransfer", "fecomposite", "feconvolvematrix", "fediffuselighting", "fedisplacementmap", "fedistantlight", "fedropshadow", "feflood", "fefunca", "fefuncb", "fefuncg", "fefuncr", "fegaussianblur", "feimage", "femerge", "femergenode", "femorphology", "feoffset", "fepointlight", "fespecularlighting", "fespotlight", "fetile", "feturbulence"];
+
+document.getElementById('s-allow').textContent=CORE_ALLOW.length;
+document.getElementById('s-filter').textContent=FILTER_TAGS.length;
+document.getElementById('s-deny').textContent=CORE_DENY.length;
+
+// Sorted: allow first, filter second, deny third, then alpha within
+const ALL_ITEMS=[
+  ...CORE_ALLOW.map(n=>{return{n,type:'allow'};}),
+  ...FILTER_TAGS.map(n=>{return{n,type:'filter'};}),
+  ...CORE_DENY.map(n=>{return{n,type:'deny'};}),
+];
+
+const SNIPPETS=[];
+function makeCard(item){
+  const {n,type}=item;
+  const pdata=SVG_PREV[n];
+  const cardCls=type==='allow'?'allow':type==='filter'?'blue-card':'deny';
+  const nc=type==='allow'?'o':type==='filter'?'b':'r';
+  const typePill=type==='filter'?'<span class="pill b">svgFilters 模式</span>':
+                 type==='deny'?'<span class="pill r">禁止</span>':'';
+  const enDesc=SVG_EN[n]||'';
+  let prevHtml='';
+  if(pdata&&pdata[1]&&type!=='deny'){
+    prevHtml=`<div class="prev-wrap">
+      <div class="prev-lbl">${esc(pdata[0])}</div>
+      <div class="prev-body">${pdata[1]}</div>
+    </div>`;
+  }
+  const zhDesc=pdata?pdata[0]:'';
+  const descLine=(zhDesc||enDesc)?`<div class="c-desc">${esc(zhDesc)}${enDesc?' · '+esc(enDesc):''}</div>`:'';
+  const snippet=type==='deny'?``:
+                (pdata&&pdata[1])?pdata[1]:
+                type==='filter'?`<filter><${n}/></filter>`:
+                `<${n}></${n}>`;
+  const idx=SNIPPETS.length;
+  SNIPPETS.push(snippet);
+  
+  // 這裡調整了結構：加上 code-wrapper，並把按鈕移到 c-code 外面
+  return `<div class="card ${cardCls}">
+    <div class="c-head"><span class="c-name ${nc}">&lt;${esc(n)}&gt;</span>${typePill}</div>
+    ${prevHtml}
+    ${descLine}
+    <div class="code-wrapper">
+      <div class="c-code">${esc(snippet)}</div>
+      <button class="copy-btn" onclick="copyText(SNIPPETS[${idx}],this)">複製</button>
+    </div>
+  </div>`;
+}
+
+let curF='all', curQ='';
+function render(){
+  const q=curQ.toLowerCase();
+  const items=ALL_ITEMS.filter(item=>{
+    if(q&&!item.n.includes(q))return false;
+    if(curF==='allow')return item.type==='allow';
+    if(curF==='filter')return item.type==='filter';
+    if(curF==='deny')return item.type==='deny';
+    return true;
+  });
+  document.getElementById('empty').style.display=items.length?'none':'block';
+  document.getElementById('cards').innerHTML=items.map(makeCard).join('');
+}
+document.getElementById('q').addEventListener('input',e=>{curQ=e.target.value;render();});
+document.querySelectorAll('[data-f]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-f]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');curF=b.dataset.f;render();
+}));
+render();
+</script>
+<script>
+(function(){
+  var html = document.documentElement;
+  var saved = localStorage.getItem('cd-theme');
+  if (saved) {
+    html.setAttribute('data-theme', saved);
+  } else {
+    html.setAttribute('data-theme', 'dark');
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.addEventListener('click', function(){
+        var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('cd-theme', next);
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>

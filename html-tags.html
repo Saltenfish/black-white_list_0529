@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HTML 標籤 — CaveDuck</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0c0c;--bg2:#111;--bg3:#171717;--bg4:#1d1d1d;
+  --border:#222;--border2:#1a1a1a;
+  --text:#ddd;--muted:#aaa;--dim:#2a2a2a;
+  --green:#3ec97a;--green-bg:#061410;--green-bd:#0d2818;
+  --red:#e86050;--red-bg:#140806;--red-bd:#280f08;
+  --blue:#4da8f0;--blue-bg:#060c18;--blue-bd:#0c1e38;
+  --yellow:#f0c14d;--yellow-bg:#141008;--yellow-bd:#2a2008;
+  --card-bg:#0e0e0e;--code-bg:#080808;--deny-bg:#0c0808;}
+/* ── Light theme ── */
+[data-theme="light"]{
+  --bg:#f5f5f0;--bg2:#eeede8;--bg3:#e6e5e0;--bg4:#dddcd8;
+  --border:#d0cfca;--border2:#dddcd8;
+  --text:#1a1a1a;--muted:#aaa;--dim:#ccc;
+  --card-bg:#ffffff;--code-bg:#f4f3ef;--deny-bg:#fdf2f2;
+  --green:#1e7a47;--green-bg:#e6f5ec;--green-bd:#b8dec7;
+  --red:#c0392b;--red-bg:#fdecea;--red-bd:#f5b8b3;
+  --blue:#1a6db5;--blue-bg:#e8f1fb;--blue-bd:#b3cef0;
+  --yellow:#b07d00;--yellow-bg:#fdf8e6;--yellow-bd:#e8d68a;
+  --purple:#6b3fa0;--purple-bg:#f2eafa;--purple-bd:#cdb0e8;
+  --teal:#1a8a84;--teal-bg:#e6f5f4;--teal-bd:#9dd6d3;
+  --orange:#c0541a;--orange-bg:#fdf0ea;--orange-bd:#f0bfa0;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);
+  font-family:'SF Mono','Fira Code','Cascadia Code',ui-monospace,monospace;
+  font-size:13px;line-height:1.6;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#444;border-radius:2px}
+.hd{padding:.8rem 1.4rem;border-bottom:2px solid var(--border);
+  background:linear-gradient(180deg,#101010,#0a0a0a);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.hd-back{font-size:10px;color:var(--muted);background:var(--bg3);border:1px solid var(--border);
+  border-radius:4px;padding:3px 10px;letter-spacing:.04em;transition:color .15s}
+.hd-back:hover{color:var(--text)}
+.hd-title{font-size:16px;font-weight:700;letter-spacing:.04em;display:flex;align-items:center;gap:.5rem}
+.hd-accent{color:var(--green);font-size:12px}
+.hd-sub{font-size:10px;color:var(--muted);letter-spacing:.06em}
+.ctrl{padding:.6rem 1.2rem;border-bottom:1px solid var(--border2);
+  display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--bg2)}
+input[type=search]{background:#0a0a0a;border:1px solid var(--border);border-radius:5px;
+  color:var(--text);font-family:inherit;font-size:12px;padding:4px 10px;outline:none;min-width:180px}
+input[type=search]:focus{border-color:#333}
+input[type=search]::placeholder{color:var(--dim)}
+.ft-bar{display:flex;gap:2px;background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:2px}
+.ft{padding:2px 10px;border-radius:3px;border:none;background:transparent;color:var(--muted);
+  font-family:inherit;font-size:10px;cursor:pointer;transition:all .15s}
+.ft:hover{color:var(--text)}.ft.on{background:var(--bg4);color:var(--text)}
+.ct-label{font-size:10px;color:var(--muted)}
+.stats{display:flex;gap:.5rem;padding:.5rem 1.2rem;border-bottom:1px solid var(--border2);flex-wrap:wrap}
+.stat{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:.2rem .65rem;display:flex;align-items:center;gap:.4rem}
+.sn{font-size:13px;font-weight:600}.sl{font-size:10px;color:var(--muted)}
+.sn.t{color:var(--text)}.sn.g{color:var(--green)}.sn.r{color:var(--red)}.sn.b{color:var(--blue)}.sn.y{color:var(--yellow)}
+.main{flex:1;min-height:0;overflow-y:auto;padding:1rem 1.2rem 3rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.7rem}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:.85rem;display:flex;flex-direction:column;gap:.5rem}
+.card.both{border-left:3px solid var(--green)}
+.card.creator-only{border-left:3px solid var(--blue)}
+.card.chat-only{border-left:3px solid var(--yellow)}
+.card.deny{border-left:3px solid var(--red);background:var(--deny-bg)}
+.card.unknown{border-left:3px solid var(--border);opacity:.7}
+.c-head{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.c-name{font-size:13px;font-weight:700}
+.c-name.g{color:var(--green)}.c-name.r{color:var(--red)}.c-name.b{color:var(--blue)}.c-name.y{color:var(--yellow)}.c-name.w{color:var(--text)}
+.pill{font-size:9px;padding:1px 6px;border-radius:3px;letter-spacing:.04em;font-weight:600}
+.pill.g{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.pill.r{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.pill.b{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
+.pill.y{background:var(--yellow-bg);color:var(--yellow);border:1px solid var(--yellow-bd)}
+.pill.m{background:var(--bg3);color:var(--muted);border:1px solid var(--border)}
+.c-attrs{display:flex;flex-wrap:wrap;gap:3px;align-items:center}
+.attr-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-right:3px}
+.attr-chip{font-size:9px;padding:1px 5px;border-radius:3px;background:var(--bg3);color:#ccc;border:1px solid var(--border)}
+.prev-wrap{border:1px solid var(--border);border-radius:5px;overflow:hidden}
+.prev-lbl{font-size:9px;color:var(--muted);padding:3px 8px;background:var(--code-bg);border-bottom:1px solid var(--border);letter-spacing:.06em}
+.prev-body{background:#f0f0f0;padding:6px 10px;font-family:sans-serif;font-size:13px;color:#222;min-height:30px;max-height:120px;overflow:auto}
+.code-wrapper {
+  position: relative;
+  width: 100%;
+}
+.c-code {
+  background: var(--code-bg);
+  border: 1px solid var(--border2);
+  border-radius: 5px;
+  padding: .4rem .6rem;
+  padding-right: 3.5rem; /* 留空間給右邊的按鈕，程式碼就不會穿透過去 */
+  font-size: 10px;
+  color: #a8d8a8;
+  overflow-x: auto;
+  white-space: pre;
+}
+.copy-btn {
+  position: absolute;
+  top: 6px;              /* 微調垂直置中位置 */
+  right: 6px;             /* 牢牢釘在右側 */
+  font-size: 8px;
+  color: var(--muted);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 6px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color .15s;
+  z-index: 10;           /* 確保按鈕永遠在程式碼文字上方 */
+}
+.copy-btn:hover{color:var(--text)}.copy-btn.ok{color:var(--green);border-color:var(--green-bd)}
+.empty{color:var(--dim);font-size:12px;padding:2rem;text-align:center}
+.loading{color:var(--muted);font-size:11px;padding:2rem;text-align:center;letter-spacing:.06em}
+.err{color:var(--red);font-size:11px;padding:2rem;text-align:center}
+
+.theme-btn{margin-left:auto;background:var(--bg3);border:1px solid var(--border);
+  border-radius:6px;padding:4px 10px;font-size:11px;color:var(--muted);cursor:pointer;
+  font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.theme-btn:hover{color:var(--text);border-color:var(--muted)}
+[data-theme="dark"] .theme-btn::before{content:"☀️"}
+[data-theme="light"] .theme-btn::before{content:"🌙"}
+.c-desc{font-size:10px;color:var(--muted);line-height:1.6;padding:.1rem 0}
+.cat-sep{grid-column:1/-1;height:0;border-top:1px dashed var(--border2);margin:.3rem 0}
+</style>
+</head>
+<body>
+<div class="hd">
+  <a href="index.html" class="hd-back">← 返回</a>
+  <div class="hd-title"><span class="hd-accent">🏷️</span> HTML 標籤
+</div>
+  <div class="hd-sub">DOMPurify + xss 白名單 · 聊天室 &amp; 角色介面實測</div>
+  <button class="theme-btn" id="themeToggle"> 切換背景</button>
+</div>
+<div class="ctrl">
+  <input type="search" id="q" placeholder="搜尋標籤名稱…">
+  <span class="ct-label">篩選：</span>
+  <div class="ft-bar">
+    <button class="ft on" data-f="all">全部</button>
+    <button class="ft" data-f="both">兩者皆可</button>
+    <button class="ft" data-f="chat">僅聊天室</button>
+    <button class="ft" data-f="creator">僅角色介面</button>
+    <button class="ft" data-f="deny">不支援</button>
+  </div>
+</div>
+<div class="stats">
+  <div class="stat"><span class="sn t" id="s-total">—</span><span class="sl">總計</span></div>
+  <div class="stat"><span class="sn g" id="s-both">—</span><span class="sl">兩者皆可</span></div>
+  <div class="stat"><span class="sn y" id="s-chat">—</span><span class="sl">僅聊天室</span></div>
+  <div class="stat"><span class="sn b" id="s-creator">—</span><span class="sl">僅角色介面</span></div>
+  <div class="stat"><span class="sn r" id="s-deny">—</span><span class="sl">不支援</span></div>
+</div>
+<div class="main">
+  <div id="cards" class="card-grid"></div>
+  <div id="empty" class="empty" style="display:none">沒有符合的項目</div>
+</div>
+<script>
+const VISUAL = {
+  "b": [
+    "粗體",
+    "<b>粗體文字</b>"
+  ],
+  "br": [
+    "換行",
+    "第一行<br>第二行"
+  ],
+  "div": [
+    "區塊容器",
+    "<div style=\"border:1px solid #bbb;padding:6px;border-radius:3px\">div 區塊容器</div>"
+  ],
+  "em": [
+    "強調斜體",
+    "<em>強調的文字</em>"
+  ],
+  "hr": [
+    "水平分隔線",
+    "上方<hr>下方"
+  ],
+  "i": [
+    "斜體",
+    "<i>斜體文字</i>"
+  ],
+  "main": [
+    "主內容區",
+    "<main>主要內容區域</main>"
+  ],
+  "p": [
+    "段落",
+    "<p>第一段落文字。</p><p>第二段落文字。</p>"
+  ],
+  "span": [
+    "行內容器",
+    "普通文字 <span style=\"color:#c0392b\">span 行內</span> 文字"
+  ],
+  "strong": [
+    "重要強調",
+    "<strong>重要文字</strong>"
+  ],
+  "h1": [
+    "一級標題",
+    "<h1>一級標題</h1>"
+  ],
+  "h2": [
+    "二級標題",
+    "<h2>二級標題</h2>"
+  ],
+  "h3": [
+    "三級標題",
+    "<h3>三級標題</h3>"
+  ],
+  "h4": [
+    "四級標題",
+    "<h4>四級標題</h4>"
+  ],
+  "h5": [
+    "五級標題",
+    "<h5>五級標題</h5>"
+  ],
+  "h6": [
+    "六級標題",
+    "<h6>六級標題</h6>"
+  ],
+  "abbr": [
+    "縮寫提示",
+    "<abbr title=\"HyperText Markup Language\">HTML</abbr>"
+  ],
+  "acronym": [
+    "縮寫",
+    "<acronym title=\"Cascading Style Sheets\">CSS</acronym>"
+  ],
+  "address": [
+    "聯絡資訊",
+    "<address>作者：陳小明<br>信箱：example@mail.com</address>"
+  ],
+  "article": [
+    "獨立文章",
+    "<article><h3>文章標題</h3><p>文章內容。</p></article>"
+  ],
+  "aside": [
+    "側邊補充",
+    "<aside>補充說明的側邊資訊</aside>"
+  ],
+  "bdi": [
+    "雙向隔離",
+    "用戶：<bdi>مرحبا</bdi>（阿拉伯文）"
+  ],
+  "bdo": [
+    "雙向覆寫",
+    "<bdo dir=\"rtl\">從右到左顯示</bdo>"
+  ],
+  "big": [
+    "放大字型",
+    "正常 <big>放大一號</big> 正常"
+  ],
+  "blink": [
+    "閃爍效果",
+    "<blink>閃爍文字效果</blink>"
+  ],
+  "blockquote": [
+    "引用區塊",
+    "<blockquote>這是引用的一段文字內容</blockquote>"
+  ],
+  "caption": [
+    "表格標題",
+    "<table border=\"1\" cellpadding=\"4\"><caption>表格標題</caption><tr><td>資料</td></tr></table>"
+  ],
+  "center": [
+    "置中",
+    "<center>這段文字置中對齊</center>"
+  ],
+  "cite": [
+    "引用來源",
+    "出自 <cite>《書名・作品名》</cite>"
+  ],
+  "code": [
+    "程式碼",
+    "<code>console.log(\"hello\")</code>"
+  ],
+  "data": [
+    "機器可讀值",
+    "<data value=\"42\">四十二</data>"
+  ],
+  "dd": [
+    "定義描述",
+    "<dl><dt>術語</dt><dd>這裡是定義描述</dd></dl>"
+  ],
+  "del": [
+    "刪除線",
+    "<del>被刪除的文字</del>"
+  ],
+  "details": [
+    "折疊區塊",
+    "<details><summary>點我展開</summary>折疊的內容在這裡</details>"
+  ],
+  "dfn": [
+    "術語定義",
+    "<dfn>術語名稱</dfn> 的定義說明"
+  ],
+  "dialog": [
+    "對話框",
+    "<dialog open>這是對話框的內容</dialog>"
+  ],
+  "dir": [
+    "目錄清單",
+    "<dir><li>目錄 A</li><li>目錄 B</li></dir>"
+  ],
+  "dl": [
+    "定義清單",
+    "<dl><dt>術語名稱</dt><dd>對應的定義說明</dd></dl>"
+  ],
+  "dt": [
+    "定義術語",
+    "<dl><dt>定義術語</dt><dd>說明內容</dd></dl>"
+  ],
+  "figure": [
+    "圖文容器",
+    "<figure><figcaption>圖片說明文字</figcaption></figure>"
+  ],
+  "figcaption": [
+    "圖說",
+    "<figure><figcaption>這是圖片的說明</figcaption></figure>"
+  ],
+  "font": [
+    "字型設定",
+    "<font color=\"#c0392b\" size=\"4\">自訂色彩字型</font>"
+  ],
+  "footer": [
+    "頁尾區塊",
+    "<footer>頁尾資訊 · 版權聲明</footer>"
+  ],
+  "header": [
+    "頁首區塊",
+    "<header>頁首 · 標題區域</header>"
+  ],
+  "hgroup": [
+    "標題群組",
+    "<hgroup><h2>主標題</h2><h3>副標題說明</h3></hgroup>"
+  ],
+  "ins": [
+    "插入文字",
+    "<ins>新增插入的文字</ins>"
+  ],
+  "kbd": [
+    "鍵盤按鍵",
+    "<kbd>Ctrl</kbd>+<kbd>C</kbd>"
+  ],
+  "li": [
+    "清單項目",
+    "<ul><li>清單項目 A</li><li>清單項目 B</li></ul>"
+  ],
+  "mark": [
+    "螢光標記",
+    "<mark>重點標記文字</mark>"
+  ],
+  "marquee": [
+    "跑馬燈",
+    "<marquee>跑馬燈滾動效果</marquee>"
+  ],
+  "menu": [
+    "選單清單",
+    "<menu><li>選單項目 A</li><li>選單項目 B</li></menu>"
+  ],
+  "nav": [
+    "導覽區塊",
+    "<nav>導覽列 · 連結區域</nav>"
+  ],
+  "nobr": [
+    "禁止換行",
+    "<nobr>這段文字不會自動換行即使視窗很窄</nobr>"
+  ],
+  "ol": [
+    "有序清單",
+    "<ol><li>第一項</li><li>第二項</li></ol>"
+  ],
+  "pre": [
+    "預格式文字",
+    "<pre>  縮排保留\n換行也保留</pre>"
+  ],
+  "q": [
+    "行內引用",
+    "<q>這是行內引用的句子</q>"
+  ],
+  "rp": [
+    "注音括號",
+    "<ruby>漢<rp>(</rp><rt>hàn</rt><rp>)</rp></ruby>"
+  ],
+  "rt": [
+    "注音文字",
+    "<ruby>漢<rt>hàn</rt></ruby>"
+  ],
+  "ruby": [
+    "注音標記",
+    "<ruby>漢<rt>hàn</rt></ruby><ruby>字<rt>zì</rt></ruby>"
+  ],
+  "s": [
+    "刪除線",
+    "<s>不再正確的文字</s>"
+  ],
+  "samp": [
+    "程式輸出",
+    "<samp>Error: file not found</samp>"
+  ],
+  "search": [
+    "搜尋區塊",
+    "<search>搜尋功能容器區塊</search>"
+  ],
+  "section": [
+    "章節區塊",
+    "<section><h3>章節標題</h3><p>章節內容。</p></section>"
+  ],
+  "small": [
+    "小字",
+    "正常文字 <small>縮小一號</small> 正常"
+  ],
+  "strike": [
+    "刪除線（舊）",
+    "<strike>舊版刪除線文字</strike>"
+  ],
+  "sub": [
+    "下標",
+    "H<sub>2</sub>O"
+  ],
+  "summary": [
+    "折疊標題",
+    "<details><summary>這是折疊標題</summary>展開後的內容</details>"
+  ],
+  "sup": [
+    "上標",
+    "X<sup>2</sup>+1"
+  ],
+  "table": [
+    "表格",
+    "<table border=\"1\" cellpadding=\"4\"><tr><th>欄A</th><th>欄B</th></tr><tr><td>資料1</td><td>資料2</td></tr></table>"
+  ],
+  "tbody": [
+    "表格主體",
+    "<table border=\"1\" cellpadding=\"4\"><thead><tr><th>標題</th></tr></thead><tbody><tr><td>主體資料</td></tr></tbody></table>"
+  ],
+  "td": [
+    "資料格",
+    "<table border=\"1\" cellpadding=\"4\"><tr><td>資料格 A</td><td>資料格 B</td></tr></table>"
+  ],
+  "tfoot": [
+    "表格頁尾",
+    "<table border=\"1\" cellpadding=\"4\"><tbody><tr><td>資料</td></tr></tbody><tfoot><tr><td>頁尾列</td></tr></tfoot></table>"
+  ],
+  "th": [
+    "標題格",
+    "<table border=\"1\" cellpadding=\"4\"><tr><th>標題格</th><td>資料格</td></tr></table>"
+  ],
+  "thead": [
+    "表格標頭",
+    "<table border=\"1\" cellpadding=\"4\"><thead><tr><th>標題列</th></tr></thead><tbody><tr><td>資料列</td></tr></tbody></table>"
+  ],
+  "tr": [
+    "表格列",
+    "<table border=\"1\" cellpadding=\"4\"><tr><td>第一列</td></tr><tr><td>第二列</td></tr></table>"
+  ],
+  "tt": [
+    "等寬字型",
+    "<tt>等寬字型文字</tt>"
+  ],
+  "u": [
+    "底線",
+    "<u>底線文字（拼音標注）</u>"
+  ],
+  "ul": [
+    "無序清單",
+    "<ul><li>項目一</li><li>項目二</li></ul>"
+  ],
+  "var": [
+    "變數名稱",
+    "<var>x</var> = <var>y</var> + 1"
+  ],
+  "a": [
+    "超連結",
+    "<a href=\"#\">超連結文字</a>"
+  ],
+  "img": [
+    "圖片",
+    "<img src=\"https://picsum.photos/120/40\" alt=\"圖片\">"
+  ],
+  "meter": [
+    "量表",
+    "<meter value=\"0.7\">70%</meter>"
+  ],
+  "progress": [
+    "進度條",
+    "<progress value=\"60\" max=\"100\">60%</progress>"
+  ],
+  "time": [
+    "時間標記",
+    "<time datetime=\"2024-01-01\">2024 年 1 月 1 日</time>"
+  ],
+  "svg": [
+    "SVG 圖形",
+    "<svg width=\"80\" height=\"40\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"80\" height=\"40\" fill=\"#4ecdc4\" rx=\"4\"/><text x=\"40\" y=\"25\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\">SVG</text></svg>"
+  ]
+};
+const DESC = {
+  "b": "粗體 / bold",
+  "br": "換行 / line break",
+  "div": "區塊容器 / block-level container",
+  "em": "強調語氣（斜體）/ emphasis (italic)",
+  "hr": "水平分隔線 / horizontal rule",
+  "i": "斜體（術語、外語等）/ italic",
+  "main": "頁面主要內容區 / main content area",
+  "p": "段落 / paragraph",
+  "span": "行內容器（無語意）/ inline container",
+  "strong": "重要性強調（粗體）/ strong importance",
+  "h1": "一級標題（最大）/ heading level 1",
+  "h2": "二級標題 / heading level 2",
+  "h3": "三級標題 / heading level 3",
+  "h4": "四級標題 / heading level 4",
+  "h5": "五級標題 / heading level 5",
+  "h6": "六級標題（最小）/ heading level 6",
+  "abbr": "縮寫提示（hover 顯示說明）/ abbreviation with tooltip",
+  "acronym": "縮寫（功能同 abbr）/ acronym (like abbr)",
+  "address": "聯絡資訊區塊 / contact information",
+  "article": "獨立文章或內容區塊 / standalone article",
+  "aside": "側邊補充資訊 / sidebar content",
+  "bdi": "隔離雙向文字方向 / bidirectional isolation",
+  "bdo": "覆寫文字方向 / bidirectional override",
+  "big": "放大字型一號 / bigger text",
+  "blink": "閃爍效果（部分瀏覽器支援）/ blinking text",
+  "blockquote": "長篇引用區塊 / block quotation",
+  "caption": "表格標題列 / table caption",
+  "center": "文字置中（廢棄）/ center alignment (obsolete)",
+  "cite": "引用來源名稱（書名、作品）/ citation",
+  "code": "行內程式碼樣式 / inline code",
+  "data": "附加機器可讀數值 / machine-readable data value",
+  "dd": "定義清單的描述項 / definition description",
+  "del": "標示已刪除的文字 / deleted text",
+  "details": "折疊/展開區塊 / disclosure widget",
+  "dfn": "標示術語定義處 / definition term",
+  "dialog": "對話框容器 / dialog box",
+  "dir": "目錄清單（廢棄，同 ul）/ directory list (obsolete)",
+  "dl": "定義清單 / description list",
+  "dt": "定義清單的術語項 / definition term",
+  "figure": "圖文容器 / figure with optional caption",
+  "figcaption": "圖片說明文字 / figure caption",
+  "font": "設定字型顏色大小（廢棄）/ font styling (obsolete)",
+  "footer": "頁尾區塊 / footer section",
+  "header": "頁首區塊 / header section",
+  "hgroup": "主副標題群組 / heading group",
+  "ins": "標示新增/插入的文字 / inserted text",
+  "kbd": "鍵盤按鍵樣式 / keyboard input",
+  "li": "清單項目（用於 ul/ol）/ list item",
+  "mark": "螢光筆標記重點 / highlighted text",
+  "marquee": "跑馬燈滾動效果 / scrolling marquee",
+  "menu": "選單清單（同 ul）/ menu list",
+  "nav": "導覽連結區塊 / navigation links",
+  "nobr": "禁止文字自動換行 / no line break",
+  "ol": "有序（編號）清單 / ordered list",
+  "pre": "保留空白與換行的預格式文字 / preformatted text",
+  "q": "行內短引用（自動加引號）/ inline quotation",
+  "rp": "注音括號（不支援 ruby 的 fallback）/ ruby parenthesis",
+  "rt": "注音/拼音文字 / ruby text",
+  "ruby": "注音/拼音標記容器 / ruby annotation",
+  "s": "不再正確的文字（刪除線）/ strikethrough",
+  "samp": "程式輸出範例樣式 / sample program output",
+  "search": "搜尋功能語意容器 / search landmark",
+  "section": "主題章節區塊 / thematic section",
+  "small": "縮小文字（說明、版權等）/ small print",
+  "strike": "刪除線（廢棄，建議用 del 或 s）/ strikethrough (obsolete)",
+  "sub": "下標文字（如化學式）/ subscript",
+  "summary": "details 的折疊標題 / summary for details",
+  "sup": "上標文字（如平方、注解）/ superscript",
+  "table": "表格 / table",
+  "tbody": "表格主體列群 / table body group",
+  "td": "表格資料格 / table data cell",
+  "tfoot": "表格頁尾列群 / table footer group",
+  "th": "表格標題格 / table header cell",
+  "thead": "表格標頭列群 / table header group",
+  "tr": "表格列 / table row",
+  "tt": "等寬/打字機字型 / teletype / monospace",
+  "u": "底線（多用於拼音標注）/ underline",
+  "ul": "無序清單 / unordered list",
+  "var": "數學或程式中的變數名稱 / variable",
+  "a": "超連結 / hyperlink",
+  "img": "圖片 / image",
+  "meter": "量表（已知範圍的數值）/ scalar measurement",
+  "progress": "進度條 / progress indicator",
+  "time": "日期/時間語意標記 / date-time"
+};
+
+function parseCSV(text){
+  if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
+  const lines=text.split(/\r?\n/);
+  const headers=parseLine(lines[0]);
+  const rows=[];
+  for(let i=1;i<lines.length;i++){
+    const l=lines[i].trim();if(!l)continue;
+    const vals=parseLine(l);const obj={};
+    headers.forEach((h,j)=>obj[h.trim()]=(vals[j]||'').trim());
+    rows.push(obj);
+  }
+  return rows;
+}
+function parseLine(line){
+  const cells=[];let cell='',q=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i];
+    if(c==='"'){if(q&&line[i+1]==='"'){cell+='"';i++;}else q=!q;}
+    else if(c===','&&!q){cells.push(cell);cell='';}
+    else cell+=c;
+  }
+  cells.push(cell);return cells;
+}
+async function fetchCSV(path){
+  const r=await fetch(path);
+  if(!r.ok)throw new Error('無法讀取: '+path);
+  return parseCSV(await r.text());
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+const _snips=[];
+function copyText(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='✓ 複製了';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='複製';btn.classList.remove('ok');},1500);
+  });
+}
+
+// 不支援 tag 的子分類標籤
+const DENY_REASON={
+  body:'結構',head:'結構',html:'結構',title:'結構',
+  script:'安全',noscript:'安全',style:'安全',iframe:'安全',
+  noframes:'安全',noembed:'安全',plaintext:'安全',xmp:'安全',
+  button:'表單',canvas:'表單',datalist:'表單',fieldset:'表單',
+  form:'表單',input:'表單',label:'表單',legend:'表單',
+  optgroup:'表單',option:'表單',output:'表單',select:'表單',textarea:'表單',
+  content:'元件',decorator:'元件',element:'元件',shadow:'元件',slot:'元件',template:'元件',
+  area:'媒體子元素',col:'表格子元素',colgroup:'表格子元素',desc:'SVG',
+  foreignobject:'SVG',map:'媒體子元素',picture:'媒體子元素',
+  source:'媒體子元素',spacer:'廢棄',track:'媒體子元素',
+  'annotation-xml':'MathML',math:'MathML',mi:'MathML',mn:'MathML',
+  mo:'MathML',ms:'MathML',mtext:'MathML',menuitem:'廢棄',
+  audio:'不渲染',video:'不渲染',wbr:'不渲染',
+};
+
+let allTags=[], curFilter='all', curQ='';
+function statusOrder(s){return{both:0,chat:1,creator:2,deny:3}[s]??4}
+
+async function init(){
+  document.getElementById('cards').innerHTML='<div class="loading">載入中…</div>';
+  try{
+    const [rows01,rowsDom,rowsXss]=await Promise.all([
+      fetchCSV('csv/01_HTML標籤對照表.csv'),
+      fetchCSV('csv/dompurify_tags.csv'),
+      fetchCSV('csv/xss_tag_whitelist.csv')
+    ]);
+    const map01={},mapDom={},mapXss={};
+    rows01.forEach(r=>map01[r['HTML標籤']]=r);
+    rowsDom.forEach(r=>mapDom[r['HTML標籤']]=r);
+    rowsXss.forEach(r=>mapXss[r['HTML標籤']]=r);
+    const allNames=new Set([...Object.keys(map01),...Object.keys(mapDom)]);
+    allTags=[];
+    allNames.forEach(tag=>{
+      if(!tag)return;
+      const r01=map01[tag]||{},rDom=mapDom[tag]||{},rXss=mapXss[tag]||{};
+      const chatOk=r01['聊天室實測']?r01['聊天室實測'].includes('✓'):null;
+      const creatorOk=r01['角色介面實測']?r01['角色介面實測'].includes('✓'):null;
+      const domAllow=(rDom['DOMPurify允許']||'').includes('✓');
+      const xssOk=(r01['xss白名單']||'').includes('✓')||!!mapXss[tag];
+      const attrs=rXss['允許屬性']||r01['xss允許屬性']||'';
+      allTags.push({tag,chatOk,creatorOk,domAllow,xssOk,attrs});
+    });
+    allTags.sort((a,b)=>{
+      const oa=statusOrder(getStatus(a)),ob=statusOrder(getStatus(b));
+      return oa!==ob?oa-ob:a.tag.localeCompare(b.tag);
+    });
+    render();
+  }catch(e){
+    document.getElementById('cards').innerHTML='<div class="err">載入失敗：'+e.message+'<br>請用本機伺服器開啟（python -m http.server 8080）</div>';
+  }
+}
+
+function getStatus(t){
+  const c=t.chatOk,cr=t.creatorOk;
+  if(c===true&&cr===true)return 'both';
+  if(c===true&&cr===false)return 'chat';
+  if(c===false&&cr===true)return 'creator';
+  return 'deny';
+}
+
+function render(){
+  const q=curQ.toLowerCase();
+  const filtered=allTags.filter(t=>{
+    if(q&&!t.tag.includes(q))return false;
+    const s=getStatus(t);
+    if(curFilter==='all')return true;
+    return curFilter===s;
+  });
+  const cnt={both:0,creator:0,chat:0,deny:0};
+  allTags.forEach(t=>{const s=getStatus(t);if(cnt[s]!==undefined)cnt[s]++;});
+  document.getElementById('s-total').textContent=allTags.length;
+  document.getElementById('s-both').textContent=cnt.both;
+  document.getElementById('s-chat').textContent=cnt.chat;
+  document.getElementById('s-creator').textContent=cnt.creator;
+  document.getElementById('s-deny').textContent=cnt.deny;
+
+  document.getElementById('empty').style.display=filtered.length?'none':'block';
+  const el=document.getElementById('cards');
+  if(!filtered.length){el.innerHTML='';return;}
+
+  // 在全部模式下插入分類換行
+  let prevStatus=null;
+  const items=[];
+  filtered.forEach(t=>{
+    const s=getStatus(t);
+    if(curFilter==='all'&&prevStatus!==null&&s!==prevStatus){
+      items.push('<div class="cat-sep"></div>');
+    }
+    prevStatus=s;
+    items.push(renderCard(t));
+  });
+  el.innerHTML=items.join('');
+}
+
+function renderCard(t){
+    const s=getStatus(t);
+    const cardCls=s==='both'?'both':s==='chat'?'chat-only':s==='creator'?'creator-only':'deny';
+    const nc=s==='both'?'g':s==='chat'?'y':s==='creator'?'b':'r';
+    const denyReason=s==='deny'&&DENY_REASON[t.tag]?'<span class="pill m">'+DENY_REASON[t.tag]+'</span>':'';
+    const chatPill=t.chatOk===true?'<span class="pill g">聊天室 ✓</span>':
+                   t.chatOk===false?'<span class="pill r">聊天室 ✗</span>':'<span class="pill m">聊天室 ?</span>';
+    const crPill=t.creatorOk===true?'<span class="pill b">角色介面 ✓</span>':
+                 t.creatorOk===false?'<span class="pill r">角色介面 ✗</span>':'<span class="pill m">角色介面 ?</span>';
+
+    // Allowed attrs
+    let attrsHtml='';
+    if(t.attrs&&t.attrs!=='（無屬性）'&&t.attrs.trim()){
+      const chips=t.attrs.split(',').map(a=>`<span class="attr-chip">${esc(a.trim())}</span>`).join('');
+      attrsHtml=`<div class="c-attrs"><span class="attr-lbl">屬性</span>${chips}</div>`;
+    }
+
+    // Preview: only if tag has visual data
+    let previewHtml='';
+    const vdata=VISUAL[t.tag];
+    if(vdata&&s!=='deny'){
+      previewHtml=`<div class="prev-wrap">
+        <div class="prev-lbl">${esc(vdata[0])}</div>
+        <div class="prev-body">${vdata[1]}</div>
+      </div>`;
+    }
+
+    const rawSnippet=VISUAL[t.tag]?VISUAL[t.tag][1]:`<${t.tag}>內容</${t.tag}>`;
+    
+    // 這裡加上了 code-wrapper 容器，將按鈕抽到 c-code 外面
+    return `<div class="card ${cardCls}">
+      <div class="c-head"><span class="c-name ${nc}">&lt;${esc(t.tag)}&gt;</span>${chatPill}${crPill}${denyReason}</div>
+      ${attrsHtml}
+      ${previewHtml}
+      ${DESC[t.tag]?`<div class="c-desc">${DESC[t.tag]}</div>`:''}
+      <div class="code-wrapper">
+        <div class="c-code">${esc(rawSnippet)}</div>
+        <button class="copy-btn" data-idx="${_snips.push(rawSnippet)-1}" onclick="copyText(_snips[+this.dataset.idx],this)">複製</button>
+      </div>
+    </div>`;
+}
+
+document.getElementById('q').addEventListener('input',e=>{curQ=e.target.value;render();});
+document.querySelectorAll('.ft').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.ft').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');curFilter=b.dataset.f;render();
+}));
+init();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('themeToggle');
+  var html=document.documentElement;
+  var saved=localStorage.getItem('cd-theme');
+  if(saved)html.setAttribute('data-theme',saved);
+  else html.setAttribute('data-theme','dark');
+  btn.addEventListener('click',function(){
+    var next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+    html.setAttribute('data-theme',next);
+    localStorage.setItem('cd-theme',next);
+  });
+})();
+</script>
+</body>
+</html>

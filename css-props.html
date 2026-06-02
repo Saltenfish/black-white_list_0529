@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inline Style 屬性 — CaveDuck</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0c0c;--bg2:#111;--bg3:#171717;--bg4:#1d1d1d;
+  --border:#222;--border2:#1a1a1a;
+  --text:#ddd;--muted:#aaa;--dim:#2a2a2a;
+  --card-bg:#0e0e0e;--code-bg:#080808;--deny-bg:#0c0808;}
+[data-theme="light"]{
+  --bg:#f5f5f0;--bg2:#eeede8;--bg3:#e6e5e0;--bg4:#dddcd8;
+  --border:#d0cfca;--border2:#dddcd8;
+  --text:#1a1a1a;--muted:#aaa;--dim:#ccc;
+  --card-bg:#ffffff;--code-bg:#f4f3ef;--deny-bg:#fdf2f2;
+  --green:#1e7a47;--green-bg:#e6f5ec;--green-bd:#b8dec7;
+  --blue:#1a6db5;--blue-bg:#e8f1fb;--blue-bd:#b3cef0;
+  --yellow:#b07d00;--yellow-bg:#fdf8e6;--yellow-bd:#e8d68a;
+}
+:root{
+  --green:#3ec97a;--green-bg:#061410;--green-bd:#0d2818;
+  --blue:#4da8f0;--blue-bg:#060c18;--blue-bd:#0c1e38;
+  --yellow:#f0c14d;--yellow-bg:#141008;--yellow-bd:#2a2008;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);
+  font-family:'SF Mono','Fira Code','Cascadia Code',ui-monospace,monospace;font-size:13px;line-height:1.6;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#444;border-radius:2px}
+
+.hd{padding:.8rem 1.4rem;border-bottom:2px solid var(--border);
+  background:linear-gradient(180deg,#101010,#0a0a0a);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.hd-back{font-size:10px;color:var(--muted);background:var(--bg3);border:1px solid var(--border);
+  border-radius:4px;padding:3px 10px;letter-spacing:.04em;transition:color .15s}
+.hd-back:hover{color:var(--text)}
+.hd-title{font-size:16px;font-weight:700;letter-spacing:.04em}
+.hd-sub{font-size:10px;color:var(--muted);letter-spacing:.06em}
+.theme-btn{margin-left:auto;background:var(--bg3);border:1px solid var(--border);
+  border-radius:6px;padding:4px 10px;font-size:11px;color:var(--muted);cursor:pointer;
+  font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.theme-btn:hover{color:var(--text);border-color:var(--muted)}
+[data-theme="dark"] .theme-btn::before{content:"☀️"}
+[data-theme="light"] .theme-btn::before{content:"🌙"}
+
+.notice{padding:.5rem 1.4rem;background:var(--bg2);border-bottom:1px solid var(--border2);
+  font-size:10px;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+.notice strong{color:var(--text)}
+
+.ctrl{padding:.6rem 1.2rem;border-bottom:1px solid var(--border2);
+  display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;background:var(--bg2)}
+input[type=search]{background:#0a0a0a;border:1px solid var(--border);border-radius:5px;
+  color:var(--text);font-family:inherit;font-size:12px;padding:4px 10px;outline:none;min-width:180px}
+input[type=search]:focus{border-color:#444}
+input[type=search]::placeholder{color:var(--dim)}
+.ft-bar{display:flex;gap:2px;background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:2px}
+.ft{padding:3px 12px;border-radius:3px;border:none;background:transparent;color:var(--muted);
+  font-family:inherit;font-size:10px;cursor:pointer;transition:all .15s}
+.ft:hover{color:var(--text)}.ft.on{background:var(--bg4);color:var(--text)}
+.ft .cnt{font-size:9px;opacity:.7;margin-left:3px}
+
+.stats{display:flex;gap:.5rem;padding:.5rem 1.2rem;border-bottom:1px solid var(--border2);flex-wrap:wrap}
+.stat{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:.2rem .65rem;display:flex;align-items:center;gap:.4rem}
+.sn{font-size:13px;font-weight:600}.sl{font-size:10px;color:var(--muted)}
+.sn.g{color:var(--green)}.sn.b{color:var(--blue)}.sn.t{color:var(--text)}
+
+.main{flex:1;min-height:0;overflow-y:auto;padding:1rem 1.2rem 3rem}
+
+/* Cards */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.65rem}
+.prop-card{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;
+  padding:.8rem .9rem;display:flex;flex-direction:column;gap:.45rem}
+.prop-card.both{border-left:3px solid var(--green)}
+.prop-card.chat{border-left:3px solid var(--blue)}
+.prop-name{font-size:12px;font-weight:700;letter-spacing:.03em;font-family:monospace}
+.prop-name.g{color:var(--green)}.prop-name.b{color:var(--blue)}
+.prop-desc{font-size:10px;color:var(--muted);line-height:1.5}
+.prop-code{background:var(--code-bg);border:1px solid var(--border2);border-radius:4px;
+  padding:4px 40px 4px 8px;font-size:9px;color:#a8d8a8;font-family:monospace;
+  position:relative;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.copy-btn{position:absolute;top:2px;right:4px;font-size:8px;color:var(--muted);
+  background:var(--bg3);border:1px solid var(--border);border-radius:3px;
+  padding:1px 5px;cursor:pointer;font-family:inherit;transition:color .15s}
+.copy-btn:hover{color:var(--text)}.copy-btn.ok{color:var(--green);border-color:var(--green-bd)}
+
+/* Cold tab */
+.cold-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.4rem}
+.cold-item{background:var(--card-bg);border:1px solid var(--border);border-radius:6px;
+  padding:.55rem .75rem;display:flex;flex-direction:column;gap:.2rem;opacity:.7}
+.cold-name{font-size:10px;font-weight:700;font-family:monospace;color:var(--muted)}
+.cold-name.ok{color:var(--green)}
+.cold-desc{font-size:9.5px;color:var(--muted)}
+.cold-note{font-size:8px;color:var(--dim);margin-top:1px}
+
+.empty{color:var(--muted);font-size:12px;padding:2rem;text-align:center}
+.loading{color:var(--muted);font-size:11px;padding:2rem;text-align:center}
+.sec-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding:.4rem 0 .5rem;border-bottom:1px solid var(--border2);
+  margin-bottom:.6rem;margin-top:1rem}
+.sec-lbl:first-child{margin-top:0}
+</style>
+</head>
+<body>
+<div class="hd">
+  <a href="index.html" class="hd-back">← 返回</a>
+  <div class="hd-title">🎨 Inline Style 可用屬性</div>
+  <div class="hd-sub">style="" 可以寫什麼</div>
+  <button class="theme-btn" id="themeToggle"> 切換背景</button>
+</div>
+<div class="notice">
+  <strong>聊天室</strong>：所有 CSS 屬性均可用（DOMPurify 不過濾 inline style）&nbsp;·&nbsp;
+  <strong>角色介面</strong>：使用 FilterCSS 白名單，僅允許部分屬性
+</div>
+<div class="ctrl">
+  <input type="search" id="q" placeholder="搜尋屬性名稱…">
+  <div class="ft-bar">
+    <button class="ft on" data-f="both">兩者可用 <span class="cnt">71</span></button>
+    <button class="ft" data-f="chat">僅聊天室 <span class="cnt">45</span></button>
+    <button class="ft" data-f="cold">冷門 <span class="cnt">159</span></button>
+  </div>
+</div>
+<div class="stats">
+  <div class="stat"><span class="sn g" id="s-both">71</span><span class="sl">兩者可用</span></div>
+  <div class="stat"><span class="sn b" id="s-chat">45</span><span class="sl">僅聊天室</span></div>
+  <div class="stat"><span class="sn t" id="s-cold">159</span><span class="sl">冷門</span></div>
+</div>
+<div class="main" id="main-area">
+  <div id="cards-area"></div>
+</div>
+<script>
+const BOTH=[{"p": "background-attachment", "d": "背景捲動方式 / background attachment", "e": "style=\"background-attachment: fixed\""}, {"p": "background-clip", "d": "背景延伸範圍 / background clip", "e": "style=\"background-clip: padding-box\""}, {"p": "background-color", "d": "背景顏色 / background color", "e": "style=\"background-color: #1a1a2e\""}, {"p": "background-image", "d": "背景圖片或漸層 / background image/gradient", "e": "style=\"background-image: linear-gradient(135deg,#667eea,#764ba2)\""}, {"p": "background-origin", "d": "背景起始基準 / background origin", "e": "style=\"background-origin: border-box\""}, {"p": "background-position", "d": "背景圖片位置 / background position", "e": "style=\"background-position: center\""}, {"p": "background-repeat", "d": "背景圖片重複 / background repeat", "e": "style=\"background-repeat: no-repeat\""}, {"p": "background-size", "d": "背景圖片大小 / background size", "e": "style=\"background-size: cover\""}, {"p": "border-bottom", "d": "下邊框 / bottom border", "e": "style=\"border-bottom: 1px solid #aaa\""}, {"p": "border-bottom-color", "d": "下邊框顏色 / bottom border color", "e": "style=\"border-bottom-color: red\""}, {"p": "border-bottom-left-radius", "d": "左下圓角 / bottom-left radius", "e": "style=\"border-bottom-left-radius: 12px\""}, {"p": "border-bottom-right-radius", "d": "右下圓角 / bottom-right radius", "e": "style=\"border-bottom-right-radius: 12px\""}, {"p": "border-bottom-style", "d": "下邊框樣式 / bottom border style", "e": "style=\"border-bottom-style: solid\""}, {"p": "border-bottom-width", "d": "下邊框粗細 / bottom border width", "e": "style=\"border-bottom-width: 2px\""}, {"p": "border-collapse", "d": "表格邊框合併 / border collapse", "e": "style=\"border-collapse: collapse\""}, {"p": "border-color", "d": "四邊邊框顏色 / border color", "e": "style=\"border-color: #4ecdc4\""}, {"p": "border-left", "d": "左邊框 / left border", "e": "style=\"border-left: 3px solid #e17055\""}, {"p": "border-left-color", "d": "左邊框顏色 / left border color", "e": "style=\"border-left-color: red\""}, {"p": "border-left-style", "d": "左邊框樣式 / left border style", "e": "style=\"border-left-style: solid\""}, {"p": "border-left-width", "d": "左邊框粗細 / left border width", "e": "style=\"border-left-width: 2px\""}, {"p": "border-radius", "d": "圓角大小 / border radius", "e": "style=\"border-radius: 12px\""}, {"p": "border-right", "d": "右邊框 / right border", "e": "style=\"border-right: 1px solid #aaa\""}, {"p": "border-right-color", "d": "右邊框顏色 / right border color", "e": "style=\"border-right-color: red\""}, {"p": "border-right-style", "d": "右邊框樣式 / right border style", "e": "style=\"border-right-style: solid\""}, {"p": "border-right-width", "d": "右邊框粗細 / right border width", "e": "style=\"border-right-width: 2px\""}, {"p": "border-spacing", "d": "表格單元格間距 / border spacing", "e": "style=\"border-spacing: 4px\""}, {"p": "border-style", "d": "邊框樣式 / border style", "e": "style=\"border-style: dashed\""}, {"p": "border-top", "d": "上邊框 / top border", "e": "style=\"border-top: 1px solid #aaa\""}, {"p": "border-top-color", "d": "上邊框顏色 / top border color", "e": "style=\"border-top-color: red\""}, {"p": "border-top-left-radius", "d": "左上圓角 / top-left radius", "e": "style=\"border-top-left-radius: 12px\""}, {"p": "border-top-right-radius", "d": "右上圓角 / top-right radius", "e": "style=\"border-top-right-radius: 12px\""}, {"p": "border-top-style", "d": "上邊框樣式 / top border style", "e": "style=\"border-top-style: solid\""}, {"p": "border-top-width", "d": "上邊框粗細 / top border width", "e": "style=\"border-top-width: 2px\""}, {"p": "border-width", "d": "邊框粗細 / border width", "e": "style=\"border-width: 2px\""}, {"p": "box-shadow", "d": "元素陰影 / box shadow", "e": "style=\"box-shadow: 0 4px 12px rgba(0,0,0,0.3)\""}, {"p": "box-sizing", "d": "寬高計算方式 / box sizing", "e": "style=\"box-sizing: border-box\""}, {"p": "font-family", "d": "字型名稱 / font family", "e": "style=\"font-family: 'Courier New', monospace\""}, {"p": "font-size", "d": "文字大小 / font size", "e": "style=\"font-size: 16px\""}, {"p": "font-stretch", "d": "字型寬窄 / font stretch", "e": "style=\"font-stretch: condensed\""}, {"p": "font-style", "d": "文字斜體 / font style", "e": "style=\"font-style: italic\""}, {"p": "font-variant", "d": "字型變體 / font variant", "e": "style=\"font-variant: small-caps\""}, {"p": "font-weight", "d": "文字粗細 / font weight", "e": "style=\"font-weight: bold\""}, {"p": "letter-spacing", "d": "字元間距 / letter spacing", "e": "style=\"letter-spacing: 0.1em\""}, {"p": "list-style", "d": "清單符號簡寫 / list style", "e": "style=\"list-style: disc inside\""}, {"p": "list-style-image", "d": "圖片清單符號 / list style image", "e": "style=\"list-style-image: url('bullet.png')\""}, {"p": "list-style-position", "d": "符號在文字內外 / list style position", "e": "style=\"list-style-position: inside\""}, {"p": "list-style-type", "d": "清單符號樣式 / list style type", "e": "style=\"list-style-type: circle\""}, {"p": "margin-bottom", "d": "下外距 / margin bottom", "e": "style=\"margin-bottom: 16px\""}, {"p": "margin-left", "d": "左外距 / margin left", "e": "style=\"margin-left: auto\""}, {"p": "margin-right", "d": "右外距 / margin right", "e": "style=\"margin-right: auto\""}, {"p": "margin-top", "d": "上外距 / margin top", "e": "style=\"margin-top: 16px\""}, {"p": "max-height", "d": "最大高度 / max height", "e": "style=\"max-height: 300px\""}, {"p": "max-width", "d": "最大寬度 / max width", "e": "style=\"max-width: 100%\""}, {"p": "min-height", "d": "最小高度 / min height", "e": "style=\"min-height: 50px\""}, {"p": "min-width", "d": "最小寬度 / min width", "e": "style=\"min-width: 100px\""}, {"p": "padding-bottom", "d": "下內距 / padding bottom", "e": "style=\"padding-bottom: 12px\""}, {"p": "padding-left", "d": "左內距 / padding left", "e": "style=\"padding-left: 16px\""}, {"p": "padding-right", "d": "右內距 / padding right", "e": "style=\"padding-right: 16px\""}, {"p": "padding-top", "d": "上內距 / padding top", "e": "style=\"padding-top: 12px\""}, {"p": "text-align", "d": "文字對齊 / text align", "e": "style=\"text-align: center\""}, {"p": "text-decoration", "d": "文字裝飾線 / text decoration", "e": "style=\"text-decoration: underline\""}, {"p": "text-decoration-color", "d": "裝飾線顏色 / text decoration color", "e": "style=\"text-decoration-color: red\""}, {"p": "text-decoration-line", "d": "裝飾線種類 / text decoration line", "e": "style=\"text-decoration-line: underline\""}, {"p": "text-decoration-style", "d": "裝飾線樣式 / text decoration style", "e": "style=\"text-decoration-style: dashed\""}, {"p": "text-indent", "d": "段落首行縮排 / text indent", "e": "style=\"text-indent: 2em\""}, {"p": "text-overflow", "d": "超出省略號 / text overflow", "e": "style=\"text-overflow: ellipsis\""}, {"p": "text-shadow", "d": "文字陰影 / text shadow", "e": "style=\"text-shadow: 2px 2px 4px rgba(0,0,0,0.5)\""}, {"p": "text-transform", "d": "英文大小寫轉換 / text transform", "e": "style=\"text-transform: uppercase\""}, {"p": "word-break", "d": "長字換行規則 / word break", "e": "style=\"word-break: break-all\""}, {"p": "word-spacing", "d": "單詞間距 / word spacing", "e": "style=\"word-spacing: 0.5em\""}, {"p": "word-wrap", "d": "超出強制換行 / word wrap", "e": "style=\"word-wrap: break-word\""}];
+const CHAT=[{"p": "align-content", "d": "多行側軸對齊 / align content", "e": "style=\"align-content: space-between\""}, {"p": "align-items", "d": "側軸對齊 / align items", "e": "style=\"align-items: center\""}, {"p": "align-self", "d": "自身側軸對齊 / align self", "e": "style=\"align-self: flex-end\""}, {"p": "animation-delay", "d": "動畫延遲時間 / animation delay", "e": "style=\"animation-delay: 0.5s\""}, {"p": "animation-direction", "d": "動畫播放方向 / animation direction", "e": "style=\"animation-direction: alternate\""}, {"p": "animation-duration", "d": "動畫持續時間 / animation duration", "e": "style=\"animation-duration: 1s\""}, {"p": "animation-fill-mode", "d": "動畫結束後狀態 / fill mode", "e": "style=\"animation-fill-mode: forwards\""}, {"p": "animation-iteration-count", "d": "動畫重複次數 / iteration count", "e": "style=\"animation-iteration-count: infinite\""}, {"p": "animation-name", "d": "動畫名稱 / animation name", "e": "style=\"animation-name: fadeIn\""}, {"p": "animation-timing-function", "d": "動畫速度曲線 / timing function", "e": "style=\"animation-timing-function: ease\""}, {"p": "caption-side", "d": "表格標題位置 / caption side", "e": "style=\"caption-side: bottom\""}, {"p": "clip-path", "d": "裁切形狀 / clip-path", "e": "style=\"clip-path: circle(50%)\""}, {"p": "column-count", "d": "欄數 / column count", "e": "style=\"column-count: 2\""}, {"p": "column-gap", "d": "欄間距 / column gap", "e": "style=\"column-gap: 24px\""}, {"p": "column-rule", "d": "欄線 / column rule", "e": "style=\"column-rule: 1px solid #aaa\""}, {"p": "counter-increment", "d": "遞增計數器 / counter increment", "e": "style=\"counter-increment: section\""}, {"p": "counter-reset", "d": "重設計數器 / counter reset", "e": "style=\"counter-reset: section 0\""}, {"p": "empty-cells", "d": "空儲存格是否顯示 / empty cells", "e": "style=\"empty-cells: hide\""}, {"p": "flex-basis", "d": "基本大小 / flex basis", "e": "style=\"flex-basis: 200px\""}, {"p": "flex-direction", "d": "主軸方向 / flex direction", "e": "style=\"flex-direction: row\""}, {"p": "flex-flow", "d": "方向+換行簡寫 / flex flow", "e": "style=\"flex-flow: row wrap\""}, {"p": "flex-grow", "d": "放大比例 / flex grow", "e": "style=\"flex-grow: 1\""}, {"p": "flex-shrink", "d": "縮小比例 / flex shrink", "e": "style=\"flex-shrink: 0\""}, {"p": "flex-wrap", "d": "是否換行 / flex wrap", "e": "style=\"flex-wrap: wrap\""}, {"p": "grid-area", "d": "格線區域 / grid area", "e": "style=\"grid-area: header\""}, {"p": "grid-column", "d": "跨欄 / grid column", "e": "style=\"grid-column: 1 / 3\""}, {"p": "grid-row", "d": "跨列 / grid row", "e": "style=\"grid-row: 1 / 2\""}, {"p": "grid-template", "d": "格線模板 / grid template", "e": "style=\"grid-template: auto / 1fr 1fr\""}, {"p": "grid-template-columns", "d": "格線欄 / grid template columns", "e": "style=\"grid-template-columns: repeat(3,1fr)\""}, {"p": "grid-template-rows", "d": "格線列 / grid template rows", "e": "style=\"grid-template-rows: auto\""}, {"p": "justify-content", "d": "主軸對齊 / justify content", "e": "style=\"justify-content: center\""}, {"p": "justify-items", "d": "格線子項主軸對齊 / justify items", "e": "style=\"justify-items: start\""}, {"p": "justify-self", "d": "自身主軸對齊 / justify self", "e": "style=\"justify-self: center\""}, {"p": "line-height", "d": "行高 / line height", "e": "style=\"line-height: 1.6\""}, {"p": "overflow-x", "d": "水平超出處理 / overflow-x", "e": "style=\"overflow-x: auto\""}, {"p": "overflow-y", "d": "垂直超出處理 / overflow-y", "e": "style=\"overflow-y: scroll\""}, {"p": "table-layout", "d": "表格排版演算法 / table layout", "e": "style=\"table-layout: fixed\""}, {"p": "transform-origin", "d": "變形基準點 / transform origin", "e": "style=\"transform-origin: center\""}, {"p": "transition-delay", "d": "過渡延遲時間 / transition delay", "e": "style=\"transition-delay: 0.1s\""}, {"p": "transition-duration", "d": "過渡持續時間 / transition duration", "e": "style=\"transition-duration: 0.3s\""}, {"p": "transition-property", "d": "過渡的 CSS 屬性 / transition property", "e": "style=\"transition-property: opacity\""}, {"p": "transition-timing-function", "d": "過渡速度曲線 / timing function", "e": "style=\"transition-timing-function: ease-in-out\""}, {"p": "vertical-align", "d": "垂直對齊（inline）/ vertical align", "e": "style=\"vertical-align: middle\""}, {"p": "white-space", "d": "空白換行處理 / white space", "e": "style=\"white-space: nowrap\""}, {"p": "z-index", "d": "疊加層級 / z-index", "e": "style=\"z-index: 10\""}];
+const COLD=[{"p": "alignment-adjust", "d": "alignment-adjust", "s": "✗"}, {"p": "alignment-baseline", "d": "alignment-baseline", "s": "✗"}, {"p": "anchor-point", "d": "anchor-point", "s": "✗"}, {"p": "animation-play-state", "d": "animation-play-state", "s": "✗"}, {"p": "backface-visibility", "d": "backface-visibility", "s": "✗"}, {"p": "baseline-shift", "d": "baseline-shift", "s": "✗"}, {"p": "bookmark-label", "d": "bookmark-label", "s": "✗"}, {"p": "bookmark-level", "d": "bookmark-level", "s": "✗"}, {"p": "bookmark-state", "d": "bookmark-state", "s": "✗"}, {"p": "border-image", "d": "用圖片作為邊框", "s": "✓"}, {"p": "border-image-outset", "d": "邊框圖片向外延伸距離", "s": "✓"}, {"p": "border-image-repeat", "d": "邊框圖片的重複方式", "s": "✓"}, {"p": "border-image-slice", "d": "邊框圖片的切割方式", "s": "✓"}, {"p": "border-image-source", "d": "邊框圖片來源", "s": "✓"}, {"p": "border-image-width", "d": "邊框圖片的寬度", "s": "✓"}, {"p": "box-decoration-break", "d": "分頁/換行時邊框背景的處理", "s": "✓"}, {"p": "box-snap", "d": "CSS Box Snap 對齊（草案）", "s": "✓"}, {"p": "box-suppress", "d": "Box 隱藏方式（草案）", "s": "✓"}, {"p": "break-after", "d": "此元素後分頁/分欄", "s": "✓"}, {"p": "break-before", "d": "此元素前分頁/分欄", "s": "✓"}, {"p": "break-inside", "d": "元素內部是否分頁", "s": "✓"}, {"p": "clip-rule", "d": "clip-rule", "s": "✗"}, {"p": "color-interpolation-filters", "d": "SVG 濾鏡色彩插值", "s": "✓"}, {"p": "column-fill", "d": "column-fill", "s": "✗"}, {"p": "column-rule-color", "d": "column-rule-color", "s": "✗"}, {"p": "column-rule-style", "d": "column-rule-style", "s": "✗"}, {"p": "column-rule-width", "d": "column-rule-width", "s": "✗"}, {"p": "column-span", "d": "column-span", "s": "✗"}, {"p": "column-width", "d": "column-width", "s": "✗"}, {"p": "counter-set", "d": "counter-set", "s": "✗"}, {"p": "cue-after", "d": "cue-after", "s": "✗"}, {"p": "cue-before", "d": "cue-before", "s": "✗"}, {"p": "display-inside", "d": "盒子內部格式化上下文（草案）", "s": "✓"}, {"p": "display-list", "d": "顯示清單方式（草案）", "s": "✓"}, {"p": "display-outside", "d": "盒子外部顯示類型（草案）", "s": "✓"}, {"p": "dominant-baseline", "d": "dominant-baseline", "s": "✗"}, {"p": "float-offset", "d": "float-offset", "s": "✗"}, {"p": "flood-color", "d": "flood-color", "s": "✗"}, {"p": "flood-opacity", "d": "flood-opacity", "s": "✗"}, {"p": "flow-from", "d": "flow-from", "s": "✗"}, {"p": "flow-into", "d": "flow-into", "s": "✗"}, {"p": "font-feature-settings", "d": "啟用 OpenType 字型特殊功能", "s": "✓"}, {"p": "font-kerning", "d": "字元間距自動調整", "s": "✓"}, {"p": "font-language-override", "d": "覆蓋字型語言設定", "s": "✓"}, {"p": "font-size-adjust", "d": "讓不同字型視覺大小一致", "s": "✓"}, {"p": "font-synthesis", "d": "是否允許瀏覽器合成粗體/斜體", "s": "✓"}, {"p": "font-variant-alternates", "d": "font-variant-alternates", "s": "✓"}, {"p": "font-variant-caps", "d": "font-variant-caps", "s": "✓"}, {"p": "font-variant-east-asian", "d": "font-variant-east-asian", "s": "✓"}, {"p": "font-variant-ligatures", "d": "font-variant-ligatures", "s": "✓"}, {"p": "font-variant-numeric", "d": "font-variant-numeric", "s": "✓"}, {"p": "font-variant-position", "d": "font-variant-position", "s": "✓"}, {"p": "grid-auto-columns", "d": "grid-auto-columns", "s": "✗"}, {"p": "grid-auto-flow", "d": "grid-auto-flow", "s": "✗"}, {"p": "grid-auto-rows", "d": "grid-auto-rows", "s": "✗"}, {"p": "grid-column-end", "d": "grid-column-end", "s": "✗"}, {"p": "grid-column-start", "d": "grid-column-start", "s": "✗"}, {"p": "grid-row-end", "d": "grid-row-end", "s": "✗"}, {"p": "grid-row-start", "d": "grid-row-start", "s": "✗"}, {"p": "grid-template-areas", "d": "grid-template-areas", "s": "✗"}, {"p": "hanging-punctuation", "d": "hanging-punctuation", "s": "✗"}, {"p": "image-orientation", "d": "image-orientation", "s": "✗"}, {"p": "image-resolution", "d": "image-resolution", "s": "✗"}, {"p": "ime-mode", "d": "ime-mode", "s": "✗"}, {"p": "initial-letters", "d": "initial-letters", "s": "✗"}, {"p": "inline-box-align", "d": "inline-box-align", "s": "✗"}, {"p": "lighting-color", "d": "SVG 光源效果顏色", "s": "✓"}, {"p": "line-box-contain", "d": "line-box-contain", "s": "✗"}, {"p": "line-break", "d": "line-break", "s": "✗"}, {"p": "line-grid", "d": "line-grid", "s": "✗"}, {"p": "line-snap", "d": "line-snap", "s": "✗"}, {"p": "line-stacking", "d": "line-stacking", "s": "✗"}, {"p": "line-stacking-ruby", "d": "line-stacking-ruby", "s": "✗"}, {"p": "line-stacking-shift", "d": "line-stacking-shift", "s": "✗"}, {"p": "line-stacking-strategy", "d": "line-stacking-strategy", "s": "✗"}, {"p": "marker-offset", "d": "marker-offset", "s": "✗"}, {"p": "marker-side", "d": "marker-side", "s": "✗"}, {"p": "mask-box", "d": "mask-box", "s": "✗"}, {"p": "mask-box-outset", "d": "mask-box-outset", "s": "✗"}, {"p": "mask-box-repeat", "d": "mask-box-repeat", "s": "✗"}, {"p": "mask-box-slice", "d": "mask-box-slice", "s": "✗"}, {"p": "mask-box-source", "d": "mask-box-source", "s": "✗"}, {"p": "mask-box-width", "d": "mask-box-width", "s": "✗"}, {"p": "mask-clip", "d": "mask-clip", "s": "✗"}, {"p": "mask-image", "d": "mask-image", "s": "✗"}, {"p": "mask-origin", "d": "mask-origin", "s": "✗"}, {"p": "mask-position", "d": "mask-position", "s": "✗"}, {"p": "mask-repeat", "d": "mask-repeat", "s": "✗"}, {"p": "mask-size", "d": "mask-size", "s": "✗"}, {"p": "mask-source-type", "d": "mask-source-type", "s": "✗"}, {"p": "mask-type", "d": "mask-type", "s": "✗"}, {"p": "max-lines", "d": "max-lines", "s": "✗"}, {"p": "move-to", "d": "move-to", "s": "✗"}, {"p": "nav-down", "d": "nav-down", "s": "✗"}, {"p": "nav-index", "d": "nav-index", "s": "✗"}, {"p": "nav-left", "d": "nav-left", "s": "✗"}, {"p": "nav-right", "d": "nav-right", "s": "✗"}, {"p": "nav-up", "d": "nav-up", "s": "✗"}, {"p": "object-fit", "d": "object-fit", "s": "✗"}, {"p": "object-position", "d": "object-position", "s": "✗"}, {"p": "outline-color", "d": "outline-color", "s": "✗"}, {"p": "outline-offset", "d": "outline-offset", "s": "✗"}, {"p": "outline-style", "d": "outline-style", "s": "✗"}, {"p": "outline-width", "d": "outline-width", "s": "✗"}, {"p": "overflow-wrap", "d": "overflow-wrap", "s": "✗"}, {"p": "page-break-after", "d": "page-break-after", "s": "✗"}, {"p": "page-break-before", "d": "page-break-before", "s": "✗"}, {"p": "page-break-inside", "d": "page-break-inside", "s": "✗"}, {"p": "page-policy", "d": "page-policy", "s": "✗"}, {"p": "pause-after", "d": "pause-after", "s": "✗"}, {"p": "pause-before", "d": "pause-before", "s": "✗"}, {"p": "perspective-origin", "d": "perspective-origin", "s": "✗"}, {"p": "pitch-range", "d": "pitch-range", "s": "✗"}, {"p": "play-during", "d": "play-during", "s": "✗"}, {"p": "presentation-level", "d": "presentation-level", "s": "✗"}, {"p": "region-fragment", "d": "region-fragment", "s": "✗"}, {"p": "rest-after", "d": "rest-after", "s": "✗"}, {"p": "rest-before", "d": "rest-before", "s": "✗"}, {"p": "rotation-point", "d": "rotation-point", "s": "✗"}, {"p": "ruby-align", "d": "ruby-align", "s": "✗"}, {"p": "ruby-merge", "d": "ruby-merge", "s": "✗"}, {"p": "ruby-position", "d": "ruby-position", "s": "✗"}, {"p": "shape-image-threshold", "d": "shape-image-threshold", "s": "✗"}, {"p": "shape-margin", "d": "shape-margin", "s": "✗"}, {"p": "shape-outside", "d": "shape-outside", "s": "✗"}, {"p": "speak-as", "d": "speak-as", "s": "✗"}, {"p": "speak-header", "d": "speak-header", "s": "✗"}, {"p": "speak-numeral", "d": "speak-numeral", "s": "✗"}, {"p": "speak-punctuation", "d": "speak-punctuation", "s": "✗"}, {"p": "speech-rate", "d": "speech-rate", "s": "✗"}, {"p": "string-set", "d": "string-set", "s": "✗"}, {"p": "tab-size", "d": "tab-size", "s": "✗"}, {"p": "text-align-last", "d": "最後一行的對齊方式", "s": "✓"}, {"p": "text-combine-upright", "d": "直書時字元合併（日期等）", "s": "✓"}, {"p": "text-decoration-skip", "d": "text-decoration-skip", "s": "✓"}, {"p": "text-emphasis", "d": "文字著重點完整簡寫", "s": "✓"}, {"p": "text-emphasis-color", "d": "著重點顏色", "s": "✓"}, {"p": "text-emphasis-position", "d": "著重點位置（上/下）", "s": "✓"}, {"p": "text-emphasis-style", "d": "著重點樣式（點、圈等）", "s": "✓"}, {"p": "text-height", "d": "行文字高度計算方式", "s": "✓"}, {"p": "text-justify", "d": "兩端對齊時的分散方式", "s": "✓"}, {"p": "text-orientation", "d": "直書時的字元方向", "s": "✓"}, {"p": "text-space-collapse", "d": "空白字元摺疊方式（草案）", "s": "✓"}, {"p": "text-underline-position", "d": "底線位置", "s": "✓"}, {"p": "text-wrap", "d": "文字換行行為（草案）", "s": "✓"}, {"p": "transform-style", "d": "transform-style", "s": "✗"}, {"p": "unicode-bidi", "d": "unicode-bidi", "s": "✗"}, {"p": "voice-balance", "d": "voice-balance", "s": "✗"}, {"p": "voice-duration", "d": "voice-duration", "s": "✗"}, {"p": "voice-family", "d": "voice-family", "s": "✗"}, {"p": "voice-pitch", "d": "voice-pitch", "s": "✗"}, {"p": "voice-range", "d": "voice-range", "s": "✗"}, {"p": "voice-rate", "d": "voice-rate", "s": "✗"}, {"p": "voice-stress", "d": "voice-stress", "s": "✗"}, {"p": "voice-volume", "d": "voice-volume", "s": "✗"}, {"p": "will-change", "d": "will-change", "s": "✗"}, {"p": "wrap-flow", "d": "wrap-flow", "s": "✗"}, {"p": "wrap-through", "d": "wrap-through", "s": "✗"}, {"p": "writing-mode", "d": "writing-mode", "s": "✗"}];
+let curF='both', curQ='';
+const _snips=[];
+
+function copyText(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='✓';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='複製';btn.classList.remove('ok');},1500);
+  });
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function renderCard(item, cls, nc){
+  const idx=_snips.push(item.e)-1;
+  return `<div class="prop-card ${cls}">
+    <div class="prop-name ${nc}">${esc(item.p)}</div>
+    <div class="prop-desc">${esc(item.d)}</div>
+    <div class="prop-code">${esc(item.e)}<button class="copy-btn" data-idx="${idx}" onclick="copyText(_snips[+this.dataset.idx],this)">複製</button></div>
+  </div>`;
+}
+
+function renderCold(items){
+  const q=curQ.toLowerCase();
+  const filtered=q?items.filter(i=>i.p.includes(q)||i.d.includes(q)):items;
+  if(!filtered.length)return '<div class="empty">沒有符合的項目</div>';
+  // Group by ✓/✗
+  const ok=filtered.filter(i=>i.s==='✓'), bad=filtered.filter(i=>i.s!=='✓');
+  let html='';
+  if(ok.length){
+    html+=`<div class="sec-lbl">角色介面允許（${ok.length}）</div><div class="cold-grid">`;
+    html+=ok.map(i=>`<div class="cold-item"><div class="cold-name ok">${esc(i.p)}</div><div class="cold-desc">${esc(i.d)}</div></div>`).join('');
+    html+='</div>';
+  }
+  if(bad.length){
+    html+=`<div class="sec-lbl">角色介面封鎖（${bad.length}）</div><div class="cold-grid">`;
+    html+=bad.map(i=>`<div class="cold-item"><div class="cold-name">${esc(i.p)}</div><div class="cold-desc">${esc(i.d)}</div></div>`).join('');
+    html+='</div>';
+  }
+  return html;
+}
+
+function render(){
+  const q=curQ.toLowerCase();
+  const area=document.getElementById('cards-area');
+  if(curF==='cold'){area.innerHTML=renderCold(COLD);return;}
+  const src=curF==='both'?BOTH:CHAT;
+  const cls=curF==='both'?'both':'chat';
+  const nc=curF==='both'?'g':'b';
+  const filtered=q?src.filter(i=>i.p.includes(q)||i.d.toLowerCase().includes(q)):src;
+  if(!filtered.length){area.innerHTML='<div class="empty">沒有符合的項目</div>';return;}
+  area.innerHTML='<div class="card-grid">'+filtered.map(i=>renderCard(i,cls,nc)).join('')+'</div>';
+}
+
+document.getElementById('q').addEventListener('input',e=>{curQ=e.target.value;render();});
+document.querySelectorAll('.ft').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.ft').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');curF=b.dataset.f;render();
+}));
+render();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('themeToggle');
+  var html=document.documentElement;
+  var saved=localStorage.getItem('cd-theme');
+  if(saved)html.setAttribute('data-theme',saved);
+  else html.setAttribute('data-theme','dark');
+  btn.addEventListener('click',function(){
+    var next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+    html.setAttribute('data-theme',next);
+    localStorage.setItem('cd-theme',next);
+  });
+})();
+</script>
+</body>
+</html>
