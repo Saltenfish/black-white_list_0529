@@ -5,7 +5,7 @@
 
 A whitelist reference tool for the CaveDuck platform, combining real test results from both the chat room and character creator interfaces, with search, filtering, and live preview.
 
-🔗 **GitHub Pages：** `https://[your-username].github.io/[repo-name]/`
+🔗 **GitHub Pages：** `https://saltenfish.github.io/black-white_list_0529/`
 
 ---
 
