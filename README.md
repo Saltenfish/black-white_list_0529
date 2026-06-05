@@ -9,24 +9,119 @@ A whitelist reference tool for the CaveDuck platform, combining real test result
 
 ---
 
-## 功能 / Features
+## 頁面說明 / Pages
 
-| 分頁 / Page | 內容 / Content |
+### 🏷️ HTML 標籤 `html-tags.html`
+
+列出 137 個 HTML 標籤在 CaveDuck 兩種介面的實測結果。
+
+Lists 137 HTML tags with real test results across both CaveDuck interfaces.
+
+| 欄位 / Column | 說明 / Description |
 |---|---|
-| 🏷️ HTML 標籤 | 標籤支援狀態、DOMPurify 白名單、允許屬性、視覺預覽（marquee、progress、mark 等） |
-| 🎨 CSS 屬性 | FilterCSS 白名單，白話說明每個屬性用途，綠→黃→紅排序 |
-| 🔷 SVG 標籤 | SVG Core 標籤、Filter 元素，含 SVG 視覺預覽。**僅聊天室支援** |
-| ∑ MathML | MathML 標籤與即時公式渲染預覽。**僅聊天室支援** |
-| ✨ Animate.css | 111 個動畫類別，動畫持續播放預覽，完整 `<span>` 程式碼複製 |
-| 💠 Tailwind | 920 個 class 的白話說明與支援狀態，分頁顯示 |
-| 🎠 Swiper.js | 輪播元件 class 對照，含完整樣式（次要參考） |
-| 📐 CSS 變數 | 414 個平台內建 CSS 自訂變數及預設值（次要參考） |
+| 聊天室實測 | 標籤在聊天室（開場白/對話）中是否有效 |
+| 角色介面實測 | 標籤在角色介紹頁面中是否有效 |
+| DOMPurify | 是否列於 DOMPurify 白名單 |
+| xss 白名單 | 是否列於 xss 套件白名單 |
+| xss 允許屬性 | 該標籤在 xss 套件中允許的屬性 |
 
-- 🔍 即時搜尋 / Instant search
-- 🏷️ 分類篩選 / Category filtering
-- 👁️ 視覺預覽（HTML、SVG、MathML、Animate）/ Live visual preview
-- 📋 一鍵複製程式碼片段 / One-click code copy
-- 📄 大型資料集分頁顯示，不卡頓 / Paginated display for large datasets
+每個有效標籤都附有**視覺預覽**與**可複製的程式碼範例**。
+
+Each valid tag includes a **live visual preview** and **copyable code snippet**.
+
+> 💡 顏色邊框代表支援範圍：綠色 = 兩者皆可，黃色 = 僅聊天室，藍色 = 僅角色介面，紅色 = 不支援
+>
+> 💡 Border color indicates scope: green = both, yellow = chat only, blue = character page only, red = unsupported
+
+---
+
+### 🎨 CSS 屬性 `css-props.html`
+
+列出 inline `style=""` 可使用的 CSS 屬性，分三個層級顯示。
+
+Lists all CSS properties available in inline `style=""`, sorted by support level.
+
+| 層級 / Level | 說明 / Description |
+|---|---|
+| 🟢 兩者皆可 | 聊天室與角色介面均支援 |
+| 🟡 僅聊天室 | 聊天室支援（DOMPurify 不過濾 inline style） |
+| 🔴 不支援 | FilterCSS 過濾，兩者均不可用 |
+
+> 💡 **聊天室**的 inline style 幾乎不受限制；**角色介面**僅支援 FilterCSS 白名單內的屬性。
+>
+> 💡 The **chat room** allows nearly all inline styles; the **character page** is limited to FilterCSS-whitelisted properties.
+
+---
+
+### 🔷 SVG 標籤 `svg.html`
+
+列出 SVG Core 標籤與 Filter 濾鏡元素，含 SVG 視覺預覽。
+
+Lists SVG core tags and filter elements with live SVG previews.
+
+> ⚠️ **僅聊天室支援** — 角色介面會過濾 SVG 內容。
+>
+> ⚠️ **Chat room only** — the character page strips SVG content.
+
+---
+
+### ∑ MathML `mathml.html`
+
+列出 MathML 數學標記標籤，含即時公式渲染預覽。
+
+Lists MathML tags with live formula rendering previews.
+
+> ⚠️ **僅聊天室支援** — 角色介面不渲染 MathML。
+>
+> ⚠️ **Chat room only** — the character page does not render MathML.
+
+---
+
+### ✨ Animate.css `animate.html`
+
+列出 111 個 Animate.css 動畫類別，動畫持續播放預覽，提供完整 `<span class="animate__animated animate__xxx">` 程式碼複製。
+
+Lists 111 Animate.css animation classes with live looping previews and full copyable `<span>` code.
+
+---
+
+### 💠 Tailwind `tailwind.html`
+
+920 個 Tailwind CSS class 的白話說明與支援狀態，分頁顯示避免卡頓。
+
+920 Tailwind CSS classes with plain-language descriptions and support status, paginated for performance.
+
+---
+
+### 🎠 Swiper.js `swiper.html`
+
+Swiper.js 輪播元件的 class 對照表（次要參考）。
+
+Swiper.js carousel component class reference (secondary reference).
+
+---
+
+### 📐 CSS 變數 `css-vars.html`
+
+414 個 CaveDuck 平台內建的 CSS 自訂變數及其預設值（次要參考）。
+
+414 built-in CSS custom variables of the CaveDuck platform with default values (secondary reference).
+
+---
+
+## 使用方式 / How to Use
+
+1. 開啟 `index.html` 作為入口，點擊任一分頁卡片進入對應工具。
+2. 使用頂部**搜尋欄**輸入關鍵字即時篩選。
+3. 使用**篩選按鈕**依支援範圍過濾（兩者皆可 / 僅聊天室 / 僅角色介面 / 不支援）。
+4. 點擊有效標籤的**預覽區**下方程式碼右側的「複製」按鈕，直接貼入 CaveDuck。
+
+---
+
+1. Open `index.html` as the entry point and click any card to navigate to a tool.
+2. Use the **search bar** at the top to filter results in real time.
+3. Use the **filter buttons** to narrow by support scope (both / chat only / creator only / unsupported).
+4. Click the **Copy** button next to the code snippet under any valid tag's preview, then paste directly into CaveDuck.
 
 ---
 
@@ -35,52 +130,25 @@ A whitelist reference tool for the CaveDuck platform, combining real test result
 ```
 /
 ├── index.html              ← 入口總覽 / Main hub
+├── html-tags.html          ← HTML 標籤
+├── css-props.html          ← CSS 屬性
+├── svg.html                ← SVG 標籤（僅聊天室）
+├── mathml.html             ← MathML（僅聊天室）
+├── animate.html            ← Animate.css 類別
+├── tailwind.html           ← Tailwind 類別
+├── swiper.html             ← Swiper.js（次要）
+├── css-vars.html           ← CSS 自訂變數（次要）
 │
-├── html-tags.html          ← HTML 標籤（主要）
-├── css-props.html          ← CSS 屬性（主要）
-├── svg.html                ← SVG 標籤（主要）
-├── mathml.html             ← MathML（主要）
-├── animate.html            ← Animate.css 類別（主要）
-├── tailwind.html           ← Tailwind 類別（主要）
-│
-├── swiper.html             ← Swiper.js（次要參考）
-├── css-vars.html           ← CSS 自訂變數（次要參考）
-│
-├── 01_HTML標籤對照表.csv
-├── 02_CSS屬性對照表.csv
-├── 03_animate_classes.csv
-├── animate_classes.csv         ← 含完整樣式（與 03 互補）
-├── 04_tailwind_classes.csv
-├── tailwind_classes.csv        ← 含完整樣式（與 04 互補）
-├── 05_swiper_classes.csv
-├── swiper_classes.csv          ← 含完整樣式（與 05 互補）
-├── 06_CSS變數表.csv
-├── css_property_whitelist.csv
-├── css_variables.csv
-├── dompurify_tags.csv
-├── dompurify_attrs.csv
-└── xss_tag_whitelist.csv
+└── csv/
+    ├── 01_HTML標籤對照表.csv     ← HTML 標籤實測結果
+    ├── 04_tailwind_classes.csv   ← Tailwind 支援狀態
+    ├── 05_swiper_classes.csv     ← Swiper class 對照
+    ├── 06_CSS變數表.csv          ← CSS 變數清單
+    ├── dompurify_tags.csv        ← DOMPurify 標籤白名單
+    ├── tailwind_classes.csv      ← Tailwind 完整樣式
+    ├── swiper_classes.csv        ← Swiper 完整樣式
+    └── xss_tag_whitelist.csv     ← xss 套件標籤白名單
 ```
-
-> ⚠️ HTML 檔案與 CSV 檔案必須放在**同一層目錄**，頁面才能正確讀取資料。
->
-> ⚠️ HTML files and CSV files must be in the **same directory** for data fetching to work.
-
----
-
-## 部署到 GitHub Pages / Deploy to GitHub Pages
-
-1. 建立一個新的 GitHub repository（Public）
-2. 將所有 `.html` 與 `.csv` 檔案上傳到 `main` 分支的**根目錄**（不要放子資料夾）
-3. 前往 **Settings → Pages**，Branch 選 `main`，Folder 選 `/ (root)` → Save
-4. 稍等約 1 分鐘，即可透過 `https://[username].github.io/[repo-name]/` 存取
-
----
-
-1. Create a new GitHub repository (Public)
-2. Upload all `.html` and `.csv` files to the **root** of the `main` branch (no subfolders)
-3. Go to **Settings → Pages**, set Branch to `main`, Folder to `/ (root)` → Save
-4. Wait about 1 minute — the site will be live at `https://[username].github.io/[repo-name]/`
 
 ---
 
@@ -91,9 +159,8 @@ A whitelist reference tool for the CaveDuck platform, combining real test result
 Opening HTML files directly in a browser **will not work** due to `fetch()` CORS restrictions under the `file://` protocol. Start a local server instead:
 
 ```bash
-# Python（最簡單）
+# Python
 python -m http.server 8080
-# 開啟 http://localhost:8080
 
 # Node.js
 npx serve .
@@ -105,21 +172,4 @@ Or install the **Live Server** extension in VS Code, right-click `index.html` �
 
 ---
 
-## 資料來源 / Data Sources
-
-資料整合自兩套 CSV，瀏覽器端自動合併，不需手動處理：
-
-- **帶編號版（01–06）**：包含聊天室與角色介面的實測結果（✓/✗）
-- **無編號版（原始版）**：包含完整 CSS 樣式值
-
-SVG 與 MathML 的資料直接內嵌於 HTML，不依賴 CSV。
-
-Data is merged client-side automatically — no preprocessing needed:
-- **Numbered CSVs (01–06):** Real test results for chat room and character interface
-- **Original CSVs (unnumbered):** Full CSS style values
-
-SVG and MathML data is hardcoded in the HTML and does not rely on CSV files.
-
----
-
-*Built for CaveDuck platform HTML/CSS authoring reference.*
+*Built for CaveDuck platform HTML/CSS authoring.*
