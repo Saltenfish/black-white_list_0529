@@ -92,8 +92,8 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--text);fo
   <a href="index.html" class="hd-back">← 返回</a>
   <div class="hd-title"><span class="hd-accent">💠</span> Tailwind 類別
 </div>
-  <div class="hd-sub">920 個類別 · 白話說明 · 支援狀態 · 一鍵複製</div>
-  <button class="theme-btn" id="themeToggle"> 切換背景</button>
+  <div class="hd-sub">920 個類別 · 白話說明 · 支援狀態 · 一鍵複製 · 920 classes · Descriptions · Support status</div>
+  <button class="theme-btn" id="themeToggle"> 切換背景 / Theme</button>
 </div>
 <div style="position: relative; z-index: 10; padding:.45rem 1.4rem;background:var(--bg2);border-bottom:1px solid var(--border2);font-size:10px;color:var(--muted);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
   <span>💡</span>
@@ -101,13 +101,13 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--text);fo
   完整預覽請用 <a href="https://prysline.github.io/caveduck-class-reference/" target="_blank" style="color:var(--teal,#4ecdc4);text-decoration:underline">Prysline Class Reference</a></span>
 </div>
 <div class="ctrl">
-  <input type="search" id="q" placeholder="搜尋 class 名稱或說明…">
+  <input type="search" id="q" placeholder="搜尋 class 名稱… / Search class…">
   <select id="cat-sel"><option value="">全部分類</option></select>
   <div class="ft-bar">
-    <button class="ft on" data-s="all">全部</button>
-    <button class="ft" data-s="both">兩者皆可</button>
-    <button class="ft" data-s="chat">含聊天室</button>
-    <button class="ft" data-s="deny">不支援</button>
+    <button class="ft on" data-s="all">全部 / All</button>
+    <button class="ft" data-s="both">兩者皆可 / Both</button>
+    <button class="ft" data-s="chat">含聊天室 / Incl. chat</button>
+    <button class="ft" data-s="deny">不支援 / None</button>
   </div>
 </div>
 <div class="stats">
@@ -367,14 +367,14 @@ function renderPage(){
   const totalPages=Math.ceil(filtered.length/PER_PAGE);
   let ph=`<span class="pg-info">${start+1}–${end} / ${filtered.length}</span>`;
   if(totalPages>1){
-    if(curPage>1)ph+=`<button class="pg-btn" onclick="goPage(${curPage-1})">‹ 上一頁</button>`;
+    if(curPage>1)ph+=`<button class="pg-btn" onclick="goPage(${curPage-1})">‹ Prev</button>`;
     const win=5,half=Math.floor(win/2);
     let lo=Math.max(1,curPage-half),hi=Math.min(totalPages,lo+win-1);
     if(hi-lo<win-1)lo=Math.max(1,hi-win+1);
     if(lo>1)ph+=`<button class="pg-btn" onclick="goPage(1)">1</button><span class="pg-info">…</span>`;
     for(let p=lo;p<=hi;p++)ph+=`<button class="pg-btn${p===curPage?' on':''}" onclick="goPage(${p})">${p}</button>`;
     if(hi<totalPages)ph+=`<span class="pg-info">…</span><button class="pg-btn" onclick="goPage(${totalPages})">${totalPages}</button>`;
-    if(curPage<totalPages)ph+=`<button class="pg-btn" onclick="goPage(${curPage+1})">下一頁 ›</button>`;
+    if(curPage<totalPages)ph+=`<button class="pg-btn" onclick="goPage(${curPage+1})">Next ›</button>`;
   }
   document.getElementById('pager').innerHTML=ph;
 }

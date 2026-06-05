@@ -134,21 +134,21 @@ select{background:var(--bg3);border:1px solid var(--border);color:var(--text);fo
   <a href="index.html" class="hd-back">← 返回</a>
   <div class="hd-title"><span style="color:var(--orange);font-size:15px">∑</span> MathML
 </div>
-  <div class="hd-sub">僅聊天室（DOMPurify mathMl 模式）· 數學公式標記語言</div>
-  <button class="theme-btn" id="themeToggle"> 切換背景</button>
+  <div class="hd-sub">僅聊天室（DOMPurify mathMl 模式）· 數學公式標記語言 · Chat room only · Mathematical markup language</div>
+  <button class="theme-btn" id="themeToggle"> 切換背景 / Theme</button>
 </div>
 <div class="ctrl">
-  <input type="search" id="q" placeholder="搜尋標籤名稱…">
-  <span class="ct-label">篩選：</span>
+  <input type="search" id="q" placeholder="搜尋標籤名稱… / Search tag…">
+  <span class="ct-label">篩選 / Filter：</span>
   <div class="ft-bar">
-    <button class="ft on" data-f="all">全部</button>
-    <button class="ft" data-f="allow">允許</button>
-    <button class="ft" data-f="deny">已棄用</button>
+    <button class="ft on" data-f="all">全部 / All</button>
+    <button class="ft" data-f="allow">允許 / Allowed</button>
+    <button class="ft" data-f="deny">已棄用 / Deprecated</button>
   </div>
 </div>
 <div class="stats">
   <div class="stat"><span class="sn" style="color:var(--orange)" id="s-allow">—</span><span class="sl">允許標籤</span></div>
-  <div class="stat"><span class="sn r" id="s-deny">—</span><span class="sl">已棄用</span></div>
+  <div class="stat"><span class="sn r" id="s-deny">—</span><span class="sl">已棄用 / Deprecated</span></div>
 </div>
 <div class="main">
   <div id="cards" class="card-grid"></div>
@@ -183,7 +183,7 @@ function makeCard(item){
   const nc=type==='allow'?'g':'r';
 
   const enDesc=MATH_EN[n]||'';
-  const typePill=type==='deny'?'<span class="pill y">已棄用</span>':'';
+  const typePill=type==='deny'?'<span class="pill y">已棄用 / Deprecated</span>':'';
   let prevHtml='';
   if(pdata&&pdata[1]&&type==='allow'){
     prevHtml=`<div class="prev-wrap">
