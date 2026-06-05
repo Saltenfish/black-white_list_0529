@@ -1,13 +1,13 @@
-﻿HTML標籤,聊天室實測,角色介面實測,xss白名單,DOMPurify允許,DOMPurify禁止子內容,xss允許屬性
+﻿﻿HTML標籤,聊天室實測,角色介面實測,xss白名單,DOMPurify允許,DOMPurify禁止子內容,xss允許屬性
 a,✗ 無效,✓ 有效,✓,✓,,"target, href, title"
 abbr,✓ 有效,✗ 無效,✓,✓,,title
 acronym,✓ 有效,✗ 無效,,✓,,
 address,✓ 有效,✗ 無效,✓,✓,,
 annotation-xml,✗ 無效,✗ 無效,,,✓,
-area,✗ 無效,✗ 無效,✓,✓,,
+area,✓ 有效,✗ 無效,✓,✓,,
 article,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 aside,✓ 有效,✗ 無效,✓,✓,,（無屬性）
-audio,✗ 無效,✗ 無效,✓,✓,✓,"autoplay, controls, crossorigin, loop, muted, preload, src"
+audio,✓ 有效,✗ 無效,✓,✓,✓,"autoplay, controls, crossorigin, loop, muted, preload, src"
 b,✓ 有效,✓ 有效,✓,✓,,（無屬性）
 bdi,✓ 有效,✗ 無效,✓,✓,,
 bdo,✓ 有效,✗ 無效,✓,✓,,
@@ -16,19 +16,19 @@ blink,✓ 有效,✗ 無效,,✓,,
 blockquote,✓ 有效,✗ 無效,✓,✓,,cite
 body,✗ 無效,✗ 無效,,✓,,
 br,✓ 有效,✓ 有效,✓,✓,,
-button,✗ 無效,✗ 無效,,✓,,
-canvas,✗ 無效,✗ 無效,,✓,,
+button,✓ 有效,✗ 無效,,✓,,
+canvas,✓ 有效,✗ 無效,,✓,,
 caption,✓ 有效,✗ 無效,✓,✓,,
 center,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 cite,✓ 有效,✗ 無效,✓,✓,,
 code,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 col,✗ 無效,✗ 無效,✓,✓,,
-colgroup,✗ 無效,✗ 無效,✓,✓,✓,
-content,✗ 無效,✗ 無效,,✓,,
+colgroup,✓ 有效,✗ 無效,✓,✓,✓,
+content,✓ 有效,✗ 無效,,✓,,
 data,✓ 有效,✗ 無效,,✓,,
-datalist,✗ 無效,✗ 無效,,✓,,
+datalist,✓ 有效,✗ 無效,,✓,,
 dd,✓ 有效,✗ 無效,✓,✓,,（無屬性）
-decorator,✗ 無效,✗ 無效,,✓,,
+decorator,✓ 有效,✗ 無效,,✓,,
 del,✓ 有效,✗ 無效,✓,✓,,datetime
 desc,✗ 無效,✗ 無效,,,✓,
 details,✓ 有效,✗ 無效,✓,✓,,open
@@ -38,15 +38,15 @@ dir,✓ 有效,✗ 無效,,✓,,
 div,✓ 有效,✓ 有效,✓,✓,,（無屬性）
 dl,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 dt,✓ 有效,✗ 無效,✓,✓,,（無屬性）
-element,✗ 無效,✗ 無效,,✓,,
+element,✓ 有效,✗ 無效,,✓,,
 em,✓ 有效,✓ 有效,✓,✓,,（無屬性）
-fieldset,✗ 無效,✗ 無效,,✓,,
+fieldset,✓ 有效,✗ 無效,,✓,,
 figcaption,✓ 有效,✗ 無效,✓,✓,,
 figure,✓ 有效,✗ 無效,✓,✓,,
 font,✓ 有效,✗ 無效,✓,✓,,"color, size, face"
 footer,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 foreignobject,✗ 無效,✗ 無效,,,✓,
-form,✗ 無效,✗ 無效,,✓,,
+form,✓ 有效,✗ 無效,,✓,,
 h1,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 h2,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 h3,✓ 有效,✗ 無效,✓,✓,,（無屬性）
@@ -61,20 +61,20 @@ html,✗ 無效,✗ 無效,,✓,,
 i,✓ 有效,✓ 有效,✓,✓,,（無屬性）
 iframe,✗ 無效,✗ 無效,,,✓,
 img,✗ 無效,✓ 有效,✓,✓,,"src, alt, title, width, height, loading"
-input,✗ 無效,✗ 無效,,✓,,
+input,✓ 有效,✗ 無效,,✓,,
 ins,✓ 有效,✗ 無效,✓,✓,,
 kbd,✓ 有效,✗ 無效,✓,✓,,（無屬性）
-label,✗ 無效,✗ 無效,,✓,,
-legend,✗ 無效,✗ 無效,,✓,,
+label,✓ 有效,✗ 無效,,✓,,
+legend,✓ 有效,✗ 無效,,✓,,
 li,✓ 有效,✗ 無效,✓,✓,,（無屬性）
-main,✓ 有效,✓ 有效,✗,✓,,—
-map,✗ 無效,✗ 無效,,✓,,
+main,✓ 有效,✗ 無效,✗,✓,,—
+map,✓ 有效,✗ 無效,,✓,,
 mark,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 marquee,✓ 有效,✗ 無效,✗,✓,,—
-math,✗ 無效,✗ 無效,,,✓,
+math,✓ 有效,✗ 無效,,,✓,
 menu,✓ 有效,✗ 無效,,✓,,
-menuitem,✗ 無效,✗ 無效,,✓,,
-meter,✗ 無效,✓ 有效,,✓,,
+menuitem,✓ 有效,✗ 無效,,✓,,
+meter,✓ 有效,✗ 無效,,✓,,
 mi,✗ 無效,✗ 無效,,,✓,
 mn,✗ 無效,✗ 無效,,,✓,
 mo,✗ 無效,✗ 無效,,,✓,
@@ -86,14 +86,14 @@ noembed,✗ 無效,✗ 無效,,,✓,
 noframes,✗ 無效,✗ 無效,,,✓,
 noscript,✗ 無效,✗ 無效,,,✓,
 ol,✓ 有效,✗ 無效,✓,✓,,（無屬性）
-optgroup,✗ 無效,✗ 無效,,✓,,
-option,✗ 無效,✗ 無效,,✓,,
-output,✗ 無效,✗ 無效,,✓,,
+optgroup,✓ 有效,✗ 無效,,✓,,
+option,✓ 有效,✗ 無效,,✓,,
+output,✓ 有效,✗ 無效,,✓,,
 p,✓ 有效,✓ 有效,✓,✓,,（無屬性）
-picture,✗ 無效,✗ 無效,,✓,,
+picture,✓ 有效,✗ 無效,,✓,,
 plaintext,✗ 無效,✗ 無效,,,✓,
 pre,✓ 有效,✗ 無效,✓,✓,,
-progress,✗ 無效,✓ 有效,,✓,,
+progress,✓ 有效,✗ 無效,,✓,,
 q,✓ 有效,✗ 無效,,✓,,
 rp,✓ 有效,✗ 無效,,✓,,
 rt,✓ 有效,✗ 無效,,✓,,
@@ -103,12 +103,12 @@ samp,✓ 有效,✗ 無效,,✓,,
 script,✗ 無效,✗ 無效,,,✓,
 search,✓ 有效,✗ 無效,,✓,,
 section,✓ 有效,✗ 無效,✓,✓,,（無屬性）
-select,✗ 無效,✗ 無效,,✓,,
-shadow,✗ 無效,✗ 無效,,✓,,
-slot,✗ 無效,✗ 無效,,✓,,
+select,✓ 有效,✗ 無效,,✓,,
+shadow,✓ 有效,✗ 無效,,✓,,
+slot,✓ 有效,✗ 無效,,✓,,
 small,✓ 有效,✗ 無效,✓,✓,,（無屬性）
-source,✗ 無效,✗ 無效,,✓,,
-spacer,✗ 無效,✗ 無效,,✓,,
+source,✓ 有效,✗ 無效,,✓,,
+spacer,✓ 有效,✗ 無效,,✓,,
 span,✓ 有效,✓ 有效,✓,✓,,（無屬性）
 strike,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 strong,✓ 有效,✓ 有效,✓,✓,,（無屬性）
@@ -120,19 +120,19 @@ svg,✓ 有效,✗ 無效,,,✓,
 table,✓ 有效,✗ 無效,✓,✓,,"width, border, align, valign"
 tbody,✓ 有效,✗ 無效,✓,✓,,"align, valign"
 td,✓ 有效,✗ 無效,✓,✓,,"width, rowspan, colspan, align, valign"
-template,✗ 無效,✗ 無效,,✓,✓,
-textarea,✗ 無效,✗ 無效,,✓,,
+template,✓ 有效,✗ 無效,,✓,✓,
+textarea,✓ 有效,✗ 無效,,✓,,
 tfoot,✓ 有效,✗ 無效,✓,✓,,"align, valign"
 th,✓ 有效,✗ 無效,✓,✓,,"width, rowspan, colspan, align, valign"
 thead,✓ 有效,✗ 無效,✓,✓,✓,"align, valign"
-time,✗ 無效,✓ 有效,,✓,,
-title,✗ 無效,✗ 無效,,,✓,
+time,✓ 有效,✗ 無效,,✓,,
+title,✓ 有效,✗ 無效,,,✓,
 tr,✓ 有效,✗ 無效,✓,✓,,"rowspan, align, valign"
-track,✗ 無效,✗ 無效,,✓,,
+track,✓ 有效,✗ 無效,,✓,,
 tt,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 u,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 ul,✓ 有效,✗ 無效,✓,✓,,（無屬性）
 var,✓ 有效,✗ 無效,,✓,,
-video,✗ 無效,✗ 無效,✓,✓,✓,"autoplay, controls, crossorigin, loop, muted, playsinline, poster, preload, src, height, width"
-wbr,✗ 無效,✗ 無效,,✓,,
+video,✓ 有效,✗ 無效,✓,✓,✓,"autoplay, controls, crossorigin, loop, muted, playsinline, poster, preload, src, height, width"
+wbr,✓ 有效,✗ 無效,,✓,,
 xmp,✗ 無效,✗ 無效,,,✓,
